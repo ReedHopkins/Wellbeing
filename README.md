@@ -1,7 +1,7 @@
+
 # Wellbeing
 
-## Website Link:
-### wellbeingeating.com
+## [Website Link](wellbeingeating.com)
 
 ## Team Members:
 ### Name
@@ -26,4 +26,3 @@
 ### Adrian Melo 
     - am79576 
     - adrianmb0
-
