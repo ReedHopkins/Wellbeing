@@ -1,5 +1,8 @@
 # Wellbeing
 
+## Website Link:
+### wellbeingeating.com
+
 ## Team Members:
 ### Name
 	- EID 
@@ -24,5 +27,3 @@
     - am79576 
     - adrianmb0
 
-## Website:
-### wellbeingeating.com
