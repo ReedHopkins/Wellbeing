@@ -1,8 +1,7 @@
 
 # Wellbeing
 
-## Website Link:
-[wellbeingeating.com]()
+[Website Link](http://wellbeingeating.com)
 
 ## Team Members:
 ### Name
