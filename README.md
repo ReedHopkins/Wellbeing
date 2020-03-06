@@ -3,10 +3,9 @@
 
 [Website Link](http://wellbeingeating.com)
 
+Build file: No build file needed
+
 ## Team Members:
-### Name
-	- EID 
-	- Github ID
 
 ### Ramya Rajasekaran 
     - rr44854 
