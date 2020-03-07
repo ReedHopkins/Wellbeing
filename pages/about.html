@@ -6,14 +6,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<title>WellBeing</title>
-
-	<script src="../js/main.js" type="text/javascript"></script>
-	<script type="text/javascript">
-		$(function () {
-			$("#opensource-projects").loadRepositories();
-			$("#adrian-stats").loadContributorStats("adrianmb0");
-		});
-	</script>
+	
+	<style>
+		p {
+			margin: 0;
+		}
+	</style>
 </head>
 
 <body>
@@ -100,8 +98,8 @@
 				distributes systems and machine learning. My hobbies include playing music and watching Netflix.
 				<br><b>Major:</b> Electrical and Computer Engineering, Software Engineering and Systems Track
 				<br><b>Primary Responsibilities:</b> Back-End Programming
-				<br><b>Number of Issues:</b> 2
 				<br><b>Number of Unit Tests:</b> 0
+				<p id="ramya-stats"></p>
 			</div>
 			<div class="col-sm-4">
 				<h4>Reed Hopkins</h4>
@@ -112,8 +110,8 @@
 				automation, however, I enjoy engineering in all aspects.
 				<br><b>Major:</b> Electrical and Computer Engineering, Software Engineering and Systems Track
 				<br><b>Primary Responsibilities:</b> Front-End Programming
-				<br><b>Number of Issues:</b> 2
 				<br><b>Number of Unit Tests:</b> 0
+				<p id="reed-stats"></p>
 			</div>
 			<div class="col-sm-4">
 				<h4>Evan Chang</h4>
@@ -125,8 +123,8 @@
 				outdoors.
 				<br><b>Major:</b> Electrical and Computer Engineering, Software Engineering and Systems Track
 				<br><b>Primary Responsibilities:</b> Back-End Programming
-				<br><b>Number of Issues:</b> 2
 				<br><b>Number of Unit Tests:</b> 0
+				<p id="evan-stats"></p>
 			</div>
 		</div>
 		<br>
@@ -140,8 +138,8 @@
 				with my dogs.
 				<br><b>Major:</b> Electrical and Computer Engineering, Software Engineering and Systems Track
 				<br><b>Primary Responsibilities:</b> Back-End Programming
-				<br><b>Number of Issues: </b> 2
 				<br><b>Number of Unit Tests:</b> 0
+				<p id="cam-stats"></p>
 			</div>
 			<div class="col-sm-4">
 				<h4>Shawheen Attar</h4>
@@ -152,8 +150,8 @@
 				multiverse. Through eternity.
 				<br><b>Major:</b> Electrical and Computer Engineering, Software Engineering and Systems Track
 				<br><b>Primary Responsibilities:</b> Front-End Programming
-				<br><b>Number of Issues:</b> 1
 				<br><b>Number of Unit Tests:</b> 0
+				<p id="shawheen-stats"></p>
 				<br><br>
 			</div>
 			<div class="col-sm-4">
@@ -166,8 +164,8 @@
 				<br><b>Major:</b> Electrical and Computer Engineering, Software Engineering and Systems Track
 				<br><b>Primary Responsibilities:</b> Front-End Programming
 				<br>
+				<b>Number of Unit Tests:</b> 0
 				<p id="adrian-stats"></p>
-				<br><b>Number of Unit Tests:</b> 0
 			</div>
 		</div>
 		<br>
@@ -196,6 +194,19 @@
 			and pulled many elements from it such as the navigation bar and database</p>
 		<br>
 	</div>
+
+	<script src="../js/main.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(function () {
+			$("#opensource-projects").loadRepositories();
+			$("#adrian-stats").loadContributorStats("adrianmb0");
+			$("#shawheen-stats").loadContributorStats("shawheenattar");
+			$("#cam-stats").loadContributorStats("cameronsanders");
+			$("#reed-stats").loadContributorStats("ReedHopkins");
+			$("#evan-stats").loadContributorStats("evanchang2399");
+			$("#ramya-stats").loadContributorStats("ramyarajasekaran");
+		});
+	</script>
 </body>
 
 </html>
