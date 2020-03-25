@@ -24,8 +24,11 @@ def get_ingredients(database):
     ingredients_db = database["wellbeing"]
     ingredients_collection = ingredients_db["recipes"]
     #Trial with one recipe
-    cursor = ingredients_collection.find()[0]['extendedIngredients']
-    return cursor
+    #cursor = ingredients_collection.find()[0]['extendedIngredients']
+    cursorArray = []
+    for element in ingredients_collection.find():
+        cursorArray.append(element['extendedIngredients'])
+    return cursorArray
     
 def find_items(database, ingredients):
 #    for itm in  database.find():
@@ -81,8 +84,12 @@ mydb = conn["project"]
 collection = mydb["hebData"]
 
 ingredients = []
-cursor = get_ingredients(conn)
-for c in cursor:
-    ingredients.append(c['name'])
-print(ingredients)
-find_items(mydb.hebData, ingredients)
+cursorA = get_ingredients(conn)
+num = 0
+for elem in cursorA:
+    print("recipe "+str(num))
+    for c in elem:
+        ingredients.append(c['name'])
+    print(ingredients)
+    find_items(mydb.hebData, ingredients)
+    num += 1
