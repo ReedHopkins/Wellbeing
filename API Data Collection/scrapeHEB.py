@@ -80,7 +80,7 @@ def insert_to_db(item, price):
 
 BASE_URL = "https://www.heb.com"
 conn = get_connection()
-mydb = conn["project"]
+mydb = conn["wellbeing"]
 collection = mydb["hebData"]
 
 ingredients = []
