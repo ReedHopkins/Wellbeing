@@ -37,4 +37,3 @@ for i in db.recipes.find({},{"vegetarian":"true"}):
 #json_formatted_str = json.dumps(db.meals.find_one(), indent=2,default=json_util.default)
 #print(json_formatted_str)
 
-
