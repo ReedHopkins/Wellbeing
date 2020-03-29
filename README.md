@@ -5,6 +5,30 @@
 
 Build file: No build file needed
 
+## Phase Completion time
+
+#### Estimated completion time (compiled):  
+
+    Frontend:
+    
+    Data Collection: 3 hours
+    
+        Testing: 4 hours
+
+    Backend:
+
+#### Actual completion time (compiled):
+
+    Frontend:
+    
+        Data Collection: 3 hours
+    
+        Testing: 5 hours
+
+    Backend:
+        
+        Testing:
+
 ## Team Members:
 
 ### Ramya Rajasekaran 

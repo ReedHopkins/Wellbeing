@@ -1,0 +1,105 @@
+<html>
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+		<title>Food/Ingredient Description</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="../index.html">
+				<img src="../images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+				WellBeing
+			</a>
+	
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+	
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Databases
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="../pages/ingredients.html">Ingredient Search</a>
+							<a class="dropdown-item" href="../pages/recipes.html">Recipe Search</a>
+							<a class="dropdown-item" href="../pages/nutrients.html">Nutrient Search</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Pages
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="../pages/onefood.html">Food Info Page</a>
+							<a class="dropdown-item" href="../pages/onerecipe.html">Recipe Info Page</a>
+							<a class="dropdown-item" href="../pages/onenutrient.html">Nutrient Info Page</a>
+						</div>
+					</li>
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Tools
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="../pages/ingredientinput.html">Ingredient Input</a>
+							<a class="dropdown-item" href="../pages/mealplan.html">Meal Planner</a>
+							<a class="dropdown-item" href="../pages/expirationtracker.html">Food Expiration Tracker</a>
+							<a class="dropdown-item" href="../pages/nutrientselector.html">Nutrient Selector</a>
+							<a class="dropdown-item" href="../pages/healthysubs.html">Healthy Substitutes</a>
+						</div>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../pages/user.html">User</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../pages/about.html">About</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="jumbotron" style="text-align:center">
+			<h1>Vitamin C</h1>
+			<p>This is an example of a nutrient information page</p>
+		</div>
+		<div class="container" style="align-items:center">
+			<div style="text-align: center;">
+			<img src="../images/vitamin c.jpg" alt="Picture of an apple" width="450" height="300">
+			</div>
+			<br>
+			<h3>What is it?</h3>
+			<p>Vitamin C, also known as L-ascorbic acid, is a water-soluble vitamin that is naturally present in some foods, added to others, and available as a dietary supplement. Humans, unlike most animals, are unable to synthesize vitamin C endogenously, so it is an essential dietary component.</p>
+			<br>
+			<p>Vitamin C is necessary for growth, development, and repair of all body tissues. It's involved in many body functions, including formation of collagen, absorption of iron, the immune system, wound healing, and the maintenance of cartilage, bones, and teeth.</p>
+			<br>
+			<p>The recommended daily intake of vitamin C is 65mg to 90mg for an adult</p>
+			<br>
+			<h3>Foods high in Vitamin C</h3>
+			<ul>
+				<li>Broccoli</li>
+				<li>Cantaloupe</li>
+				<li>Cauliflower</li>
+				<li>Kale</li>
+				<li>Kiwi</li>
+				<li>Orange juice</li>
+				<li>Sweet potato</li>
+			</ul>
+			<br>
+			<h3>Groups at risk of Vitamin C deficiency</h3>
+			<ul>
+				<li>Individuals who smoke</li>
+				<li>Infants fed evaporated or boiled milk</li>
+				<li>Individuals with limited food variety</li>
+				<li>People with certain chronic diseases</li>
+			</ul>
+			<br>
+		</div>
+	</body>
+</html>
