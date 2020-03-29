@@ -8,12 +8,12 @@
 	<display-name>MongoDb JSP and SERVLET Example</display-name>
 	
 	<servlet>
-      <servlet-name>Login</servlet-name>
-      <servlet-class>com.jcg.mongodb.servlet.Login</servlet-class>
+      <servlet-name>DBSearch</servlet-name>
+      <servlet-class>com.jcg.mongodb.servlet.DBSearch</servlet-class>
    </servlet>
    <servlet-mapping>
-      <servlet-name>Login</servlet-name>
-      <url-pattern>/Login</url-pattern>
+      <servlet-name>DBSearch</servlet-name>
+      <url-pattern>/DBSearch</url-pattern>
    </servlet-mapping>
    	
 	<!-- Welcome File List -->

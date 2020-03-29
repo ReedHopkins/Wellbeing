@@ -1,52 +1,41 @@
 package com.jcg.mongodb.servlet;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
 
-import org.bson.Document;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import com.mongodb.BasicDBObject;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientURI;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+@WebServlet("/searchServlet")
+public class DBSearch extends HttpServlet {
 
-public class DBSearch {
+	private static final long serialVersionUID = 1L;
 
-	// Method to make a connection to the mongodb server listening on a default port
-	private static MongoClient getConnection() {
-		String dbURI = "mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/wellbeing?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
-		MongoClient mongoClient = new MongoClient(new MongoClientURI(dbURI));
-		
-		return mongoClient;
+	// This method is called by the servlet container to process a 'post' request
+	public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+		handleRequest(req, resp);
 	}
 
-	// Method to search a user in the mongodb
-	public static boolean searchFood(String food) {
-		boolean food_found = false;
-		String db_name = "wellbeing", db_collection_name = "hebData";
+	public void handleRequest(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 
-		// Get the mongodb connection
-		MongoDatabase db = getConnection().getDatabase(db_name);
+		// Reading post parameters from the request
+		String param1 = req.getParameter("search_id");
 
-		// Get the mongodb collection.
-		MongoCollection<Document> col = db.getCollection(db_collection_name);
+		// Checking for null and empty values
+		if(param1 == null || "".equals(param1)) {
+			req.setAttribute("error_message", "Please enter a food");
+			req.getRequestDispatcher("/search.jsp").forward(req, resp);
+		} else {
 
-		// Get the particular record from the mongodb collection
-		List<BasicDBObject> obj = new ArrayList<BasicDBObject>();
-		obj.add(new BasicDBObject("item", food));
-
-		// Form a where query
-		BasicDBObject whereQuery = new BasicDBObject();
-		whereQuery.put("$and", obj);
-		System.out.println("Sql query is?= " + whereQuery.toString());
-
-		FindIterable<Document> cursor = col.find(whereQuery);
-		for (Document doc : cursor) {
-			System.out.println("Found?= " + doc);
-			food_found = true;
-		}
-		return food_found;
+			boolean isFoodFound = Utll.searchFood(param1);
+			if(isFoodFound) {				
+				req.getRequestDispatcher("/welcome.jsp").forward(req, resp);
+			} else {
+				req.setAttribute("error_message", "You are not an authorised user. Please check with administrator.");
+				req.getRequestDispatcher("/index.jsp").forward(req, resp);
+			}	
+		}		
 	}
 }
