@@ -4,7 +4,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-		<title>Ingredient Database</title>
+		<title>Food/Ingredient Description</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -66,39 +66,40 @@
 		</nav>
 
 		<div class="jumbotron" style="text-align:center">
-			<h1>Ingredient Database</h1>
+			<h1>Vitamin C</h1>
+			<p>This is an example of a nutrient information page</p>
 		</div>
 		<div class="container" style="align-items:center">
-			<table class="table table-striped">
-				<thead>
-				  <tr>
-					<th scope="col"></th>
-					<th scope="col">Ingredient</th>
-					<th scope="col">Calories per serving</th>
-					<th scope="col">Average price per pound</th>
-				  </tr>
-				</thead>
-				<tbody>
-				  <tr>
-					<th scope="row"><img src="../images/chicken.jpg" width="59" height="60"></th>
-					<td ><a href="../pages/chickenbreast.html">Chicken Breast</td>
-					<td>239</td>
-					<td>$3.18</td>
-				  </tr>
-				  <tr>
-					<th scope="row"><img src="../images/broccoli.jpeg" width="50" height="50"></th>
-					<td><a href="../pages/broccoli.html">Broccoli</td>
-					<td>31</td>
-					<td>$1.80</td>
-				  </tr>
-				  <tr>
-					<th scope="row"><img src="../images/potato.jpg" width="85" height="50"></th>
-					<td><a href="../pages/potato.html">Potato</td>
-					<td>110</td>
-					<td>$0.48</td>
-				  </tr>
-				</tbody>
-			  </table>
+			<div style="text-align: center;">
+			<img src="../images/vitamin c.jpg" alt="Picture of an apple" width="450" height="300">
+			</div>
+			<br>
+			<h3>What is it?</h3>
+			<p>Vitamin C, also known as L-ascorbic acid, is a water-soluble vitamin that is naturally present in some foods, added to others, and available as a dietary supplement. Humans, unlike most animals, are unable to synthesize vitamin C endogenously, so it is an essential dietary component.</p>
+			<br>
+			<p>Vitamin C is necessary for growth, development, and repair of all body tissues. It's involved in many body functions, including formation of collagen, absorption of iron, the immune system, wound healing, and the maintenance of cartilage, bones, and teeth.</p>
+			<br>
+			<p>The recommended daily intake of vitamin C is 65mg to 90mg for an adult</p>
+			<br>
+			<h3>Foods high in Vitamin C</h3>
+			<ul>
+				<li>Broccoli</li>
+				<li>Cantaloupe</li>
+				<li>Cauliflower</li>
+				<li>Kale</li>
+				<li>Kiwi</li>
+				<li>Orange juice</li>
+				<li>Sweet potato</li>
+			</ul>
+			<br>
+			<h3>Groups at risk of Vitamin C deficiency</h3>
+			<ul>
+				<li>Individuals who smoke</li>
+				<li>Infants fed evaporated or boiled milk</li>
+				<li>Individuals with limited food variety</li>
+				<li>People with certain chronic diseases</li>
+			</ul>
+			<br>
 		</div>
 	</body>
 </html>

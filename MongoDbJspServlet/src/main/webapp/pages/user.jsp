@@ -1,11 +1,13 @@
 <html>
+
 <head>
+	<title>User</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	<title>Food/Ingredient Description</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="../index.html">
@@ -66,25 +68,52 @@
 	</nav>
 
 	<div class="jumbotron" style="text-align:center">
-		<h1>Potato</h1>
-    </div>
-	<div class="container" style="align-items:center">
-		<div style="text-align: center;">
-		<img src="../images/potato.jpg" alt="Picture of a potato" width="508" height="300">
+		<h1>User Information</h1>
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text" id="basic-addon1">Name</span>
 		</div>
-		<br>
-		<p>Cooked potatoes with skin are a good source of many vitamins and minerals, such as potassium and vitamin C.</p>
-		<h3>Nutritional Information</h1>
-		<p>The nutrients found in 2/3 cup (100 grams) of boiled potatoes — cooked with the skin but without salt — are:</p>
-		<ul>
-			<li>Calories: 87</li>
-			<li>Fat: 0.1g</li>
-			<li>Sodium: 6mg</li>
-			<li>Carbohydrates: 20.1g</li>
-			<li>Fiber: 1.8g</li>
-			<li>Sugars: 0.9g</li>
-			<li>Protein: 1.9g</li>
-		</ul>
-    </div>
+		<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text" id="basic-addon1">Email</span>
+		</div>
+		<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text" id="basic-addon1">Height</span>
+		</div>
+		<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text" id="basic-addon1">Weight</span>
+		</div>
+		<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text" id="basic-addon1">Goal</span>
+			<button class="btn btn-outline-secondary" type="button">Bulk</button>
+			<button class="btn btn-outline-secondary" type="button">Maintain</button>
+			<button class="btn btn-outline-secondary" type="button">Cut</button>
+		</div>
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text" id="basic-addon1">Daily Calorie Intake</span>
+		</div>
+		<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+	</div>
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text" id="basic-addon1">Food Allergies</span>
+		</div>
+		<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+	</div>
 </body>
+
 </html>

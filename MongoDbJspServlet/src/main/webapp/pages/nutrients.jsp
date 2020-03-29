@@ -4,7 +4,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-		<title>Food/Ingredient Description</title>
+		<title>Nutrient Database</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -66,40 +66,39 @@
 		</nav>
 
 		<div class="jumbotron" style="text-align:center">
-			<h1>Vitamin C</h1>
-			<p>This is an example of a nutrient information page</p>
+			<h1>Nutrient Database</h1>
 		</div>
 		<div class="container" style="align-items:center">
-			<div style="text-align: center;">
-			<img src="../images/vitamin c.jpg" alt="Picture of an apple" width="450" height="300">
-			</div>
-			<br>
-			<h3>What is it?</h3>
-			<p>Vitamin C, also known as L-ascorbic acid, is a water-soluble vitamin that is naturally present in some foods, added to others, and available as a dietary supplement. Humans, unlike most animals, are unable to synthesize vitamin C endogenously, so it is an essential dietary component.</p>
-			<br>
-			<p>Vitamin C is necessary for growth, development, and repair of all body tissues. It's involved in many body functions, including formation of collagen, absorption of iron, the immune system, wound healing, and the maintenance of cartilage, bones, and teeth.</p>
-			<br>
-			<p>The recommended daily intake of vitamin C is 65mg to 90mg for an adult</p>
-			<br>
-			<h3>Foods high in Vitamin C</h3>
-			<ul>
-				<li>Broccoli</li>
-				<li>Cantaloupe</li>
-				<li>Cauliflower</li>
-				<li>Kale</li>
-				<li>Kiwi</li>
-				<li>Orange juice</li>
-				<li>Sweet potato</li>
-			</ul>
-			<br>
-			<h3>Groups at risk of Vitamin C deficiency</h3>
-			<ul>
-				<li>Individuals who smoke</li>
-				<li>Infants fed evaporated or boiled milk</li>
-				<li>Individuals with limited food variety</li>
-				<li>People with certain chronic diseases</li>
-			</ul>
-			<br>
+			<table class="table table-striped">
+				<thead>
+				  <tr>
+					<th scope="col"></th>
+					<th scope="col">Nutrient</th>
+					<th scope="col">Recommended daily intake</th>
+					<th scope="col">Category</th>
+				  </tr>
+				</thead>
+				<tbody>
+				  <tr>
+					<th scope="row"><img src="../images/protein.jpg" width="89" height="50"></th>
+					<td>Protein</td>
+					<td>0.36 grams per pound of body weight</td>
+					<td>Macronutrient</td>
+				  </tr>
+				  <tr>
+					<th scope="row"><img src="../images/vitamin c.jpg" width="75" height="50"></th>
+					<td>Vitamin C</td>
+					<td>65 to 90 mg</td>
+					<td>Micronutrient</td>
+				  </tr>
+				  <tr>
+					<th scope="row"><img src="../images/sodium.jpg" width="106" height="50"></th>
+					<td>Sodium</td>
+					<td>500 to 2000 mg per day</td>
+					<td>Micronutrient</td>
+				  </tr>
+				</tbody>
+			  </table>
 		</div>
 	</body>
 </html>

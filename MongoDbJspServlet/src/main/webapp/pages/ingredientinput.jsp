@@ -1,13 +1,11 @@
 <html>
-
 <head>
-	<title>User</title>
+	<title>Ingredient Input</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
-
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="../index.html">
@@ -67,53 +65,35 @@
 		</div>
 	</nav>
 
+	
 	<div class="jumbotron" style="text-align:center">
-		<h1>User Information</h1>
+		<h1>Ingredient Input</h1>
 	</div>
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text" id="basic-addon1">Name</span>
+	<div class="container" style="align-items:center">
+
+		<!-- Source: https://codepen.io/bruce0205/pen/dvZJeJ -->
+		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
+		
+		<script>
+			$(document).ready(function() {
+		        $('#multiple-checkboxes').multiselect({
+		          includeSelectAllOption: true,
+		        });
+		    });
+		</script>
+
+		<div class="">
+			<strong>Select Ingredients:</strong>
+			<!-- We have to decide if we are going to give recipes that have those ingredients together only or recipes with single ingredients. Also have to see how to connect the database of ingredients to this list -->
+		    <select id="multiple-checkboxes" multiple="multiple">
+		        <option>Broccoli</option>
+		        <option>Chicken Breast</option>
+		        <option>Potato</option>
+		    </select>
 		</div>
-		<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-	</div>
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text" id="basic-addon1">Email</span>
-		</div>
-		<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-	</div>
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text" id="basic-addon1">Height</span>
-		</div>
-		<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-	</div>
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text" id="basic-addon1">Weight</span>
-		</div>
-		<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-	</div>
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text" id="basic-addon1">Goal</span>
-			<button class="btn btn-outline-secondary" type="button">Bulk</button>
-			<button class="btn btn-outline-secondary" type="button">Maintain</button>
-			<button class="btn btn-outline-secondary" type="button">Cut</button>
-		</div>
-	</div>
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text" id="basic-addon1">Daily Calorie Intake</span>
-		</div>
-		<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
-	</div>
-	<div class="input-group mb-3">
-		<div class="input-group-prepend">
-			<span class="input-group-text" id="basic-addon1">Food Allergies</span>
-		</div>
-		<input type="text" class="form-control" aria-label="Username" aria-describedby="basic-addon1">
+
 	</div>
 </body>
-
 </html>

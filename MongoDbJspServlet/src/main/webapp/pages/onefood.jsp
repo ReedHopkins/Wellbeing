@@ -1,10 +1,10 @@
 <html>
 <head>
-	<title>Ingredient Input</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	<title>Food/Ingredient Description</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -65,35 +65,27 @@
 		</div>
 	</nav>
 
-	
 	<div class="jumbotron" style="text-align:center">
-		<h1>Ingredient Input</h1>
-	</div>
+		<h1>Apple</h1>
+		<p>This is an example of a food information page</p>
+    </div>
 	<div class="container" style="align-items:center">
-
-		<!-- Source: https://codepen.io/bruce0205/pen/dvZJeJ -->
-		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-	 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
-		
-		<script>
-			$(document).ready(function() {
-		        $('#multiple-checkboxes').multiselect({
-		          includeSelectAllOption: true,
-		        });
-		    });
-		</script>
-
-		<div class="">
-			<strong>Select Ingredients:</strong>
-			<!-- We have to decide if we are going to give recipes that have those ingredients together only or recipes with single ingredients. Also have to see how to connect the database of ingredients to this list -->
-		    <select id="multiple-checkboxes" multiple="multiple">
-		        <option>Broccoli</option>
-		        <option>Chicken Breast</option>
-		        <option>Potato</option>
-		    </select>
+		<div style="text-align: center;">
+		<img src="../images/apple.jpg" alt="Picture of an apple" width="300" height="300">
 		</div>
-
-	</div>
+		<br>
+		<p>An Apple is a sweet, edible fruit produced by an apple tree. Apples contain many valuable nutrients such as antioxidants, vitamins, and fiber.</p>
+		<h3>Nutritional Information</h1>
+		<p>The nutrional facts below correspond to one medium sized apple 3" in diameter</p>
+		<ul>
+			<li>Calories: 95</li>
+			<li>Fat: 0.3g</li>
+			<li>Sodium: 2mg</li>
+			<li>Carbohydrates: 25g</li>
+			<li>Fiber: 4.4g</li>
+			<li>Sugars: 18.9g</li>
+			<li>Protein: 0.5g</li>
+		</ul>
+    </div>
 </body>
 </html>

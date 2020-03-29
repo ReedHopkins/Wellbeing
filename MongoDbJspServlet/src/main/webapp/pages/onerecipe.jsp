@@ -4,7 +4,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-		<title>Nutrient Database</title>
+		<title>Recipe page</title>
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -66,39 +66,55 @@
 		</nav>
 
 		<div class="jumbotron" style="text-align:center">
-			<h1>Nutrient Database</h1>
+			<h1>Apple Pie</h1>
+			<p>This is an example of a recipe page</p>
 		</div>
 		<div class="container" style="align-items:center">
-			<table class="table table-striped">
-				<thead>
-				  <tr>
-					<th scope="col"></th>
-					<th scope="col">Nutrient</th>
-					<th scope="col">Recommended daily intake</th>
-					<th scope="col">Category</th>
-				  </tr>
-				</thead>
-				<tbody>
-				  <tr>
-					<th scope="row"><img src="../images/protein.jpg" width="89" height="50"></th>
-					<td>Protein</td>
-					<td>0.36 grams per pound of body weight</td>
-					<td>Macronutrient</td>
-				  </tr>
-				  <tr>
-					<th scope="row"><img src="../images/vitamin c.jpg" width="75" height="50"></th>
-					<td>Vitamin C</td>
-					<td>65 to 90 mg</td>
-					<td>Micronutrient</td>
-				  </tr>
-				  <tr>
-					<th scope="row"><img src="../images/sodium.jpg" width="106" height="50"></th>
-					<td>Sodium</td>
-					<td>500 to 2000 mg per day</td>
-					<td>Micronutrient</td>
-				  </tr>
-				</tbody>
-			  </table>
+			<div style="text-align: center;">
+			<img src="../images/apple pie.jpg" alt="Picture of an apple pie" width="300" height="300">
+			</div>
+			<br>
+			<h3>Recipe Information</h3>
+			<ul>
+				<li>Prep Time: 20 minutes</li>
+				<li>Bake Time: 45 minutes</li>
+				<li>Makes: 8 servings</li>
+			</ul>
+			<h3>Ingredients</h3>
+			<ul>
+				<li>1/2 cup sugar</li>
+				<li>1/2 cup packed brown sugar</li>
+				<li>3 tablespoons all-purpose flour</li>
+				<li>1 teaspoon ground cinnamon</li>
+				<li>1/4 teaspoon groud ginger</li>
+				<li>1/4 teaspoon ground nutmeg</li>
+				<li>6 to 7 cups thinly sliced peeled tart apples</li>
+				<li>1 tablespoon lemon juice</li>
+				<li>Pastry for double-crust pie</li>
+				<li>1 tablespoon butter</li>
+				<li>1 large egg white</li>
+				<li>additional sugar</li>
+			</ul>
+			<br>
+			<h3>Directions</h3>
+			<ol>
+				<li>In a small bowl, combine the sugars, flour and spices; set aside. In a large bowl, toss apples with lemon juice. Add sugar mixture; toss to coat.</li>
+				<li>Line a 9-in. pie plate with bottom crust; trim even with edge. Fill with apple mixture; dot with butter. Roll remaining crust to fit top of pie; place over filling. Trim, seal and flute edges. Cut slits in crust.</li>
+				<li>Beat egg white until foamy; brush over crust. Sprinkle with sugar. Cover edges loosely with foil.</li>
+				<li>Bake at 375 degrees for 25 minutes. Remove foil and bake until crust is golden brown and filling is bubbly, 20-25 minutes longer. Cool on a wire rack.</li>
+			</ol>
+			<br>
+			<h3>Nutritional Information</h3>
+			<p>The nutrional facts below correspond to one of the 8 slices of pie</p>
+			<ul>
+				<li>Calories: 414</li>
+				<li>Fat: 16g</li>
+				<li>Sodium: 227mg</li>
+				<li>Carbohydrates: 67g</li>
+				<li>Fiber: 2g</li>
+				<li>Sugars: 38g</li>
+				<li>Protein: 3g</li>
+			</ul>
 		</div>
 	</body>
 </html>

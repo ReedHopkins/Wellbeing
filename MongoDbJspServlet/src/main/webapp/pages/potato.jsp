@@ -66,25 +66,24 @@
 	</nav>
 
 	<div class="jumbotron" style="text-align:center">
-		<h1>Apple</h1>
-		<p>This is an example of a food information page</p>
+		<h1>Potato</h1>
     </div>
 	<div class="container" style="align-items:center">
 		<div style="text-align: center;">
-		<img src="../images/apple.jpg" alt="Picture of an apple" width="300" height="300">
+		<img src="../images/potato.jpg" alt="Picture of a potato" width="508" height="300">
 		</div>
 		<br>
-		<p>An Apple is a sweet, edible fruit produced by an apple tree. Apples contain many valuable nutrients such as antioxidants, vitamins, and fiber.</p>
+		<p>Cooked potatoes with skin are a good source of many vitamins and minerals, such as potassium and vitamin C.</p>
 		<h3>Nutritional Information</h1>
-		<p>The nutrional facts below correspond to one medium sized apple 3" in diameter</p>
+		<p>The nutrients found in 2/3 cup (100 grams) of boiled potatoes — cooked with the skin but without salt — are:</p>
 		<ul>
-			<li>Calories: 95</li>
-			<li>Fat: 0.3g</li>
-			<li>Sodium: 2mg</li>
-			<li>Carbohydrates: 25g</li>
-			<li>Fiber: 4.4g</li>
-			<li>Sugars: 18.9g</li>
-			<li>Protein: 0.5g</li>
+			<li>Calories: 87</li>
+			<li>Fat: 0.1g</li>
+			<li>Sodium: 6mg</li>
+			<li>Carbohydrates: 20.1g</li>
+			<li>Fiber: 1.8g</li>
+			<li>Sugars: 0.9g</li>
+			<li>Protein: 1.9g</li>
 		</ul>
     </div>
 </body>
