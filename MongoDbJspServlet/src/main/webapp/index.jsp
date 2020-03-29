@@ -22,17 +22,12 @@
                 <!----- LOGIN FORM ------>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input type="text" class="form-control" id="login_id" placeholder="Enter login id ..." name="login_id" maxlength="6">
-                </div>
-                <div>&nbsp;</div>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input type="password" class="form-control" id="login_pwd" placeholder="Enter password ..." name="login_pwd">
+                    <input type="text" class="form-control" id="login_id" placeholder="Enter a food" name="login_id">
                 </div>
 
                 <!----- SUBMIT BUTTON ------>
                 <div>&nbsp;</div>
-                <button id="submit_btn" type="submit" class="btn btn-primary">Confirm identity</button>
+                <button id="submit_btn" type="submit" class="btn btn-primary">Search</button>
             </form>
         </div>
         
