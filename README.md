@@ -1,7 +1,7 @@
 
 # Wellbeing
 
-[Website Link](http://wellbeingeating.com)
+[Website Link](www.wellbeingeating.com)
 
 Build file: MongoDbJspServlet/pom.xml
 
