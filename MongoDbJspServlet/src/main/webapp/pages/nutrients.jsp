@@ -85,21 +85,6 @@
 		<h1>Nutrient Search</h1>
 	</div>
 
-	<div id="search_bar">
-		<form id="search_bar_form " name="searchBarForm" method="post"
-			action="searchServlet">
-
-			<!----- Search Bar ------>
-			<input type="text" class="form-control" id="search_id"
-				placeholder="Enter a food" name="login_id">
-
-			<!----- SUBMIT BUTTON ------>
-			<div>&nbsp;</div>
-			<button id="search_btn" type="submit" class="btn btn-primary">Search</button>
-		</form>
-	</div>
-
-
 	<%
 		String dbURI = "mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/wellbeing?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
 		MongoClient mongoClient = new MongoClient(new MongoClientURI(dbURI));
@@ -157,11 +142,11 @@
 		
 		out.print("<div style='width:80%; margin: 0 auto; text-align: center;'>");
 		out.print("<h1>Page No: " + spageid + "</h1>");
-		out.print("<table border='1' cellpadding='4' width='60%' style='margin: 0 auto;'>");
-		out.print("<tr><th>Nutrient</th><th>Cholesterol</th>");
+		out.print("<table border='1' cellpadding='4' width='100%' style='margin: 0 auto;'>");
+		out.print("<tr><th>Item</th><th>Fat</th><th>Sodium</th><th>Sugar</th><th>Protein</th><th>Cholesterol</th>");
 		
 		for (Document food : list) {
-			out.print("<tr><td>" + (String) food.get("item_name") + "</td><td>" + food.get("nf_cholesterol") + "</td></tr>");
+			out.print("<tr><td>" + (String) food.get("item_name") + "</td><td>" + food.get("nf_total_fat") + "</td><td>" + food.get("nf_sodium") + "</td><td>" + food.get("nf_sugars") + "</td><td>" + food.get("nf_protein") + "</td><td>" + food.get("nf_cholesterol") + "</td></tr>");
 		}
 		
 		out.print("</table>");

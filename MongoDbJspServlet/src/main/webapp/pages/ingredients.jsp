@@ -85,21 +85,6 @@
 		<h1>Ingredient Search</h1>
 	</div>
 
-	<div id="search_bar">
-		<form id="search_bar_form " name="searchBarForm" method="post"
-			action="searchServlet">
-
-			<!----- Search Bar ------>
-			<input type="text" class="form-control" id="search_id"
-				placeholder="Enter a food" name="login_id">
-
-			<!----- SUBMIT BUTTON ------>
-			<div>&nbsp;</div>
-			<button id="search_btn" type="submit" class="btn btn-primary">Search</button>
-		</form>
-	</div>
-
-
 	<%
 		String dbURI = "mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/wellbeing?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
 		MongoClient mongoClient = new MongoClient(new MongoClientURI(dbURI));
@@ -156,7 +141,7 @@
 		out.print("<div style='width:80%; margin: 0 auto; text-align: center;'>");
 		out.print("<h1>Page No: " + spageid + "</h1>");
 		out.print("<table border='1' cellpadding='4' width='60%' style='margin: 0 auto;'>");
-		out.print("<tr><th>Food</th><th>Price</th>");
+		out.print("<tr><th>Food</th><th>HEB Price</th>");
 		
 		for (Document food : list) {
 			out.print("<tr><td>" + (String) food.get("item") + "</td><td>" + (Double) food.get("price") + "</td></tr>");
