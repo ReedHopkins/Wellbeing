@@ -35,7 +35,7 @@ Build file: No build file needed
         
         Link domain to Tomcat Instance: 1 hour
         
-        Testing: 2 hours
+        Testing: 3 hours
 
     Backend:
         
