@@ -49,4 +49,21 @@ public class Utll {
 		}
 		return food_found;
 	}
+
+	// Method to create a list of recipes
+	public static List getRecipes() {
+		boolean food_found = false;
+		String db_name = "wellbeing", db_collection_name = "recipes";
+
+		// Get the mongodb connection
+		MongoDatabase db = getConnection().getDatabase(db_name);
+
+		// Get the mongodb collection.
+		MongoCollection<Document> col = db.getCollection(db_collection_name);
+
+		List<BasicDBObject> obj = new ArrayList<BasicDBObject>();
+		List recipes = new ArrayList();
+		//get elements and put them in recipes list
+		return recipes;
+	}
 }

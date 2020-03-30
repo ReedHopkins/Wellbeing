@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="MongoDbJspServlet">
+    <output-path>$PROJECT_DIR$/classes/artifacts/MongoDbJspServlet</output-path>
+    <root id="archive" name="MongoDbJspServlet.war">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="MongoDbJspServlet" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: org.mongodb:mongo-java-driver:3.6.3" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="MongoDbJspServlet/web/Web" />
+    </root>
+  </artifact>
+</component>
