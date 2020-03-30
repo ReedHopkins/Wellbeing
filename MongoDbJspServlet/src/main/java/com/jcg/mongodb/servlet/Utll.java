@@ -51,8 +51,7 @@ public class Utll {
 	}
 
 	// Method to create a list of recipes
-	public static List getRecipes() {
-		boolean food_found = false;
+	public static FindIterable<Document> getRecipes() {
 		String db_name = "wellbeing", db_collection_name = "recipes";
 
 		// Get the mongodb connection
@@ -60,10 +59,31 @@ public class Utll {
 
 		// Get the mongodb collection.
 		MongoCollection<Document> col = db.getCollection(db_collection_name);
+		FindIterable<Document> elements = col.find();
+		return elements;
+	}
 
-		List<BasicDBObject> obj = new ArrayList<BasicDBObject>();
-		List recipes = new ArrayList();
-		//get elements and put them in recipes list
-		return recipes;
+	public static FindIterable<Document> getIngredients() {
+		String db_name = "wellbeing", db_collection_name = "hebData";
+
+		// Get the mongodb connection
+		MongoDatabase db = getConnection().getDatabase(db_name);
+
+		// Get the mongodb collection.
+		MongoCollection<Document> col = db.getCollection(db_collection_name);
+		FindIterable<Document> elements = col.find();
+		return elements;
+	}
+
+	public static FindIterable<Document> getNutrients() {
+		String db_name = "wellbeing", db_collection_name = "nutrients";
+
+		// Get the mongodb connection
+		MongoDatabase db = getConnection().getDatabase(db_name);
+
+		// Get the mongodb collection.
+		MongoCollection<Document> col = db.getCollection(db_collection_name);
+		FindIterable<Document> elements = col.find();
+		return elements;
 	}
 }
