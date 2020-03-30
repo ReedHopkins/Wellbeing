@@ -11,23 +11,37 @@ Build file: No build file needed
 
     Frontend:
     
-    Data Collection: 3 hours
-    
-        Testing: 4 hours
+        Setting up EC2 server with Tomcat: 1 hour
+        
+        Update our static code to be dynamic: 4 hours
+        
+        Link domain to Tomcat Instance: 1 hour
+        
+        Testing: 2 hours
 
     Backend:
+    
+        Data Collection: 3 hours
+    
+        Testing: 4 hours
 
 #### Actual completion time (compiled):
 
     Frontend:
     
-        Data Collection: 3 hours
-    
-        Testing: 5 hours
+        Setting up EC2 server with Tomcat: 2 hours
+        
+        Update our static code to be dynamic: 6 hours
+        
+        Link domain to Tomcat Instance: 1 hour
+        
+        Testing: 2 hours
 
     Backend:
         
-        Testing:
+        Data Collection: 3 hours
+    
+        Testing: 5 hours
 
 ## Team Members:
 
