@@ -17,7 +17,7 @@ Build file: MongoDbJspServlet/pom.xml
         
         Link domain to Tomcat Instance: 1 hour
         
-        Testing: 2 hours
+        Testing: 4 hours
 
     Backend:
     
@@ -35,7 +35,7 @@ Build file: MongoDbJspServlet/pom.xml
         
         Link domain to Tomcat Instance: 1 hour
         
-        Testing: 3 hours
+        Testing: 7 hours
 
     Backend:
         
