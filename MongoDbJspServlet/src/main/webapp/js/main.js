@@ -1,5 +1,3 @@
-
-
 jQuery.fn.loadRepositories = function () {
     var target = this;
 
@@ -16,7 +14,7 @@ jQuery.fn.loadRepositories = function () {
             if (this.name == "Wellbeing") {
                 var url = this.url;
 
-                $.getJSON(url + "/commits", {}, function (data) {
+                $.getJSON(url + "/commits?per_page=100", {}, function (data) {
                     console.log(data);
                     var totalCommits = data.length;
                     console.log(totalCommits);
@@ -68,7 +66,7 @@ jQuery.fn.loadContributorStats = function (username) {
             if (this.name == "Wellbeing") {
                 var url = this.url;
 
-                $.getJSON(url + "/commits", {}, function (data) {
+                $.getJSON(url + "/commits?per_page=100", {}, function (data) {
                     var commits = 0;
                     $(data).each(function () {
                         if (this.author.login == username) commits = commits + 1;
@@ -77,7 +75,7 @@ jQuery.fn.loadContributorStats = function (username) {
                     list.append('<p><strong>Number of commits: </strong>' + commits + '</p>');
                 });
 
-                $.getJSON(url + "/issues", {}, function (data) {
+                $.getJSON(url + "/issues?per_page=100", {}, function (data) {
                     var issues = 0;
                     $(data).each(function () {
                         if (this.user.login == username) issues = issues + 1;
