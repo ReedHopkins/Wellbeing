@@ -26,10 +26,10 @@ numbers1 = {1}
 for i in numbers1:
 #get all relevant information for items coming up in the query of "pie"
     #url = ("https://api.nutritionix.com/v1_1/search/{}adkfjasjdkh?fields=item_name,nf_total_fat,nf_sugars,nf_sodium,nf_cholesterol,nf_protein&appId=973d994f&appKey=e5b17ecd535365487edd736593279f89".format("apple"))
-    url = ("https://api.nutritionix.com/v1_1/search/cookie?adkfjasjdkh?fields=item_name,nf_total_fat,nf_sugars,nf_sodium,nf_cholesterol,nf_protein&appId=973d994f&appKey=e5b17ecd535365487edd736593279f89")
+    url = ("https://api.nutritionix.com/v1_1/search/cookie?fields=item_name,nf_total_fat,nf_sugars,nf_sodium,nf_cholesterol,nf_protein&appId=973d994f&appKey=e5b17ecd535365487edd736593279f89")
     headerInfo = {"x-app-id": "973d994f", "x-app-key": "e5b17ecd535365487edd736593279f89"}
     parameters = {"fields":"item_name"}
-
+    #?adkfjasjdkh
     #jsonData holds the response as a JSON array
     #asString holds the JSON as a string
     #items is the actual information with all the items that the query returned
@@ -40,17 +40,22 @@ for i in numbers1:
     collection = db.nutrientsV2
 
     collection.insert_one({"nutrient":"fat"})
+    collection.insert_one({"nutrient":"sugar"})
+    collection.insert_one({"nutrient":"sodium"})
+    collection.insert_one({"nutrient":"protein"})
+    collection.insert_one({"nutreint":"cholesterol"})
+
     print("hello")
     for item in items:
     
         print(item["fields"])
-        #print("\n")
+        #Section that sets up fats
         if (item["fields"]["nf_total_fat"]) == None:
                     
-            collection.updateOne( 
+            collection.update_one( 
                 {"nutrient": "fat"}, 
                 {
-                    set: {item["fields"]["item_name"] : 0
+                    '$set': {item["fields"]["item_name"] : 0
                     }    
             })
         
@@ -61,6 +66,81 @@ for i in numbers1:
                     '$set': {item["fields"]["item_name"] : item["fields"]["nf_total_fat"]}
                 }    
             )
+
+
+        #Section that sets up sugars
+        if (item["fields"]["nf_sugars"]) == None:
+                    
+            collection.update_one( 
+                {"nutrient": "sugar"}, 
+                {
+                    '$set': {item["fields"]["item_name"] : 0
+                    }    
+            })
+        
+        else:
+            collection.update_one( 
+                {"nutrient": "sugar"}, 
+                {
+                    '$set': {item["fields"]["item_name"] : item["fields"]["nf_sugars"]}
+                }    
+            ) 
+
+
+        #Section that sets up Sodium
+        if (item["fields"]["nf_sodium"]) == None:
+                    
+            collection.update_one( 
+                {"nutrient": "sodium"}, 
+                {
+                    '$set': {item["fields"]["item_name"] : 0
+                    }    
+            })
+        
+        else:
+            collection.update_one( 
+                {"nutrient": "sodium"}, 
+                {
+                    '$set': {item["fields"]["item_name"] : item["fields"]["nf_sodium"]}
+                }    
+            ) 
+
+
+        #Section that sets up protein
+        if (item["fields"]["nf_protein"]) == None:
+                    
+            collection.update_one( 
+                {"nutrient": "protein"}, 
+                {
+                    '$set$': {item["fields"]["item_name"] : 0
+                    }    
+            })
+        
+        else:
+            collection.update_one( 
+                {"nutrient": "protein"}, 
+                {
+                    '$set': {item["fields"]["item_name"] : item["fields"]["nf_protein"]}
+                }    
+            )        
+
+        #Section that sets up cholesterol
+        if (item["fields"]["nf_cholesterol"]) == None:
+                    
+            collection.update_one( 
+                {"nutrient": "cholesterol"}, 
+                {
+                    '$set': {item["fields"]["item_name"] : 0
+                    }    
+            })
+        
+        else:
+            collection.update_one( 
+                {"nutrient": "cholesterol"}, 
+                {
+                    '$set': {item["fields"]["item_name"] : item["fields"]["nf_cholesterol"]}
+                }    
+            ) 
         #collection.insert_one(item["fields"])
 
     #  retrieve one instance in collection 
