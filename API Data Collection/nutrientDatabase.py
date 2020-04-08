@@ -22,10 +22,11 @@ allFoods = ("Acai berry", "Adzuki bean", "Almonds", "Amaranth", "Apple", "Aprico
 ,"Rose","Rutabaga","Safflower","Sage","Salmon","Serrano pepper","Serviceberry","Sesame","Shallots","Shiitake mushroom","Soy","Spaghetti squash","Spearmint","Strawberry","Sugar cane","Spinach","Sunflower"
 ,"Sweet peppers","Tamarillo","Tamarind","Tapioca","Taro","Tatsoi","Tea","Thistle","Thyme","Tomato","Tomatillo","Trout lily","Tuna","Turkey","Turmeric","Turnip","Vanilla","Venison"
 ,"Wakame","Walnut","Water chestnuts","Watercress","Watermelon","Watermint","Woodland sorrel","Yam","Yerba mate","Yo choy sum","Yuca","Yumberry","Zucchini")
-
-for food in allFoods:
+numbers1 = {1}
+for i in numbers1:
 #get all relevant information for items coming up in the query of "pie"
-    url = ("https://api.nutritionix.com/v1_1/search/{}adkfjasjdkh?fields=item_name,nf_total_fat,nf_sugars,nf_sodium,nf_cholesterol,nf_protein&appId=973d994f&appKey=e5b17ecd535365487edd736593279f89".format(food))
+    #url = ("https://api.nutritionix.com/v1_1/search/{}adkfjasjdkh?fields=item_name,nf_total_fat,nf_sugars,nf_sodium,nf_cholesterol,nf_protein&appId=973d994f&appKey=e5b17ecd535365487edd736593279f89".format("apple"))
+    url = ("https://api.nutritionix.com/v1_1/search/cookie?adkfjasjdkh?fields=item_name,nf_total_fat,nf_sugars,nf_sodium,nf_cholesterol,nf_protein&appId=973d994f&appKey=e5b17ecd535365487edd736593279f89")
     headerInfo = {"x-app-id": "973d994f", "x-app-key": "e5b17ecd535365487edd736593279f89"}
     parameters = {"fields":"item_name"}
 
@@ -36,17 +37,34 @@ for food in allFoods:
     jsonData = response.json()
     asString = response.text
     items = jsonData["hits"]
-    collection = db.nutrients
+    collection = db.nutrientsV2
 
-
+    collection.insert_one({"nutrient":"fat"})
+    print("hello")
     for item in items:
     
-        #print(item["fields"])
+        print(item["fields"])
         #print("\n")
-        collection.insert_one(item["fields"])
+        if (item["fields"]["nf_total_fat"]) == None:
+                    
+            collection.updateOne( 
+                {"nutrient": "fat"}, 
+                {
+                    set: {item["fields"]["item_name"] : 0
+                    }    
+            })
+        
+        else:
+            collection.update_one( 
+                {"nutrient": "fat"}, 
+                {
+                    '$set': {item["fields"]["item_name"] : item["fields"]["nf_total_fat"]}
+                }    
+            )
+        #collection.insert_one(item["fields"])
 
     #  retrieve one instance in collection 
 
-for i in db.nutrients.find({},{"item_name":"apple"}):
-    print(i)
+#for i in db.nutrients.find({},{"item_name":"apple"}):
+    #print(i)
 #print(db.nutrients.find_one())
