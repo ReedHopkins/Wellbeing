@@ -21,7 +21,7 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<title>Recipe Search</title>
+<title>Recipe Page</title>
 </head>
 <body>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -82,10 +82,11 @@
 	</nav>
 
 	<div class="jumbotron" style="text-align: center">
-		<h1>Recipe Search</h1>
+		<h1>Recipe Page</h1>
 	</div>
 
 	<%
+	    String recipeName = request.getParameter("recipeName");
 		String dbURI = "mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/wellbeing?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
 		MongoClient mongoClient = new MongoClient(new MongoClientURI(dbURI));
 		String db_name = "wellbeing", db_collection_name = "recipes";
@@ -94,102 +95,30 @@
 
 		// Get the mongodb collection.
 		MongoCollection<Document> col = db.getCollection(db_collection_name);
-		FindIterable<Document> elements = col.find();
 
-		MongoCursor<Document> cursor = elements.iterator();
+        Document recipe = new Document();
 
-		ArrayList<Document> foodList = new ArrayList<Document>();
-
+		BasicDBObject whereQuery = new BasicDBObject();
+        whereQuery.put("title", recipeName);
+        DBCursor cursor = collection.find(whereQuery);
 		try {
 			while (cursor.hasNext()) {
-				foodList.add(cursor.next());
+				recipe = cursor.next();
 			}
 		} finally {
 			cursor.close();
 		}
-		
-		System.out.println(foodList.size());
 
-		String spageid = request.getParameter("page");
+		System.out.println(recipe);
 
-		if (spageid == null) {
-			spageid = "1";
-		}
+		out.print("<h3>" + (String) recipe.get("title") +  "</h3>");
+        out.print("<h4> Cook Time: " + Integer.toString((int)recipe.get("readyInMinutes")) + "</h4>");
+        out.print("<h4> Servings: " + Integer.toString((int)recipe.get("servings")) + "</h4>");
+        out.print("<h4> Health Score: " + Double.toString((double)recipe.get("healthScore")) + "</h4>");
+        out.print("<h4> Image: </h4>" + "<img src = " + (String) recipe.get("image") +" style=\"height:100px;width:150px;\">)
 
-		int pageid = Integer.parseInt(spageid);
-		int origPageId = pageid;
-		int total = 10;
-		if (pageid == 1) {
-			pageid = 0;
-		} else {
-			pageid = pageid - 1;
-			pageid = pageid * total;
-		}
-		
-		int last = foodList.size() / total;
-		if (foodList.size() % total > 0) {
-			last++;
-		}
-		
-
-		List<Document> list;
-		if (foodList.size() - pageid < total) {
-			list = foodList.subList(pageid, foodList.size());
-		} else {
-			list = foodList.subList(pageid, pageid + total);
-		}
-		
-		out.print("<div style='width:80%; margin: 0 auto; text-align: center;'>");
-		out.print("<h1>Page No: " + spageid + "</h1>");
-		out.print("<table border='1' cellpadding='4' width='80%' style='margin: 0 auto;'>");
-		out.print("<tr><th>Name</th><th>Cook Time</th><th>Servings</th><th>Health Score</th><th>Image</th>");
-		
-		for (Document food : list) {
-			out.print("<tr><td>" + "<a href=" +"\"/recipePage.jsp?recipeName=" + (String) food.get("title") + "\"" + "</a></td><td>" +  Integer.toString((int)food.get("readyInMinutes")) + "</td><td>" +  Integer.toString((int)food.get("servings")) + "</td><td>" + Double.toString((double)food.get("healthScore")) + "</td><td><img src = " + (String) food.get("image") +" style=\"height:100px;width:150px;\"></td></tr>");
-		}
-		
-		out.print("</table>");
-		out.print("</div>");
 	%>
-	<%
-			int pageNum = 1;
-			if (origPageId > 3) {
-				pageNum = origPageId - 2;
-			}
-			if (origPageId > last - 2) {
-				pageNum = origPageId - 3;
-			}
-			if (origPageId > last - 1) {
-				pageNum = origPageId - 4;
-			}
-			int counter = 0;
-	%>
-			
-	<br>
-	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link" href="recipes.jsp?page=1" aria-label="First Page"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">First</span></a></li>
-			<% if (origPageId > 1) { %>
-			<li class="page-item"><a class="page-link" href="recipes.jsp?page=<%=origPageId-1%>" aria-label="Previous"> <span aria-hidden="true">&#60;</span> <span class="sr-only">Previous</span></a></li>
-			<%} else {%>
-			<li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&#60;</span> <span class="sr-only">Previous</span></a></li>
-			<%} %>
-			<%
-			for (int i = 0; i < last && counter < 5; i++, pageNum++, counter++) {
-				
-				%>
-				<li class="page-item"><a class="page-link" href="recipes.jsp?page=<%=pageNum%>"><%=pageNum%></a></li>
-				<%
-			}
-			%>
-			<% if (origPageId < last) { %>
-			<li class="page-item"><a class="page-link" href="recipes.jsp?page=<%=origPageId+1%>" aria-label="Next"> <span aria-hidden="true">&#62;</span> <span class="sr-only">Next</span></a></li>
-			<%} else {%>
-			<li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&#62;</span> <span class="sr-only">Next</span></a></li>
-			<%} %>
-			<li class="page-item"><a class="page-link" href="recipes.jsp?page=<%=last%>" aria-label="Last Page"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Last</span></a></li>
-		</ul>
-	</nav>
+
 
 
 </body>

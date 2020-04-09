@@ -15,6 +15,7 @@
       <servlet-name>DBSearch</servlet-name>
       <url-pattern>/DBSearch</url-pattern>
    </servlet-mapping>
+
    	
 	<!-- Welcome File List -->
 	<welcome-file-list>
