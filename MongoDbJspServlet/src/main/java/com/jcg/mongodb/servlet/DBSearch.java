@@ -23,19 +23,19 @@ public class DBSearch extends HttpServlet {
 		// Reading post parameters from the request
 		String param1 = req.getParameter("search_id");
 
-		// Checking for null and empty values
-		if(param1 == null || "".equals(param1)) {
-			req.setAttribute("error_message", "Please enter a food");
-			req.getRequestDispatcher("/search.jsp").forward(req, resp);
-		} else {
-
-			boolean isFoodFound = Utll.searchFood(param1);
-			if(isFoodFound) {				
-				req.getRequestDispatcher("/welcome.jsp").forward(req, resp);
-			} else {
-				req.setAttribute("error_message", "You are not an authorised user. Please check with administrator.");
-				req.getRequestDispatcher("/index.jsp").forward(req, resp);
-			}	
-		}		
+//		// Checking for null and empty values
+//		if(param1 == null || "".equals(param1)) {
+//			req.setAttribute("error_message", "Please enter a food");
+//			req.getRequestDispatcher("/search.jsp").forward(req, resp);
+//		} else {
+//
+//			boolean isFoodFound = Util.searchFood(param1);
+//			if(isFoodFound) {				
+//				req.getRequestDispatcher("/welcome.jsp").forward(req, resp);
+//			} else {
+//				req.setAttribute("error_message", "You are not an authorised user. Please check with administrator.");
+//				req.getRequestDispatcher("/index.jsp").forward(req, resp);
+//			}	
+//		}		
 	}
 }

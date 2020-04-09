@@ -11,6 +11,9 @@
 <%@ page import="com.mongodb.client.MongoDatabase"%>
 <%@ page import="com.mongodb.client.MongoCursor"%>
 
+<%@ page import="com.jcg.mongodb.servlet.Util"%>
+<%@ page import="com.jcg.mongodb.servlet.DBCollectionListObj"%>
+
 <html>
 <head>
 <link rel="stylesheet"
@@ -86,30 +89,6 @@
 	</div>
 
 	<%
-		String dbURI = "mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/wellbeing?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
-		MongoClient mongoClient = new MongoClient(new MongoClientURI(dbURI));
-		String db_name = "wellbeing", db_collection_name = "hebData";
-
-		MongoDatabase db = mongoClient.getDatabase(db_name);
-
-		// Get the mongodb collection.
-		MongoCollection<Document> col = db.getCollection(db_collection_name);
-		FindIterable<Document> elements = col.find();
-
-		MongoCursor<Document> cursor = elements.iterator();
-
-		ArrayList<Document> foodList = new ArrayList<Document>();
-
-		try {
-			while (cursor.hasNext()) {
-				foodList.add(cursor.next());
-			}
-		} finally {
-			cursor.close();
-		}
-		
-		System.out.println(foodList.size());
-
 		String spageid = request.getParameter("page");
 
 		if (spageid == null) {
@@ -126,17 +105,9 @@
 			pageid = pageid * total;
 		}
 		
-		int last = foodList.size() / total;
-		if (foodList.size() % total > 0) {
-			last++;
-		}
-
-		List<Document> list;
-		if (foodList.size() - pageid < total) {
-			list = foodList.subList(pageid, foodList.size());
-		} else {
-			list = foodList.subList(pageid, pageid + total);
-		}
+		DBCollectionListObj data = Util.getFromDB("hebData", pageid, total);
+		ArrayList<Document> list = data.getSubList();
+		int last = data.getLast();
 		
 		out.print("<div style='width:80%; margin: 0 auto; text-align: center;'>");
 		out.print("<h1>Page No: " + spageid + "</h1>");
