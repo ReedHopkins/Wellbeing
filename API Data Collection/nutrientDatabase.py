@@ -23,10 +23,11 @@ allFoods = ("Acai berry", "Adzuki bean", "Almonds", "Amaranth", "Apple", "Aprico
 ,"Sweet peppers","Tamarillo","Tamarind","Tapioca","Taro","Tatsoi","Tea","Thistle","Thyme","Tomato","Tomatillo","Trout lily","Tuna","Turkey","Turmeric","Turnip","Vanilla","Venison"
 ,"Wakame","Walnut","Water chestnuts","Watercress","Watermelon","Watermint","Woodland sorrel","Yam","Yerba mate","Yo choy sum","Yuca","Yumberry","Zucchini")
 numbers1 = {1}
-for i in numbers1:
+runOnce = 0
+for food in allFoods:
 #get all relevant information for items coming up in the query of "pie"
-    #url = ("https://api.nutritionix.com/v1_1/search/{}adkfjasjdkh?fields=item_name,nf_total_fat,nf_sugars,nf_sodium,nf_cholesterol,nf_protein&appId=973d994f&appKey=e5b17ecd535365487edd736593279f89".format("apple"))
-    url = ("https://api.nutritionix.com/v1_1/search/cookie?fields=item_name,nf_total_fat,nf_sugars,nf_sodium,nf_cholesterol,nf_protein&appId=973d994f&appKey=e5b17ecd535365487edd736593279f89")
+    url = ("https://api.nutritionix.com/v1_1/search/{}?fields=item_name,nf_total_fat,nf_sugars,nf_sodium,nf_cholesterol,nf_protein&appId=973d994f&appKey=e5b17ecd535365487edd736593279f89".format(food))
+    #url = ("https://api.nutritionix.com/v1_1/search/cookie?fields=item_name,nf_total_fat,nf_sugars,nf_sodium,nf_cholesterol,nf_protein&appId=973d994f&appKey=e5b17ecd535365487edd736593279f89")
     headerInfo = {"x-app-id": "973d994f", "x-app-key": "e5b17ecd535365487edd736593279f89"}
     parameters = {"fields":"item_name"}
     #?adkfjasjdkh
@@ -39,16 +40,19 @@ for i in numbers1:
     items = jsonData["hits"]
     collection = db.nutrientsV2
 
-    collection.insert_one({"nutrient":"fat"})
-    collection.insert_one({"nutrient":"sugar"})
-    collection.insert_one({"nutrient":"sodium"})
-    collection.insert_one({"nutrient":"protein"})
-    collection.insert_one({"nutreint":"cholesterol"})
+    if runOnce == 0:
+        collection.insert_one({"nutrient":"fat"})
+        collection.insert_one({"nutrient":"sugar"})
+        collection.insert_one({"nutrient":"sodium"})
+        collection.insert_one({"nutrient":"protein"})
+        collection.insert_one({"nutreint":"cholesterol"})
+        runOnce = 1
 
+    onlyDoOnce = {1}
     print("hello")
-    for item in items:
-    
-        print(item["fields"])
+    for i in onlyDoOnce:
+        item = items[0]
+        #print(item["fields"])
         #Section that sets up fats
         if (item["fields"]["nf_total_fat"]) == None:
                     
