@@ -5,7 +5,7 @@ import pymongo
 from pymongo import MongoClient
 
 DOCUMENT = {
-    "_id":{"$oid":"5e7aa1c3efc0b37ba9230c14"},
+    "_id":{"oid":"5e7aa1c3efc0b37ba9230c14"},
     "vegetarian":True,
     "vegan":False,
     "glutenFree":True,
@@ -14,7 +14,7 @@ DOCUMENT = {
     "cheap":False,
     "veryPopular":False,
     "sustainable":False,
-    "weightWatcherSmartPoints":{"$numberInt":"13"},
+    "weightWatcherSmartPoints":{"numberInt":"13"},
     "gaps":"no","lowFodmap":False,
     }
 
