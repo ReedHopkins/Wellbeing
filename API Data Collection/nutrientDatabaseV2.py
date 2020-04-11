@@ -39,26 +39,40 @@ for i in range(4):
     #print(nutrientNames)
     for n in nutrientNames:
         itemInfo += (nutrientNames[0].text.split(":"))
-print(itemInfo[1][:-4])
+
 siteTables = soup.find_all("table", {'class':'responsive'})
 n = 0
 print("success")
 names = []
 infos = []
 amounts = []
-for table in siteTables:
-    allInfo = soup.find_all("td", {'class':""})
-    
-    counter = 0
-    for i in range(1, 26, 3):
+#for table in siteTables:
+allInfo = soup.find_all("td", {'class':""})
+print(allInfo[84])
+for i in range(1, 26, 3):
         
-        names += allInfo[i].text
-        infos += allInfo[i+1].text
-        amounts += allInfo[i+2].text
-        #print(names[counter] + " : " + infos[counter] + " : " + amounts[counter])
-        counter += 1
+    names += allInfo[i]
+    infos += allInfo[i+1]
+    amounts += allInfo[i+2]
+    
+for i in range(29, 40, 3):
+        
+    names += allInfo[i]
+    infos += allInfo[i+1]
+    amounts += allInfo[i+2]
 
-        #insert_nutrient(curName, curInfo, curAmount)
-#print(itemInfo)    
-#for i in range(10):
- #   print(itemInfo[i] + ', ' + amounts[i])
+for i in range(42, 62, 3):
+        
+    names += allInfo[i]
+    infos += allInfo[i+1]
+    amounts += allInfo[i+2]
+    
+for i in range(64, 84, 3):
+        
+    names += allInfo[i]
+    infos += allInfo[i+1]
+    amounts += allInfo[i+2]
+   
+for i in range(27):
+    print(names[i] + ', ' + itemInfo[2*i+1] + ', ' + amounts[i])
+    insert_nutrient(names[i], itemInfo[2*i + 1], amounts[i])
