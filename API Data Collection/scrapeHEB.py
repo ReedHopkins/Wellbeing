@@ -53,35 +53,49 @@ def find_items(database, ingredients):
                 item += i
         flag = 0
         soup = get_soup(BASE_URL, "/search/?q="+item)
-        span = soup.find('span', {'class':'cat-price-number'})
+        span = soup.find('span', {'class':'uomSalePrice'})
         script = soup.find('script', {'type':'application/ld+json'})
+        if span == None:
+            print("no span - skipping - for ingredient: ",item)
+            continue
+        else:
+            priceUnit = span.text.strip().strip('(').strip(')').strip('$').split("/")
+            price = priceUnit[0]
+            unit = priceUnit[1]
         if(script == None):
             print("not available: "+item)
         else:
             data = json.loads(script.text)
-            span2 = bs4.BeautifulSoup(span.text, "html.parser")
             if '+' in item:
                 items1 = item.split('+')
                 combined = ""
                 for it in items1:
                     combined += it+" "
                 item = combined.rstrip()
-            insert_to_db(item,data['price'])
+            insert_to_db(database,item,price,unit)
 
 #        total_price += data['price']
 #    print("total price: "+str(total_price))
     
-def insert_to_db(item, price):
-    emp_rec1 = {
-        "item":item,
-        "price":price
-        }
-    rec_id1 = collection.insert_one(emp_rec1)
+def insert_to_db(db,item, price,unit):
+    if db.find({"item":item}).count() == 0:
+        emp_rec1 = {
+                "item":item,
+                "price":price,
+                "unit":unit
+                }
+        collection.insert(
+           {"item": item,"price":price,"unit":unit}
+        )
+    else:
+        print("This item is already in the db")
+    #rec_id1 = collection.update_one(emp_rec1)
 
 BASE_URL = "https://www.heb.com"
 conn = get_connection()
 mydb = conn["wellbeing"]
-collection = mydb["hebData"]
+print(mydb.collection_names())
+collection = mydb["hebDataFinal"]
 
 ingredients = []
 cursorA = get_ingredients(conn)
@@ -91,5 +105,5 @@ for elem in cursorA:
     for c in elem:
         ingredients.append(c['name'])
     print(ingredients)
-    find_items(mydb.hebData, ingredients)
+    find_items(mydb.hebDataFinal, ingredients)
     num += 1
