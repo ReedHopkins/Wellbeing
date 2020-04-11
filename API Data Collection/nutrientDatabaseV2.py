@@ -9,10 +9,6 @@ import sys                  # to get command line inputs
 import pymongo
 from pymongo import MongoClient
 
-def get_soup(base, link):
-    url = urllib.request.urlopen(base + link)
-    soup = bs4.BeautifulSoup(url.read(), "html.parser")
-    return soup
 
 def insert_nutrient(name, desc, rda):
     toInsert = {
@@ -24,6 +20,7 @@ def insert_nutrient(name, desc, rda):
 
 
 BASE_URL = "https://www.healthline.com/nutrition/micronutrients#types-and-functions"
+MACRO_URL = "https://mybodymykitchen.com/calculate-your-macronutrients-protein-fats-carbs/"
 
 client = pymongo.MongoClient("mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority")
 db = client['wellbeing']
@@ -42,13 +39,12 @@ for i in range(4):
 
 siteTables = soup.find_all("table", {'class':'responsive'})
 n = 0
-print("success")
 names = []
 infos = []
 amounts = []
 #for table in siteTables:
 allInfo = soup.find_all("td", {'class':""})
-print(allInfo[84])
+
 for i in range(1, 26, 3):
         
     names += allInfo[i]
@@ -74,5 +70,25 @@ for i in range(64, 84, 3):
     amounts += allInfo[i+2]
    
 for i in range(27):
-    print(names[i] + ', ' + itemInfo[2*i+1] + ', ' + amounts[i])
+    #print(names[i] + ', ' + itemInfo[2*i+1] + ', ' + amounts[i])
     insert_nutrient(names[i], itemInfo[2*i + 1], amounts[i])
+
+#Start of accesssing Macronutrients 
+
+url = urllib.request.urlopen(MACRO_URL)
+soup = bs4.BeautifulSoup(url.read(), "html.parser")
+
+headings = soup.find_all("strong",{'class':''})
+descriptions = soup.find_all("em", {'class':''})
+finalDesc = []
+finalDesc+=descriptions[6]
+for i in range(9,12,2):
+    finalDesc+=(descriptions[i])
+count = 0
+for test in finalDesc:
+    finalDesc[count] = test.split("=")[2]
+    count+=1
+
+for i in range(2):
+    insert_nutrient(headings[i].text, descriptions[i+2].text, finalDesc[i])
+
