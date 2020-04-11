@@ -5,16 +5,40 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee        http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
 	
-	<display-name>MongoDb JSP and SERVLET Example</display-name>
+	<display-name>WellbeingEating</display-name>
 	
 	<servlet>
-      <servlet-name>DBSearch</servlet-name>
-      <servlet-class>com.jcg.mongodb.servlet.DBSearch</servlet-class>
-   </servlet>
-   <servlet-mapping>
-      <servlet-name>DBSearch</servlet-name>
-      <url-pattern>/DBSearch</url-pattern>
-   </servlet-mapping>
+      <servlet-name>RecipeServlet</servlet-name>
+      <servlet-class>com.jcg.mongodb.servlet.RecipeServlet</servlet-class>
+   	</servlet>
+	<servlet>
+		<servlet-name>IngredientServlet</servlet-name>
+		<servlet-class>com.jcg.mongodb.servlet.IngredientServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>NutrientServlet</servlet-name>
+		<servlet-class>com.jcg.mongodb.servlet.NutrientServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RecipeInstanceServlet</servlet-name>
+		<servlet-class>com.jcg.mongodb.servlet.RecipeInstanceServlet</servlet-class>
+	</servlet>
+   	<servlet-mapping>
+      <servlet-name>RecipeServlet</servlet-name>
+      <url-pattern>/RecipeServlet</url-pattern>
+   	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>IngredientServlet</servlet-name>
+		<url-pattern>/IngredientServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>NutrientServlet</servlet-name>
+		<url-pattern>/NutrientServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RecipeInstanceServlet</servlet-name>
+		<url-pattern>/RecipeInstanceServlet</url-pattern>
+	</servlet-mapping>
    	
 	<!-- Welcome File List -->
 	<welcome-file-list>

@@ -1,0 +1,10 @@
+com\jcg\mongodb\servlet\Ingredient.class
+com\jcg\mongodb\servlet\NutrientServlet.class
+com\jcg\mongodb\servlet\RecipeInstanceServlet.class
+com\jcg\mongodb\servlet\IngredientServlet.class
+com\jcg\mongodb\servlet\DatabaseSingleton.class
+com\jcg\mongodb\servlet\RecipeServlet.class
+com\jcg\mongodb\servlet\Nutrient.class
+com\jcg\mongodb\servlet\DBCollectionListObj.class
+com\jcg\mongodb\servlet\Recipe.class
+com\jcg\mongodb\servlet\Util.class
