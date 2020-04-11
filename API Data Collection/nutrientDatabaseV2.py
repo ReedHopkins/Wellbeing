@@ -35,23 +35,30 @@ soup = bs4.BeautifulSoup(url.read(), "html.parser")
 descriptions = soup.find_all("ul", {'class' : 'hl-long-line'})
 itemInfo = []
 for i in range(4):
-    #print(descriptions[i])
     nutrientNames = descriptions[i].find_all('li')
+    #print(nutrientNames)
     for n in nutrientNames:
         itemInfo += (nutrientNames[0].text.split(":"))
-print(itemInfo)
+print(itemInfo[1][:-4])
 siteTables = soup.find_all("table", {'class':'responsive'})
 n = 0
 print("success")
-
+names = []
+infos = []
+amounts = []
 for table in siteTables:
     allInfo = soup.find_all("td", {'class':""})
+    
+    counter = 0
     for i in range(1, 26, 3):
-     
-        curName = allInfo[i].text
-        curInfo = allInfo[i+1].text
-        curAmount = allInfo[i+2].text
-        #print(curName + " : " + curInfo + " : " + curAmount)
+        
+        names += allInfo[i].text
+        infos += allInfo[i+1].text
+        amounts += allInfo[i+2].text
+        #print(names[counter] + " : " + infos[counter] + " : " + amounts[counter])
+        counter += 1
 
         #insert_nutrient(curName, curInfo, curAmount)
-    
+#print(itemInfo)    
+#for i in range(10):
+ #   print(itemInfo[i] + ', ' + amounts[i])
