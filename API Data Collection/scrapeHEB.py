@@ -8,6 +8,7 @@ from datetime import date   # to put date on output
 import sys                  # to get command line inputs
 import pymongo
 from pymongo import MongoClient
+import requests
 
 def get_soup(base, link):
     url = urllib.request.urlopen(base + link)
@@ -78,14 +79,44 @@ def find_items(database, ingredients):
 #    print("total price: "+str(total_price))
     
 def insert_to_db(db,item, price,unit):
+    URL='https://api.nal.usda.gov/fdc/v1/foods/search?api_key=r1knfJuecwQVSuMrRDDFk7XckUdXlogGfdMhiRSh&query='+item+'%20'
+    URL2 = 'https://pixabay.com/api/?key=16010077-3561220afa690b1f217609838&q='+item+'&image_type=photo'
+    r=requests.get(url=URL)
+    rImage=requests.get(url=URL2)
+    data=r.json()
+    rStatus = 0
+    dataImage=rImage.json()
+    if len(dataImage['hits']) != 0:
+        rStatus = 1
+        print("HELLO IT IS ME: ",dataImage['hits'][0]['largeImageURL'])
+    nutrientsValue = []
+    nutrientsName = []
+    nutrientsUnitName = []
+    for i in data['foods'][0]['foodNutrients']:
+        print(i['value'])
+        print(i['nutrientName'])
+        print(i['unitName'])
+        nutrientsValue.append(i['value'])
+        nutrientsName.append(i['nutrientName'])
+        nutrientsUnitName.append(i['unitName'])
+    nutrientsFinal = []
+    image = ""
+    if rStatus != 0:
+        image = dataImage['hits'][0]['largeImageURL']
+    i=0
+    for value in nutrientsName:
+        nutrientsFinal.append([value,nutrientsUnitName[i],nutrientsValue[i]])
+        i+=1
     if db.find({"item":item}).count() == 0:
         emp_rec1 = {
                 "item":item,
                 "price":price,
-                "unit":unit
+                "unit":unit,
+                "nutrients": nutrientsFinal,
+                "image": image
                 }
         collection.insert(
-           {"item": item,"price":price,"unit":unit}
+           emp_rec1
         )
     else:
         print("This item is already in the db")
@@ -95,7 +126,7 @@ BASE_URL = "https://www.heb.com"
 conn = get_connection()
 mydb = conn["wellbeing"]
 print(mydb.collection_names())
-collection = mydb["hebDataFinal"]
+collection = mydb["hebDataFinal1"]
 
 ingredients = []
 cursorA = get_ingredients(conn)
@@ -105,5 +136,5 @@ for elem in cursorA:
     for c in elem:
         ingredients.append(c['name'])
     print(ingredients)
-    find_items(mydb.hebDataFinal, ingredients)
+    find_items(mydb.hebDataFinal1, ingredients)
     num += 1
