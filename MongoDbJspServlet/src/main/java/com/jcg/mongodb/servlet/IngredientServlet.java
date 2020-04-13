@@ -23,41 +23,42 @@ public class IngredientServlet extends HttpServlet {
 		String spageid = request.getParameter("page");
 		String search_term = request.getParameter("search_term");
 		
-		if (search_term != null) {
+		if (search_term == null || "".equals(search_term)) {
+			
+			if (spageid == null) spageid = "1";
+			
+			int pageId = Integer.parseInt(spageid);
+			int total = 10;
+
+			int start = Util.getStartIndex(pageId, total);
+			int last = Util.getLastPage(ingredients.size(), total);
+			int end = Util.getEndIndex(start, ingredients.size(), total);
+			ArrayList<Integer> pageNums = Util.getPaginatorNums(pageId, last);
+			
+			System.out.println(pageNums);
+
+			
+			ArrayList<Ingredient> subList = new ArrayList<Ingredient>(ingredients.subList(start, end));
+			
+			String previous = "#";
+			if (pageId > 1) previous = "IngredientServlet?page=" + Integer.toString(pageId - 1);	
+			String next = "#";
+			if (pageId < last) next = "IngredientServlet?page=" + Integer.toString(pageId + 1);
+
+			//set calculated attributes
+			request.setAttribute("subtitle", "All Ingredients:");
+			request.setAttribute("ingredient", subList);
+			request.setAttribute("pageNums", pageNums);
+			request.setAttribute("previous", previous);
+			request.setAttribute("next", next);
+			request.setAttribute("first", "IngredientServlet?page=1");
+			request.setAttribute("last", "IngredientServlet?page=" + last);
+			request.getRequestDispatcher("/pages/ingredients.jsp").forward(request, response);
+			
+		} else {
 			System.out.println(search_term);
 			doPost(request, response);
-			return;
 		}
-
-		if (spageid == null) spageid = "1";
-		
-		int pageId = Integer.parseInt(spageid);
-		int total = 10;
-
-		int start = Util.getStartIndex(pageId, total);
-		int last = Util.getLastPage(ingredients.size(), total);
-		int end = Util.getEndIndex(start, ingredients.size(), total);
-		ArrayList<Integer> pageNums = Util.getPaginatorNums(pageId, last);
-		
-		System.out.println(pageNums);
-
-		
-		ArrayList<Ingredient> subList = new ArrayList<Ingredient>(ingredients.subList(start, end));
-		
-		String previous = "#";
-		if (pageId > 1) previous = "IngredientServlet?page=" + Integer.toString(pageId - 1);	
-		String next = "#";
-		if (pageId < last) next = "IngredientServlet?page=" + Integer.toString(pageId + 1);
-
-		//set calculated attributes
-		request.setAttribute("subtitle", "All Ingredients:");
-		request.setAttribute("ingredient", subList);
-		request.setAttribute("pageNums", pageNums);
-		request.setAttribute("previous", previous);
-		request.setAttribute("next", next);
-		request.setAttribute("first", "IngredientServlet?page=1");
-		request.setAttribute("last", "IngredientServlet?page=" + last);
-		request.getRequestDispatcher("/pages/ingredients.jsp").forward(request, response);
 	}
 
 	@Override

@@ -24,40 +24,41 @@ public class RecipeServlet extends HttpServlet{
 		String spageid = request.getParameter("page");
 		String search_term = request.getParameter("search_term");
 		
-		if (search_term != null) {
+		if (search_term == null || "".equals(search_term)) {
+			
+			if (spageid == null) spageid = "1";
+			
+			int pageId = Integer.parseInt(spageid);
+			int total = 10;
+
+			int start = Util.getStartIndex(pageId, total);
+			int last = Util.getLastPage(recipes.size(), total);
+			int end = Util.getEndIndex(start, recipes.size(), total);
+			ArrayList<Integer> pageNums = Util.getPaginatorNums(pageId, last);
+			
+			System.out.println(pageNums);
+			
+			ArrayList<Recipe> subList = new ArrayList<Recipe>(recipes.subList(start, end));
+			
+			String previous = "#";
+			if (pageId > 1) previous = "RecipeServlet?page=" + Integer.toString(pageId - 1);	
+			String next = "#";
+			if (pageId < last) next = "RecipeServlet?page=" + Integer.toString(pageId + 1);
+
+			//set calculated attributes
+			request.setAttribute("subtitle", "All Recipes:");
+			request.setAttribute("recipe", subList);
+			request.setAttribute("pageNums", pageNums);
+			request.setAttribute("previous", previous);
+			request.setAttribute("next", next);
+			request.setAttribute("first", "RecipeServlet?page=1");
+			request.setAttribute("last", "RecipeServlet?page=" + last);
+			request.getRequestDispatcher("/pages/recipes.jsp").forward(request, response);
+			
+		} else {
 			System.out.println(search_term);
 			doPost(request, response);
-			return;
 		}
-
-		if (spageid == null) spageid = "1";
-		
-		int pageId = Integer.parseInt(spageid);
-		int total = 10;
-
-		int start = Util.getStartIndex(pageId, total);
-		int last = Util.getLastPage(recipes.size(), total);
-		int end = Util.getEndIndex(start, recipes.size(), total);
-		ArrayList<Integer> pageNums = Util.getPaginatorNums(pageId, last);
-		
-		System.out.println(pageNums);
-		
-		ArrayList<Recipe> subList = new ArrayList<Recipe>(recipes.subList(start, end));
-		
-		String previous = "#";
-		if (pageId > 1) previous = "RecipeServlet?page=" + Integer.toString(pageId - 1);	
-		String next = "#";
-		if (pageId < last) next = "RecipeServlet?page=" + Integer.toString(pageId + 1);
-
-		//set calculated attributes
-		request.setAttribute("subtitle", "All Recipes:");
-		request.setAttribute("recipe", subList);
-		request.setAttribute("pageNums", pageNums);
-		request.setAttribute("previous", previous);
-		request.setAttribute("next", next);
-		request.setAttribute("first", "RecipeServlet?page=1");
-		request.setAttribute("last", "RecipeServlet?page=" + last);
-		request.getRequestDispatcher("/pages/recipes.jsp").forward(request, response);
 	}
 
 	@Override
