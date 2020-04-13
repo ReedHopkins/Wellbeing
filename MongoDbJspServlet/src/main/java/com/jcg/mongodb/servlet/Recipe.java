@@ -50,8 +50,7 @@ public class Recipe {
     	if (title.toLowerCase().contains(s) || 
     			readyInMinutes.toLowerCase().contains(s) || 
     			servings.toLowerCase().contains(s) ||
-    			healthScore.toLowerCase().contains(s) ||
-    			image.toLowerCase().contains(s)) {
+    			healthScore.toLowerCase().contains(s)) {
     		return true;
     	}
     	
