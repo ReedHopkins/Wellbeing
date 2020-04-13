@@ -8,7 +8,7 @@ public class Nutrient {
     String dailyIntake;
 
     public Nutrient(Document nutrientDoc){
-        nutrient = (String) nutrientDoc.get("nutrient");
+        nutrient = (String) nutrientDoc.get("title");
         description = (String) nutrientDoc.get("description");
         dailyIntake = (String) nutrientDoc.get("reccommendedDailyIntake");
     }

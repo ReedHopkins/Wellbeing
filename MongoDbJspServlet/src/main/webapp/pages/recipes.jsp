@@ -74,11 +74,20 @@
 	</div>
 
 	<div id="search_form" style="width: 60%; margin: 0 auto; text-align: center;">
-		<form id="recipe_search_form" name="searchForm" method="post" action="RecipeServlet">
-			<div class="input-group">
-				<span class="input-group-addon"><a href="RecipeServlet"><i class="fa fa-refresh"></i></a></span>
-				<input type="text" class="form-control" id="search_term" placeholder="Enter a recipe..." name="search_term">
-				<span><button id="submit_btn" type="submit" class="btn btn-primary">Search</button></span>
+		<form id="recipe_search_form" name="searchForm" method="post"
+			action="RecipeServlet">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><a href="RecipeServlet"><i
+						class="fa fa-refresh"></i></a></span>
+				</div>
+				<input type="text" class="form-control" id="search_term"
+					placeholder="Enter a recipe..." name="search_term">
+
+				<div class="input-group-append">
+					<button class="btn btn-primary" id="submit_btn" type="submit"><i
+						class="fa fa-search"></i></button>
+				</div>
 			</div>
 		</form>
 	

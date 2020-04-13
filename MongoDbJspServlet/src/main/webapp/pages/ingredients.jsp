@@ -5,6 +5,8 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	
+<link rel="stylesheet" href="css/main.css">
+	
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -75,16 +77,26 @@
 	<div class="jumbotron" style="text-align: center">
 		<h1>Ingredient Search</h1>
 	</div>
+	<br>
 	
 	<div id="search_form" style="width: 60%; margin: 0 auto; text-align: center;">
-		<form id="ingredient_search_form" name="searchForm" method="post" action="IngredientServlet">
-			<div class="input-group">
-				<span class="input-group-addon"><a href="IngredientServlet"><i class="fa fa-refresh"></i></a></span>
-				<input type="text" class="form-control" id="search_term" placeholder="Enter a food..." name="search_term">
-				<span><button id="submit_btn" type="submit" class="btn btn-primary">Search</button></span>
+		<form id="ingredient_search_form" name="searchForm" method="post"
+			action="IngredientServlet">
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="basic-addon1"><a href="IngredientServlet"><i
+						class="fa fa-refresh"></i></a></span>
+				</div>
+				<input type="text" class="form-control" id="search_term"
+					placeholder="Enter a food..." name="search_term">
+
+				<div class="input-group-append">
+					<button class="btn btn-primary" id="submit_btn" type="submit"><i
+						class="fa fa-search"></i></button>
+				</div>
 			</div>
 		</form>
-	
+
 		<br>
 		<h3>${subtitle}</h3>
 		<br>
