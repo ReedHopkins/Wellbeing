@@ -35,9 +35,7 @@ public class RecipeServlet extends HttpServlet{
 			int last = Util.getLastPage(recipes.size(), total);
 			int end = Util.getEndIndex(start, recipes.size(), total);
 			ArrayList<Integer> pageNums = Util.getPaginatorNums(pageId, last);
-			
-			System.out.println(pageNums);
-			
+						
 			ArrayList<Recipe> subList = new ArrayList<Recipe>(recipes.subList(start, end));
 			
 			String previous = "#";
@@ -70,7 +68,7 @@ public class RecipeServlet extends HttpServlet{
 		// Reading post parameters from the request
 		String search_param = request.getParameter("search_term");
 		
-		search_param.toLowerCase();
+		search_param = search_param.toLowerCase();
 
 		//Search for matched ingredients
 		DatabaseSingleton.getInstance();
