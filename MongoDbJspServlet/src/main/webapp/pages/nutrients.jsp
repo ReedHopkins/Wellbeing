@@ -4,6 +4,8 @@
 <head>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
@@ -87,7 +89,7 @@
 		<h3>${subtitle}</h3>
 		<br>
 	
-		<table border='1' cellpadding='4' width='100%' style='margin: 0 auto;'>
+		<table border='1' cellpadding='4' width='100%' style='margin: 0 auto; display: ${showPagination}'>
 		<tr><th>Nutrient</th><th>Description</th><th>Recommended Daily Intake</th></tr>
 		<c:forEach items="${nutrient}" var="nutrient">
 			<tr>

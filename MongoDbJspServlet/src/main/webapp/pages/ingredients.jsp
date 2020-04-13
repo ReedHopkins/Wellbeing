@@ -89,7 +89,7 @@
 		<h3>${subtitle}</h3>
 		<br>
 	
-		<table border='1' cellpadding='4' width='80%' style='margin: 0 auto; display: ${showPagination}'>
+		<table border='1' cellpadding='4' width='100%' style='margin: 0 auto; display: ${showPagination}'>
 			<tr>
 				<th>Food</th>
 				<th>Price</th>
