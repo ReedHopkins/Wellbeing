@@ -1,4 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@page import="org.bson.Document"%>
+<%@page import="com.mongodb.MongoClient"%>
+<%@page import="com.mongodb.client.MongoCollection"%>
+<%@page import="com.jcg.mongodb.servlet.Recipe"%>
 
 <html>
 <head>
@@ -68,6 +72,7 @@
 </nav>
 
 <div class="jumbotron" style="text-align:center">
+
     <h1>${recipe.title}</h1>
 </div>
 <div class="container" style="align-items:center">
@@ -81,10 +86,38 @@
         <li>Makes: ${recipe.servings} servings</li>
     </ul>
     <h3>Ingredients</h3>
+        <ul>
+            <%
+        	    Recipe recipe = (Recipe)request.getAttribute("recipe");
+
+                for (Document ingredient: recipe.getingredients())
+                {
+                    out.print("<li>" + ingredient.getString("originalString") +"</li>");
+                }
+
+            %>
+        </ul>
     <br>
     <h3>Directions</h3>
+    <p>${recipe.instructions}</p>
     <br>
     <h3>Nutritional Information</h3>
+    <ul>
+        <li>Calories: ${recipe.calories}</li>
+        <li>Carbohydrates: ${recipe.carbs}</li>
+        <li>Fat: ${recipe.fat} </li>
+        <li>Protein: ${recipe.protein}</li>
+		<%
+            for (Document nutrient: recipe.getgoodnutrients())
+            {
+                out.print("<li>" + nutrient.getString("title") + ": " + nutrient.getString("amount") +"</li>");
+            }
+            for (Document nutrient: recipe.getbadnutrients())
+            {
+                out.print("<li>" + nutrient.getString("title") + ": " + nutrient.getString("amount") +"</li>");
+            }
+		%>
+    </ul>
 </div>
 </body>
 </html>

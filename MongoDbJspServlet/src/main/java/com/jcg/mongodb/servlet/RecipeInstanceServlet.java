@@ -12,10 +12,10 @@ public class RecipeInstanceServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String instanceTitle = request.getParameter("recipeTitle");
+        String id = request.getParameter("recipeId");
         Recipe recipe = new Recipe();
         for(Recipe d: DatabaseSingleton.getInstance().getRecipes()) {
-            if(d.gettitle().equals(instanceTitle)){
+            if(d.getid().equals(id)){
                 recipe = d;
             }
         }

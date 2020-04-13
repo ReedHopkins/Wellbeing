@@ -96,17 +96,10 @@
 		<br>
 	
 		<table border='1' cellpadding='4' width='100%' style='margin: 0 auto; display: ${showPagination}'>
-			<tr>
-				<th>Name</th>
-				<th>Cook Time</th>
-				<th>Servings</th>
-				<th>Health Score</th>
-				<th>Image</th>
-			</tr>
 			<c:forEach items="${recipe}" var="recipe">
 				<tr>
 					<td><a
-						href="RecipeInstanceServlet?recipeTitle=<c:out value="${recipe.title}"/>">
+						href="RecipeInstanceServlet?recipeId=<c:out value="${recipe.id}"/>">
 							<c:out value="${recipe.title}" />
 					</a></td>
 					<td><c:out value="${recipe.readyInMinutes}" /></td>
