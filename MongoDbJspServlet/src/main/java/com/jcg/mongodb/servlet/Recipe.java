@@ -44,4 +44,17 @@ public class Recipe {
     public String getimage() {
         return image;
     }
+    
+    public boolean isMatch(String s) {
+    	
+    	if (title.toLowerCase().contains(s) || 
+    			readyInMinutes.toLowerCase().contains(s) || 
+    			servings.toLowerCase().contains(s) ||
+    			healthScore.toLowerCase().contains(s) ||
+    			image.toLowerCase().contains(s)) {
+    		return true;
+    	}
+    	
+    	return false;
+    }
 }

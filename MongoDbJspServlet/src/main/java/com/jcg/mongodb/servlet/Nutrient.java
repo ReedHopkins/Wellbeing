@@ -24,4 +24,15 @@ public class Nutrient {
     public String getdailyIntake(){
         return dailyIntake;
     }
+    
+    public boolean isMatch(String s) {
+    	
+    	if (nutrient.toLowerCase().contains(s) || 
+    			description.toLowerCase().contains(s) || 
+    			dailyIntake.toLowerCase().contains(s)) {
+    		return true;
+    	}
+    	
+    	return false;
+    }
 }

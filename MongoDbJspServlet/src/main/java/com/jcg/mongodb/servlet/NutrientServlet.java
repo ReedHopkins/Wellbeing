@@ -14,8 +14,8 @@ public class NutrientServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Nutrient> nutrient = new ArrayList<Nutrient>();
-        for(Document d: DatabaseSingleton.getInstance().getNutrients()) {
-            nutrient.add(new Nutrient(d));
+        for(Nutrient d: DatabaseSingleton.getInstance().getNutrients()) {
+            nutrient.add(d);
         }
         request.setAttribute("nutrient", nutrient);
         request.getRequestDispatcher("/pages/nutrients.jsp").forward(request, response);

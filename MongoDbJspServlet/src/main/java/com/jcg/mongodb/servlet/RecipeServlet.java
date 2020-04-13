@@ -15,8 +15,8 @@ public class RecipeServlet extends HttpServlet{
     @Override
     protected void doGet(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException{
         List<Recipe> recipe = new ArrayList<Recipe>();
-        for(Document d: DatabaseSingleton.getInstance().getRecipes()) {
-            recipe.add(new Recipe(d));
+        for(Recipe d: DatabaseSingleton.getInstance().getRecipes()) {
+            recipe.add(d);
         }
         request.setAttribute("recipe", recipe);
         request.getRequestDispatcher("/pages/recipes.jsp").forward(request, response);

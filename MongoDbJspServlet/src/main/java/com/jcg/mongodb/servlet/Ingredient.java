@@ -24,4 +24,15 @@ public class Ingredient {
     public String getunit(){
         return unit;
     }
+    
+    public boolean isMatch(String s) {
+    	    	
+    	if (item.toLowerCase().contains(s) || 
+    			price.toLowerCase().contains(s) || 
+    			unit.toLowerCase().contains(s)) {
+    		return true;
+    	}
+    	
+    	return false;
+    }
 }
