@@ -100,7 +100,7 @@
 		<tr><th>Name</th><th>Cook Time</th><th>Servings</th><th>Health Score</th><th>Image</th></tr>
 		<c:forEach items="${recipe}" var="recipe">
 			<tr>
-				<td><a href="RecipeInstanceServlet?recipeTitle=<c:out value="${recipe.title}"/>"> <c:out value="${recipe.title}"/> </a></td>
+				<td><a href="RecipeInstanceServlet?recipeId=<c:out value="${recipe.id}"/>"> <c:out value="${recipe.title}"/> </a></td>
 				<td><c:out value="${recipe.readyInMinutes}"/></td>
 				<td><c:out value="${recipe.servings}"/></td>
 				<td><c:out value="${recipe.healthScore}"/></td>
