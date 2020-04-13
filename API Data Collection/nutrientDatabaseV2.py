@@ -12,7 +12,7 @@ from pymongo import MongoClient
 
 def insert_nutrient(name, desc, rda):
     toInsert = {
-        "nutrient":name,
+        "title":name,
         "description":desc,
         "reccommendedDailyIntake":rda
     }
@@ -35,7 +35,7 @@ for i in range(4):
     nutrientNames = descriptions[i].find_all('li')
     #print(nutrientNames)
     for n in nutrientNames:
-        itemInfo += (nutrientNames[0].text.split(":"))
+        itemInfo += (n.text.split(":"))
 
 siteTables = soup.find_all("table", {'class':'responsive'})
 n = 0
@@ -70,8 +70,9 @@ for i in range(64, 84, 3):
     amounts += allInfo[i+2]
    
 for i in range(27):
-    #print(names[i] + ', ' + itemInfo[2*i+1] + ', ' + amounts[i])
+    print(names[i] + ', ' + itemInfo[2*i+1] + ', ' + amounts[i])
     insert_nutrient(names[i], itemInfo[2*i + 1], amounts[i])
+
 
 #Start of accesssing Macronutrients 
 
@@ -89,6 +90,7 @@ for test in finalDesc:
     finalDesc[count] = test.split("=")[2]
     count+=1
 
-for i in range(2):
+for i in range(3):
+    print("yo")
     insert_nutrient(headings[i].text, descriptions[i+2].text, finalDesc[i])
 
