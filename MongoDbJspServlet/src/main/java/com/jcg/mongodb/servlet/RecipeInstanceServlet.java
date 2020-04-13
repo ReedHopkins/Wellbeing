@@ -14,9 +14,9 @@ public class RecipeInstanceServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("recipeId");
         Recipe recipe = new Recipe();
-        for(Document d: DatabaseSingleton.getInstance().getRecipes()) {
-            if((Integer.toString((Integer) d.get("id"))).equals(id)){
-                recipe = new Recipe(d);
+        for(Recipe d: DatabaseSingleton.getInstance().getRecipes()) {
+            if(d.getid().equals(id)){
+                recipe = d;
             }
         }
         request.setAttribute("recipe", recipe);

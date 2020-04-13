@@ -1,15 +1,5 @@
-<%@ page import="java.util.ArrayList"%>
-<%@ page import="java.util.List"%>
-
-<%@ page import="org.bson.Document"%>
-
-<%@ page import="com.mongodb.BasicDBObject"%>
-<%@ page import="com.mongodb.MongoClient"%>
-<%@ page import="com.mongodb.MongoClientURI"%>
-<%@ page import="com.mongodb.client.FindIterable"%>
-<%@ page import="com.mongodb.client.MongoCollection"%>
-<%@ page import="com.mongodb.client.MongoDatabase"%>
-<%@ page import="com.mongodb.client.MongoCursor"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page isELIgnored="false"%>
 
 <html>
 <head>
@@ -85,106 +75,37 @@
 		<h1>Database Search</h1>
 	</div>
 
-	<div id="search_bar">
-		<form id="search_bar_form " name="searchBarForm" method="post"
-			action="searchServlet">
+	<!------ MONGODB JSP & SERVLET EXAMPLE ------>
+	<div id="search_form" style="width: 60%; margin: 0 auto">
+		<form id="ingredient_search_form" name="searchForm" method="post" action="SearchServlet">
 
-			<!----- Search Bar ------>
-			<input type="text" class="form-control" id="search_id"
-				placeholder="Enter a food" name="login_id">
+			<div class="input-group">
+				<input type="text" class="form-control" id="ingredient_id" placeholder="Enter a food..." name="ingredient_id">
+			</div>
 
-			<!----- SUBMIT BUTTON ------>
-			<div>&nbsp;</div>
-			<button id="search_btn" type="submit" class="btn btn-primary">Search</button>
+			<div></div>
+			
+			<button id="submit_btn" type="submit" class="btn btn-primary">Search</button>
 		</form>
+		
+		<h4 id="errMsg" class="text-danger" align="center">${error_message}</h4>
 	</div>
-
-
-	<%
-		String dbURI = "mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/wellbeing?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
-		MongoClient mongoClient = new MongoClient(new MongoClientURI(dbURI));
-		String db_name = "wellbeing", db_collection_name = "hebData";
-
-		MongoDatabase db = mongoClient.getDatabase(db_name);
-
-		// Get the mongodb collection.
-		MongoCollection<Document> col = db.getCollection(db_collection_name);
-		FindIterable<Document> elements = col.find();
-
-		MongoCursor<Document> cursor = elements.iterator();
-
-		ArrayList<Document> foodList = new ArrayList<Document>();
-
-		try {
-			while (cursor.hasNext()) {
-				foodList.add(cursor.next());
-			}
-		} finally {
-			cursor.close();
-		}
-		
-		System.out.println(foodList.size());
-
-		String spageid = request.getParameter("page");
-
-		if (spageid == null) {
-			spageid = "1";
-		}
-
-		int pageid = Integer.parseInt(spageid);
-		int total = 10;
-		if (pageid == 1) {
-			pageid = 0;
-		} else {
-			pageid = pageid - 1;
-			pageid = pageid * total;
-		}
-
-		List<Document> list;
-		if (foodList.size() - pageid < total) {
-			list = foodList.subList(pageid, foodList.size());
-		} else {
-			list = foodList.subList(pageid, pageid + 10);
-		}
-		
-		out.print("<div style='width:80%; margin: 0 auto; text-align: center;'>");
-		out.print("<h1>Page No: " + spageid + "</h1>");
-		out.print("<table border='1' cellpadding='4' width='60%' style='margin: 0 auto;'>");
-		out.print("<tr><th>Food</th><th>Price</th>");
-		
-		for (Document food : list) {
-			out.print("<tr><td>" + (String) food.get("item") + "</td><td>" + (Double) food.get("price") + "</td></tr>");
-		}
-		
-		out.print("</table>");
-		out.print("</div>");
-	%>
-	<%
-			int pageNum = 1;
-			if (pageNum > 3 ) {
-				pageNum = Integer.parseInt(spageid) - 2;
-			}
-			int counter = 0;
-	%>
-			
-	<br>
-	<nav aria-label="Page navigation example">
-		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link" href="search.jsp?page=1" aria-label="First Page"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">First</span></a></li>
-			<li class="page-item"><a class="page-link" href="search.jsp?page=1" aria-label="Previous"> <span aria-hidden="true">&#60;</span> <span class="sr-only">Previous</span></a></li>
-			
-			<%
-			for (int i = 0; i < foodList.size() / total && counter < 5; i++, pageNum++, counter++) {
-				
-				%>
-				<li class="page-item"><a class="page-link" href="search.jsp?page=<%=pageNum%>"><%=pageNum%></a></li>
-				<%
-			}
-			%>
-			<li class="page-item"><a class="page-link" href="search.jsp?page=<%=foodList.size()%>" aria-label="Next"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Next</span></a></li>
-			<li class="page-item"><a class="page-link" href="search.jsp?page=<%=foodList.size()%>" aria-label="Last Page"> <span aria-hidden="true">&#62;</span> <span class="sr-only">Last</span></a></li>
-		</ul>
-	</nav>
+	
+	<div style='width: 80%; margin: 0 auto; text-align: center;'>
+		<table border='1' cellpadding='4' width='80%' style='margin: 0 auto;'>
+			<tr>
+				<th>Food</th>
+				<th>Price</th>
+			</tr>
+			<c:forEach items="${results}" var="results">
+				<tr>
+					<td><c:out value="${results.item}" /></td>
+					<td><c:out value="${results.price}" />/<c:out
+							value="${results.unit}" /></td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
 
 
 </body>

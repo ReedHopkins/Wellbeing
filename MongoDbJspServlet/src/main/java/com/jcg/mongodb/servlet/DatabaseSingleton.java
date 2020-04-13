@@ -13,16 +13,17 @@ import java.util.ArrayList;
 
 public class DatabaseSingleton {
     public static DatabaseSingleton instance;
-    private static ArrayList<Document> ingredientList = new ArrayList<Document>();
-    private static ArrayList<Document> recipeList = new ArrayList<Document>();
-    private static ArrayList<Document> nutrientList = new ArrayList<Document>();
+    private static ArrayList<Ingredient> ingredientList = new ArrayList<Ingredient>();
+    private static ArrayList<Recipe> recipeList = new ArrayList<Recipe>();
+    private static ArrayList<Nutrient> nutrientList = new ArrayList<Nutrient>();
     private static MongoClient mongoClient;
+    private static MongoDatabase db;
 
     private DatabaseSingleton() throws UnknownHostException {
         String db_name = "wellbeing";
         String dbURI = "mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/wellbeing?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority";
         mongoClient = new MongoClient(new MongoClientURI(dbURI));
-        MongoDatabase db = mongoClient.getDatabase(db_name);
+        db = mongoClient.getDatabase(db_name);
 
         //Creating ingredient list
         MongoCollection<Document> colIngr = db.getCollection("hebDataFinal");
@@ -30,7 +31,7 @@ public class DatabaseSingleton {
         MongoCursor<Document> cursorIngr = elementsIngr.iterator();
         try {
             while (cursorIngr.hasNext()) {
-                ingredientList.add(cursorIngr.next());
+                ingredientList.add(new Ingredient(cursorIngr.next()));
             }
         } finally {
             cursorIngr.close();
@@ -42,7 +43,7 @@ public class DatabaseSingleton {
         MongoCursor<Document> cursorRec = elementsRec.iterator();
         try {
             while (cursorRec.hasNext()) {
-                recipeList.add(cursorRec.next());
+                recipeList.add(new Recipe(cursorRec.next()));
             }
         } finally {
             cursorRec.close();
@@ -54,7 +55,7 @@ public class DatabaseSingleton {
         MongoCursor<Document> cursorNut = elementsNut.iterator();
         try {
             while (cursorNut.hasNext()) {
-                nutrientList.add(cursorNut.next());
+                nutrientList.add(new Nutrient(cursorNut.next()));
             }
         } finally {
             cursorNut.close();
@@ -69,16 +70,58 @@ public class DatabaseSingleton {
         return DatabaseSingleton.instance;
     }
 
-    public static ArrayList<Document> getRecipes(){
+    public static ArrayList<Ingredient> getIngredients(){
+        return ingredientList;
+    }
+    
+    public static ArrayList<Recipe> getRecipes(){
         return recipeList;
     }
 
-    public static ArrayList<Document> getIngredients(){
-        return ingredientList;
-    }
-
-    public static ArrayList<Document> getNutrients(){
+    public static ArrayList<Nutrient> getNutrients(){
         return nutrientList;
+    }
+    
+    public static ArrayList<Ingredient> searchIngredients(String s){
+    	ArrayList<Ingredient> output = new ArrayList<Ingredient>();
+    	String[] s_split = s.split(" ");
+    	for (Ingredient i: ingredientList) {
+    		for (String elem: s_split) {
+    			if (i.isMatch(elem)) {
+        			output.add(i);
+        		}
+    		}
+    		
+    	}
+        return output;
+    }
+    
+    public static ArrayList<Recipe> searchRecipes(String s){
+    	ArrayList<Recipe> output = new ArrayList<Recipe>();
+    	String[] s_split = s.split(" ");
+    	for (Recipe i: recipeList) {
+    		for (String elem: s_split) {
+    			if (i.isMatch(elem)) {
+        			output.add(i);
+        		}
+    		}
+    		
+    	}
+        return output;
+    }
+    
+    public static ArrayList<Nutrient> searchNutrients(String s){
+    	ArrayList<Nutrient> output = new ArrayList<Nutrient>();
+    	String[] s_split = s.split(" ");
+    	for (Nutrient i: nutrientList) {
+    		for (String elem: s_split) {
+    			if (i.isMatch(elem)) {
+        			output.add(i);
+        		}
+    		}
+    		
+    	}
+        return output;
     }
 
     public static MongoClient getConnection(){

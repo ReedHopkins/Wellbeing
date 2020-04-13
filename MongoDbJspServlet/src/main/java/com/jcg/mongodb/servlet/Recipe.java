@@ -112,7 +112,19 @@ public class Recipe {
         return instructions;
     }
 
-    public List<Document> getingredients(){
+    public List<Document> getingredients() {
         return ingredients;
+    }
+    
+    public boolean isMatch(String s) {
+    	
+    	if (title.toLowerCase().contains(s) || 
+    			readyInMinutes.toLowerCase().contains(s) || 
+    			servings.toLowerCase().contains(s) ||
+    			healthScore.toLowerCase().contains(s)) {
+    		return true;
+    	}
+    	
+    	return false;
     }
 }

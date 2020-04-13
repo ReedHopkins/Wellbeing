@@ -4,6 +4,8 @@
 <head>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
@@ -73,32 +75,21 @@
 	<div class="jumbotron" style="text-align: center">
 		<h1>Nutrient Search</h1>
 	</div>
-
-	<%/*
-		String spageid = request.getParameter("page");
-
-		if (spageid == null) {
-			spageid = "1";
-		}
-
-		int pageid = Integer.parseInt(spageid);
-		int origPageId = pageid;
-		int total = 10;
-		if (pageid == 1) {
-			pageid = 0;
-		} else {
-			pageid = pageid - 1;
-			pageid = pageid * total;
-		}
-		
-		DBCollectionListObj data = Util.getFromDB("nutrients", pageid, total);
-		ArrayList<Document> list = data.getSubList();
-		int last = data.getLast();
-		*/
-		%>
-
-	<div style='width:80%; margin: 0 auto; text-align: center;'>
-	<table border='1' cellpadding='4' width='100%' style='margin: 0 auto;'>
+	
+	<div id="search_form" style="width: 60%; margin: 0 auto; text-align: center;">
+		<form id="nutrient_search_form" name="searchForm" method="post" action="NutrientServlet">
+			<div class="input-group">
+				<span class="input-group-addon"><a href="NutrientServlet"><i class="fa fa-refresh"></i></a></span>
+				<input type="text" class="form-control" id="search_term" placeholder="Enter a nutrient..." name="search_term">
+				<span><button id="submit_btn" type="submit" class="btn btn-primary">Search</button></span>
+			</div>
+		</form>
+	
+		<br>
+		<h3>${subtitle}</h3>
+		<br>
+	
+		<table border='1' cellpadding='4' width='100%' style='margin: 0 auto; display: ${showPagination}'>
 		<tr><th>Nutrient</th><th>Description</th><th>Recommended Daily Intake</th></tr>
 		<c:forEach items="${nutrient}" var="nutrient">
 			<tr>
@@ -109,47 +100,20 @@
 		</c:forEach>
 	</table>
 	</div>
-	<%/*
-			int pageNum = 1;
-			if (origPageId > 3) {
-				pageNum = origPageId - 2;
-			}
-			if (origPageId > last - 2) {
-				pageNum = origPageId - 3;
-			}
-			if (origPageId > last - 1) {
-				pageNum = origPageId - 4;
-			}
-			int counter = 0;
-			*/
-	%>
-			
-	<!-- <br>
-	<nav aria-label="Page navigation example">
+	
+	<br>
+	<nav aria-label="Page navigation example" style="display: ${showPagination};">
 		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link" href="nutrients.jsp?page=1" aria-label="First Page"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">First</span></a></li>
-			<%// if (origPageId > 1) { %>
-			<li class="page-item"><a class="page-link" href="nutrients.jsp?page=<%//=origPageId-1%>" aria-label="Previous"> <span aria-hidden="true">&#60;</span> <span class="sr-only">Previous</span></a></li>
-			<%//} else {%>
-			<li class="page-item"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&#60;</span> <span class="sr-only">Previous</span></a></li>
-			<%//} %>
-			<%
-			//for (int i = 0; i < last && counter < 5; i++, pageNum++, counter++) {
-				
-				%>
-				<li class="page-item"><a class="page-link" href="nutrients.jsp?page=<%//=pageNum%>"><%//=pageNum%></a></li>
-				<%
-			//}
-			%>
-			<%// if (origPageId < last) { %>
-			<li class="page-item"><a class="page-link" href="nutrients.jsp?page=<%//=origPageId+1%>" aria-label="Next"> <span aria-hidden="true">&#62;</span> <span class="sr-only">Next</span></a></li>
-			<%//} else {%>
-			<li class="page-item"><a class="page-link" href="#" aria-label="Next"> <span aria-hidden="true">&#62;</span> <span class="sr-only">Next</span></a></li>
-			<%//} %>
-			<li class="page-item"><a class="page-link" href="nutrients.jsp?page=<%//=last%>" aria-label="Last Page"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Last</span></a></li>
+			<li class="page-item"><a class="page-link" href="${first}" aria-label="First Page"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">First</span></a></li>
+			<li class="page-item"><a class="page-link" href="${previous}" aria-label="Previous"> <span aria-hidden="true">&#60;</span> <span class="sr-only">Previous</span></a></li>
+			
+			<c:forEach items="${pageNums}" var="page">
+				<li class="page-item"><a class="page-link" href="NutrientServlet?search_term=${search_term}&page=${page}"><c:out value="${page}" /></a></li>
+			</c:forEach>
+
+			<li class="page-item"><a class="page-link" href="${next}" aria-label="Next"> <span aria-hidden="true">&#62;</span> <span class="sr-only">Next</span></a></li>
+			<li class="page-item"><a class="page-link" href="${last}" aria-label="Last Page"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Last</span></a></li>
 		</ul>
 	</nav>
-
-	-->
 </body>
 </html>
