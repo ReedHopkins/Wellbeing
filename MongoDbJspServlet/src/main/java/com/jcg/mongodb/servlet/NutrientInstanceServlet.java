@@ -14,9 +14,10 @@ public class NutrientInstanceServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String instanceTitle = request.getParameter("nutrientTitle");
         Nutrient nutrient = new Nutrient();
-        for(Document d: DatabaseSingleton.getInstance().getNutrients()) {
-            if(((String) d.get("title")).equals(instanceTitle)){
-                nutrient = new Nutrient(d);
+        DatabaseSingleton.getInstance();
+		for(Nutrient d: DatabaseSingleton.getNutrients()) {
+            if(d.gettitle().equals(instanceTitle)){
+                nutrient = d;
             }
         }
         request.setAttribute("nutrient", nutrient);
