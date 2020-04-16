@@ -15,7 +15,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="../index.html">
-        <img src="../images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        <img src="/images/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         WellBeing
     </a>
 
@@ -87,6 +87,7 @@
     </ul>
     <h3>Ingredients</h3>
         <ul>
+        
             <%
         	    Recipe recipe = (Recipe)request.getAttribute("recipe");
 

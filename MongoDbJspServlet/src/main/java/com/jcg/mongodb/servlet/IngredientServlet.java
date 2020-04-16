@@ -61,22 +61,19 @@ public class IngredientServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		String subtitle = "Search Results:";
 
 		// Reading post parameters from the request
 		String search_param = request.getParameter("search_term");
-		
+		String spageid = request.getParameter("page");
 		
 		search_param = search_param.toLowerCase();
+		String subtitle = "Search Results (Page " + spageid + "):";
 
 		//Search for matched ingredients
 		DatabaseSingleton.getInstance();
 		ArrayList<Ingredient> ingredients = DatabaseSingleton.searchIngredients(search_param);
 
 		//begin pagination calculations
-		String spageid = request.getParameter("page");
-
 		if (spageid == null) spageid = "1";
 		
 		int pageId = Integer.parseInt(spageid);

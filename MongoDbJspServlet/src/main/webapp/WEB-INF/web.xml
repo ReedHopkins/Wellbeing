@@ -24,8 +24,8 @@
 		<servlet-class>com.jcg.mongodb.servlet.RecipeInstanceServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>SearchServlet</servlet-name>
-		<servlet-class>com.jcg.mongodb.servlet.SearchServlet</servlet-class>
+		<servlet-name>NutrientInstanceServlet</servlet-name>
+		<servlet-class>com.jcg.mongodb.servlet.NutrientInstanceServlet</servlet-class>
 	</servlet>
 	
    	<servlet-mapping>
@@ -45,8 +45,8 @@
 		<url-pattern>/RecipeInstanceServlet</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>SearchServlet</servlet-name>
-		<url-pattern>/SearchServlet</url-pattern>
+		<servlet-name>NutrientInstanceServlet</servlet-name>
+		<url-pattern>/NutrientInstanceServlet</url-pattern>
 	</servlet-mapping>
    	
 	<!-- Welcome File List -->
