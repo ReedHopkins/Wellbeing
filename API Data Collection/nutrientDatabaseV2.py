@@ -10,17 +10,20 @@ import pymongo
 from pymongo import MongoClient
 
 
-def insert_nutrient(name, desc, rda):
+def insert_nutrient(name, desc, rda, pic):
     toInsert = {
         "title":name,
         "description":desc,
-        "reccommendedDailyIntake":rda
+        "reccommendedDailyIntake":rda,
+        "pictureURL":pic
     }
     collection.insert_one(toInsert)
 
 
 BASE_URL = "https://www.healthline.com/nutrition/micronutrients#types-and-functions"
 MACRO_URL = "https://mybodymykitchen.com/calculate-your-macronutrients-protein-fats-carbs/"
+GOOGLE_URL = "https://www.google.com/search?tbm=isch&q="
+IMAGE_URL = "https://shutterstock.com/search/"
 
 client = pymongo.MongoClient("mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority")
 db = client['wellbeing']
@@ -45,6 +48,7 @@ amounts = []
 #for table in siteTables:
 allInfo = soup.find_all("td", {'class':""})
 
+
 for i in range(1, 26, 3):
         
     names += allInfo[i]
@@ -68,10 +72,23 @@ for i in range(64, 84, 3):
     names += allInfo[i]
     infos += allInfo[i+1]
     amounts += allInfo[i+2]
-   
+
+images = []
+
+for n in names:
+
+    url = urllib.request.urlopen(IMAGE_URL+n.replace(" ", "+")+"+nutrient")
+    soup = bs4.BeautifulSoup(url.read(),"html.parser")
+    searchResults = soup.find("script",{'type':'application/ld+json'})
+    dictResults = json.loads(((searchResults.text)))
+    imgURL = dictResults[0]["contentUrl"]
+    print(imgURL)
+    images.append(imgURL)
+    
+
 for i in range(27):
-    print(names[i] + ', ' + itemInfo[2*i+1] + ', ' + amounts[i])
-    insert_nutrient(names[i], itemInfo[2*i + 1], amounts[i])
+    print(names[i] + ', ' + itemInfo[2*i+1] + ', ' + amounts[i] + ', ' + images[i])
+    insert_nutrient(names[i], itemInfo[2*i + 1], amounts[i], images[i])
 
 
 #Start of accesssing Macronutrients 
@@ -90,7 +107,18 @@ for test in finalDesc:
     finalDesc[count] = test.split("=")[2]
     count+=1
 
+images = []
+three = {0,1,2}
+for n in three:
+    curName = headings[n].text
+    url = urllib.request.urlopen(IMAGE_URL+(curName)+"nutrient")
+    soup = bs4.BeautifulSoup(url.read(),"html.parser")
+    searchResults = soup.find("script",{'type':'application/ld+json'})
+    dictResults = json.loads(((searchResults.text)))
+    imgURL = dictResults[0]["contentUrl"]
+
+    images.append(imgURL)
+
 for i in range(3):
-    print("yo")
-    insert_nutrient(headings[i].text, descriptions[i+2].text, finalDesc[i])
+    insert_nutrient(headings[i].text, descriptions[i+2].text, finalDesc[i], images[i])
 
