@@ -19,45 +19,33 @@ public class RecipeServlet extends HttpServlet {
 		// Retrieve all ingredients in database
 		DatabaseSingleton.getInstance();
 		ArrayList<Recipe> recipes = DatabaseSingleton.getRecipes();
+		int size = recipes.size();
 
 		// begin pagination calculations
 		String spageid = request.getParameter("page");
+		if (spageid == null) {
+			spageid = "1";
+		}
 		String search_term = request.getParameter("search_term");
+		String subtitle = "All Recipes (Page " + spageid + "):";
 
 		if (search_term == null || "".equals(search_term)) {
 
-			if (spageid == null)
-				spageid = "1";
-
-			int pageId = Integer.parseInt(spageid);
-			int total = 10;
-
-			int start = Util.getStartIndex(pageId, total);
-			int last = Util.getLastPage(recipes.size(), total);
-			int end = Util.getEndIndex(start, recipes.size(), total);
-			ArrayList<Integer> pageNums = Util.getPaginatorNums(pageId, last);
-
-			ArrayList<Recipe> subList = new ArrayList<Recipe>(recipes.subList(start, end));
-
-			String previous = "#";
-			if (pageId > 1)
-				previous = "RecipeServlet?page=" + Integer.toString(pageId - 1);
-			String next = "#";
-			if (pageId < last)
-				next = "RecipeServlet?page=" + Integer.toString(pageId + 1);
+			Paginator Paginator = new Paginator("RecipeServlet", spageid, size, 10);
+			ArrayList<Recipe> subList = new ArrayList<Recipe>(
+					recipes.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
 
 			// set calculated attributes
-			request.setAttribute("subtitle", "All Recipes:");
+			request.setAttribute("subtitle", subtitle);
 			request.setAttribute("recipe", subList);
-			request.setAttribute("pageNums", pageNums);
-			request.setAttribute("previous", previous);
-			request.setAttribute("next", next);
-			request.setAttribute("first", "RecipeServlet?page=1");
-			request.setAttribute("last", "RecipeServlet?page=" + last);
+			request.setAttribute("pageNums", Paginator.getPageNums());
+			request.setAttribute("previous", Paginator.getPreviousPageLink());
+			request.setAttribute("next", Paginator.getNextPageLink());
+			request.setAttribute("first", Paginator.getFirstPageLink());
+			request.setAttribute("last", Paginator.getLastPageLink());
 			request.getRequestDispatcher("/pages/recipes.jsp").forward(request, response);
 
 		} else {
-			System.out.println(search_term);
 			doPost(request, response);
 		}
 	}
@@ -68,35 +56,23 @@ public class RecipeServlet extends HttpServlet {
 
 		// Reading post parameters from the request
 		String search_param = request.getParameter("search_term");
-		String spageid = request.getParameter("page");
-
 		search_param = search_param.toLowerCase();
+		String spageid = request.getParameter("page");
+		if (spageid == null) {
+			spageid = "1";
+		}
 		String subtitle = "Search Results (Page " + spageid + "):";
 
-		// Search for matched ingredients
+		// Search for matched recipes
 		DatabaseSingleton.getInstance();
 		ArrayList<Recipe> recipes = DatabaseSingleton.searchRecipes(search_param);
+		int size = recipes.size();
 
-		// begin pagination calculations
-		if (spageid == null)
-			spageid = "1";
+		Paginator Paginator = new Paginator("RecipeServlet", spageid, size, 10);
+		Paginator.setSearchTerm(search_param);
 
-		int pageId = Integer.parseInt(spageid);
-		int total = 10;
-
-		int start = Util.getStartIndex(pageId, total);
-		int last = Util.getLastPage(recipes.size(), total);
-		int end = Util.getEndIndex(start, recipes.size(), total);
-		ArrayList<Integer> pageNums = Util.getPaginatorNums(pageId, last);
-
-		ArrayList<Recipe> subList = new ArrayList<Recipe>(recipes.subList(start, end));
-
-		String previous = "#";
-		if (pageId > 1)
-			previous = "RecipeServlet?search_term=" + search_param + "&page=" + Integer.toString(pageId - 1);
-		String next = "#";
-		if (pageId < last)
-			next = "RecipeServlet?search_term=" + search_param + "&page=" + Integer.toString(pageId + 1);
+		ArrayList<Recipe> subList = new ArrayList<Recipe>(
+				recipes.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
 
 		String showPagination = "default";
 		if (subList.size() < 1) {
@@ -107,11 +83,11 @@ public class RecipeServlet extends HttpServlet {
 		// set calculated attributes
 		request.setAttribute("subtitle", subtitle);
 		request.setAttribute("recipe", subList);
-		request.setAttribute("pageNums", pageNums);
-		request.setAttribute("previous", previous);
-		request.setAttribute("next", next);
-		request.setAttribute("first", "RecipeServlet?search_term=" + search_param + "&page=1");
-		request.setAttribute("last", "RecipeServlet?search_term=" + search_param + "&page=" + last);
+		request.setAttribute("pageNums", Paginator.getPageNums());
+		request.setAttribute("previous", Paginator.getPreviousPageLink());
+		request.setAttribute("next", Paginator.getNextPageLink());
+		request.setAttribute("first", Paginator.getFirstPageLink());
+		request.setAttribute("last", Paginator.getLastPageLink());
 		request.setAttribute("search_term", search_param);
 		request.setAttribute("showPagination", showPagination);
 		request.getRequestDispatcher("/pages/recipes.jsp").forward(request, response);

@@ -81,15 +81,15 @@
 	<div id="search_form"
 		style="width: 60%; margin: 0 auto; text-align: center;">
 
-		<form id="ingredient_search_form" name="searchForm" method="post"
-			action="IngredientServlet">
+		<form id="nutrient_search_form" name="searchForm" method="post"
+			action="NutrientServlet">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
 					<span class="input-group-text" id="basic-addon1"><a
-						href="IngredientServlet"><i class="fa fa-refresh"></i></a></span>
+						href="NutrientServlet"><i class="fa fa-refresh"></i></a></span>
 				</div>
 				<input type="text" class="form-control" id="search_term"
-					placeholder="Enter a food..." name="search_term">
+					placeholder="Enter a nutrient..." name="search_term">
 
 				<div class="input-group-append">
 					<button class="btn btn-primary" id="submit_btn" type="submit">
