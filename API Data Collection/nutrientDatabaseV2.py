@@ -120,5 +120,6 @@ for n in three:
     images.append(imgURL)
 
 for i in range(3):
-    insert_nutrient(headings[i].text, descriptions[i+2].text, finalDesc[i], images[i])
+    print(headings[i].text + ", " + descriptions[i+2].text + ", " + finalDesc[(i+2)%3])
+    insert_nutrient(headings[i].text, descriptions[i+2].text, finalDesc[(i+2)%3], images[i])
 
