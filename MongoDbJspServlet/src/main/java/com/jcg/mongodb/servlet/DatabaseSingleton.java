@@ -26,7 +26,7 @@ public class DatabaseSingleton {
         db = mongoClient.getDatabase(db_name);
 
         //Creating ingredient list
-        MongoCollection<Document> colIngr = db.getCollection("hebDataFinal");
+        MongoCollection<Document> colIngr = db.getCollection("hebDataFinal1");
         FindIterable<Document> elementsIngr = colIngr.find();
         MongoCursor<Document> cursorIngr = elementsIngr.iterator();
         try {

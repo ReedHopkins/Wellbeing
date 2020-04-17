@@ -27,6 +27,10 @@
 		<servlet-name>NutrientInstanceServlet</servlet-name>
 		<servlet-class>com.jcg.mongodb.servlet.NutrientInstanceServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>IngredientInstanceServlet</servlet-name>
+		<servlet-class>com.jcg.mongodb.servlet.IngredientInstanceServlet</servlet-class>
+	</servlet>
 	
    	<servlet-mapping>
       <servlet-name>RecipeServlet</servlet-name>
@@ -47,6 +51,10 @@
 	<servlet-mapping>
 		<servlet-name>NutrientInstanceServlet</servlet-name>
 		<url-pattern>/NutrientInstanceServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>IngredientInstanceServlet</servlet-name>
+		<url-pattern>/IngredientInstanceServlet</url-pattern>
 	</servlet-mapping>
    	
 	<!-- Welcome File List -->

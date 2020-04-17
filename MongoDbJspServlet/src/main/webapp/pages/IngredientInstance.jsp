@@ -4,7 +4,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-        <title>${nutrient.title}</title>
+        <title>${ingredient.item}</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -66,17 +66,16 @@
         </nav>
 
         <div class="jumbotron" style="text-align:center">
-            <h1>${nutrient.title}</h1>
+            <h1>${ingredient.item}</h1>
         </div>
         <div class="container" style="align-items:center">
             <div style="text-align: center;">
-                <img src=${nutrient.pictureURL} width="300" height="200">
+                <!-- <img src=${ingredient.image} width="300" height="200"> -->
             </div>
             <br>
-            <h3>Nutrient Description</h3>
-                <p>${nutrient.description}</p>
-            <h3>Recommended Daily Intake</h3>
-                <p>${nutrient.dailyIntake}</p>
+            <h3>Ingredient Nutrients</h3>
+            <h3>Price</h3>
+                <p>${ingredient.price} ${ingredient.unit}</p>
         </div>
     </body>
 </html>
