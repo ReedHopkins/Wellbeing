@@ -1,5 +1,8 @@
 package com.jcg.mongodb.servlet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bson.Document;
 
 public class Ingredient {
@@ -7,13 +10,13 @@ public class Ingredient {
     String price;
     String unit;
     String image;
-    List<Document> ingredients;
+    List<Document> nutrients;
 
     public Ingredient(Document ingredient){
         item = (String) ingredient.get("item");
         price = (String) ingredient.get("price");
         unit = (String) ingredient.get("unit");
-        nutrients = (List<Document>) recipe.get("nutrients");
+        nutrients = (List<Document>) ingredient.get("nutrients");
         image = (String) ingredient.get("image");
     }
 
@@ -21,8 +24,8 @@ public class Ingredient {
         item = "error";
         price = "error";
         unit = "error";
-        nutrients = "error";
-        image = new ArrayList<Document>();
+        image = "error";
+        nutrients = new ArrayList<Document>();
     }
 
     public String getitem(){
