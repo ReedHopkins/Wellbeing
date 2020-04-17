@@ -98,12 +98,21 @@
 				</div>
 			</div>
 		</form>
+		
+		<button class="btn btn-primary dropdown-toggle"
+			type="button" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="false">Filters</button>
+		<div class="dropdown-menu">
+			<a class="dropdown-item" href="NutrientServlet?filter=macro">Macronutrients</a> 
+			<a class="dropdown-item" href="NutrientServlet?filter=micro">Micronutrients</a> 
+		</div>
+		<br>
 
 		<br>
 		<h3>${subtitle}</h3>
 		<br>
 
-		<table border='1' cellpadding='4' width='100%' style='margin: 0 auto;'>
+		<table border='1' cellpadding='4' width='100%' style='margin: 0 auto; display: ${showPagination}'>
 			<tr>
 				<th>Nutrient</th>
 				<th>Description</th>

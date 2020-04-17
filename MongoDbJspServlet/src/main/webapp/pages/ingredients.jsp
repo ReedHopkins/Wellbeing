@@ -4,10 +4,12 @@
 <head>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-	
+
 <link rel="stylesheet" href="css/main.css">
-	
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script
@@ -78,30 +80,44 @@
 		<h1>Ingredient Search</h1>
 	</div>
 	<br>
-	
-	<div id="search_form" style="width: 60%; margin: 0 auto; text-align: center;">
+
+	<div id="search_form"
+		style="width: 60%; margin: 0 auto; text-align: center;">
 		<form id="ingredient_search_form" name="searchForm" method="post"
 			action="IngredientServlet">
 			<div class="input-group mb-3">
 				<div class="input-group-prepend">
-					<span class="input-group-text" id="basic-addon1"><a href="IngredientServlet"><i
-						class="fa fa-refresh"></i></a></span>
+					<span class="input-group-text" id="basic-addon1"><a
+						href="IngredientServlet"><i class="fa fa-refresh"></i></a></span>
 				</div>
 				<input type="text" class="form-control" id="search_term"
 					placeholder="Enter a food..." name="search_term">
 
 				<div class="input-group-append">
-					<button class="btn btn-primary" id="submit_btn" type="submit"><i
-						class="fa fa-search"></i></button>
+					<button class="btn btn-primary" id="submit_btn" type="submit">
+						<i class="fa fa-search"></i>
+					</button>
 				</div>
 			</div>
 		</form>
 
+		<button class="btn btn-primary dropdown-toggle"
+			type="button" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="false">Filters</button>
+		<div class="dropdown-menu">
+			<a class="dropdown-item" href="#">Filter 1</a> 
+			<a class="dropdown-item"
+				href="#">Filter 2</a> 
+			<a class="dropdown-item" href="#">Filter 3</a>
+		</div>
+		<br>
+
 		<br>
 		<h3>${subtitle}</h3>
 		<br>
-	
-		<table border='1' cellpadding='4' width='100%' style='margin: 0 auto; display: ${showPagination}'>
+
+		<table border='1' cellpadding='4' width='100%'
+			style='margin: 0 auto; display: ${showPagination}'>
 			<tr>
 				<th>Food</th>
 				<th>Price</th>
@@ -115,19 +131,30 @@
 			</c:forEach>
 		</table>
 	</div>
-	
+
 	<br>
-	<nav aria-label="Page navigation example" style="display: ${showPagination};">
+	<nav aria-label="Page navigation example"
+		style="display: ${showPagination};">
 		<ul class="pagination justify-content-center">
-			<li class="page-item"><a class="page-link" href="${first}" aria-label="First Page"> <span aria-hidden="true">&laquo;</span> <span class="sr-only">First</span></a></li>
-			<li class="page-item"><a class="page-link" href="${previous}" aria-label="Previous"> <span aria-hidden="true">&#60;</span> <span class="sr-only">Previous</span></a></li>
-			
+			<li class="page-item"><a class="page-link" href="${first}"
+				aria-label="First Page"> <span aria-hidden="true">&laquo;</span>
+					<span class="sr-only">First</span></a></li>
+			<li class="page-item"><a class="page-link" href="${previous}"
+				aria-label="Previous"> <span aria-hidden="true">&#60;</span> <span
+					class="sr-only">Previous</span></a></li>
+
 			<c:forEach items="${pageNums}" var="page">
-				<li class="page-item"><a class="page-link" href="IngredientServlet?search_term=${search_term}&page=${page}"><c:out value="${page}" /></a></li>
+				<li class="page-item"><a class="page-link"
+					href="IngredientServlet?search_term=${search_term}&page=${page}"><c:out
+							value="${page}" /></a></li>
 			</c:forEach>
 
-			<li class="page-item"><a class="page-link" href="${next}" aria-label="Next"> <span aria-hidden="true">&#62;</span> <span class="sr-only">Next</span></a></li>
-			<li class="page-item"><a class="page-link" href="${last}" aria-label="Last Page"> <span aria-hidden="true">&raquo;</span> <span class="sr-only">Last</span></a></li>
+			<li class="page-item"><a class="page-link" href="${next}"
+				aria-label="Next"> <span aria-hidden="true">&#62;</span> <span
+					class="sr-only">Next</span></a></li>
+			<li class="page-item"><a class="page-link" href="${last}"
+				aria-label="Last Page"> <span aria-hidden="true">&raquo;</span>
+					<span class="sr-only">Last</span></a></li>
 		</ul>
 	</nav>
 

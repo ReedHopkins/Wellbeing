@@ -26,10 +26,12 @@ public class NutrientServlet extends HttpServlet {
 			spageid = "1";
 		}
 		String search_term = request.getParameter("search_term");
+		String filter = request.getParameter("filter");
 		String subtitle = "All Nutrients (Page " + spageid + "):";
 
-		if (search_term == null || "".equals(search_term)) {
-			
+		if (search_term != null || filter != null) {
+			doPost(request, response);
+		} else {
 			Paginator Paginator = new Paginator("NutrientServlet", spageid, size, 10);
 			ArrayList<Nutrient> subList = new ArrayList<Nutrient>(nutrients.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
 
@@ -42,9 +44,6 @@ public class NutrientServlet extends HttpServlet {
 			request.setAttribute("first", Paginator.getFirstPageLink());
 			request.setAttribute("last", Paginator.getLastPageLink());
 			request.getRequestDispatcher("/pages/nutrients.jsp").forward(request, response);
-
-		} else {
-			doPost(request, response);
 		}
 
 	}
@@ -55,6 +54,11 @@ public class NutrientServlet extends HttpServlet {
 
 		// Reading post parameters from the request
 		String search_param = request.getParameter("search_term");
+		String filter = request.getParameter("filter");
+		if (filter != null) {
+			search_param = filter;
+		}
+		
 		search_param = search_param.toLowerCase();
 		String spageid = request.getParameter("page");
 		if (spageid == null) {
