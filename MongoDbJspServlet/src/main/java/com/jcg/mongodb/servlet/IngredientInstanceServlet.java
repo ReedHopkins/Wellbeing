@@ -22,6 +22,6 @@ public class IngredientInstanceServlet extends HttpServlet {
         }
 		System.out.println(instanceTitle);
         request.setAttribute("ingredient", ingredient);
-        request.getRequestDispatcher("/pages/IngredientInstance.jsp").forward(request, response);
+        request.getRequestDispatcher("IngredientInstance.jsp").forward(request, response);
     }
 }

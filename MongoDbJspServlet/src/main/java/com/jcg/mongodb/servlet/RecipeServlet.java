@@ -31,7 +31,7 @@ public class RecipeServlet extends HttpServlet {
 
 		if (search_term == null || "".equals(search_term)) {
 
-			Paginator Paginator = new Paginator("RecipeServlet", spageid, size, 10);
+			Paginator Paginator = new Paginator("RecipeServlet", spageid, size, 9);
 			ArrayList<Recipe> subList = new ArrayList<Recipe>(
 					recipes.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
 
@@ -43,7 +43,7 @@ public class RecipeServlet extends HttpServlet {
 			request.setAttribute("next", Paginator.getNextPageLink());
 			request.setAttribute("first", Paginator.getFirstPageLink());
 			request.setAttribute("last", Paginator.getLastPageLink());
-			request.getRequestDispatcher("/pages/recipes.jsp").forward(request, response);
+			request.getRequestDispatcher("recipes.jsp").forward(request, response);
 
 		} else {
 			doPost(request, response);
@@ -68,7 +68,7 @@ public class RecipeServlet extends HttpServlet {
 		ArrayList<Recipe> recipes = DatabaseSingleton.searchRecipes(search_param);
 		int size = recipes.size();
 
-		Paginator Paginator = new Paginator("RecipeServlet", spageid, size, 10);
+		Paginator Paginator = new Paginator("RecipeServlet", spageid, size, 9);
 		Paginator.setSearchTerm(search_param);
 
 		ArrayList<Recipe> subList = new ArrayList<Recipe>(
@@ -90,7 +90,7 @@ public class RecipeServlet extends HttpServlet {
 		request.setAttribute("last", Paginator.getLastPageLink());
 		request.setAttribute("search_term", search_param);
 		request.setAttribute("showPagination", showPagination);
-		request.getRequestDispatcher("/pages/recipes.jsp").forward(request, response);
+		request.getRequestDispatcher("recipes.jsp").forward(request, response);
 	}
 
 }

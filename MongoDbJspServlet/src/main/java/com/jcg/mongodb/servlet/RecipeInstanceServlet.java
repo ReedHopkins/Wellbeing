@@ -24,6 +24,6 @@ public class RecipeInstanceServlet extends HttpServlet {
 		
 		
         request.setAttribute("recipe", recipe);
-        request.getRequestDispatcher("/pages/RecipeInstance.jsp").forward(request, response);
+        request.getRequestDispatcher("RecipeInstance.jsp").forward(request, response);
     }
 }

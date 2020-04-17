@@ -22,6 +22,6 @@ public class NutrientInstanceServlet extends HttpServlet {
         }
 		System.out.println(instanceTitle);
         request.setAttribute("nutrient", nutrient);
-        request.getRequestDispatcher("/pages/NutrientInstance.jsp").forward(request, response);
+        request.getRequestDispatcher("NutrientInstance.jsp").forward(request, response);
     }
 }

@@ -30,7 +30,7 @@ public class NutrientServlet extends HttpServlet {
 
 		if (search_term == null || "".equals(search_term)) {
 			
-			Paginator Paginator = new Paginator("NutrientServlet", spageid, size, 10);
+			Paginator Paginator = new Paginator("NutrientServlet", spageid, size, 9);
 			ArrayList<Nutrient> subList = new ArrayList<Nutrient>(nutrients.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
 
 			// set calculated attributes
@@ -41,7 +41,7 @@ public class NutrientServlet extends HttpServlet {
 			request.setAttribute("next", Paginator.getNextPageLink());
 			request.setAttribute("first", Paginator.getFirstPageLink());
 			request.setAttribute("last", Paginator.getLastPageLink());
-			request.getRequestDispatcher("/pages/nutrients.jsp").forward(request, response);
+			request.getRequestDispatcher("nutrients.jsp").forward(request, response);
 
 		} else {
 			doPost(request, response);
@@ -67,7 +67,7 @@ public class NutrientServlet extends HttpServlet {
 		ArrayList<Nutrient> nutrients = DatabaseSingleton.searchNutrients(search_param);
 		int size = nutrients.size();
 
-		Paginator Paginator = new Paginator("NutrientServlet", spageid, size, 10);
+		Paginator Paginator = new Paginator("NutrientServlet", spageid, size, 9);
 		Paginator.setSearchTerm(search_param);
 		
 		ArrayList<Nutrient> subList = new ArrayList<Nutrient>(nutrients.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
@@ -88,7 +88,7 @@ public class NutrientServlet extends HttpServlet {
 		request.setAttribute("last", Paginator.getLastPageLink());
 		request.setAttribute("search_term", search_param);
 		request.setAttribute("showPagination", showPagination);
-		request.getRequestDispatcher("/pages/nutrients.jsp").forward(request, response);
+		request.getRequestDispatcher("nutrients.jsp").forward(request, response);
 	}
 
 }

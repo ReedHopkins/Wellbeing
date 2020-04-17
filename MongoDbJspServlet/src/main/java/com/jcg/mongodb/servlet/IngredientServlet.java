@@ -30,7 +30,7 @@ public class IngredientServlet extends HttpServlet {
 
 		if (search_term == null || "".equals(search_term)) {
 
-			Paginator Paginator = new Paginator("IngredientServlet", spageid, size, 10);
+			Paginator Paginator = new Paginator("IngredientServlet", spageid, size, 9);
 			ArrayList<Ingredient> subList = new ArrayList<Ingredient>(
 					ingredients.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
 
@@ -42,7 +42,7 @@ public class IngredientServlet extends HttpServlet {
 			request.setAttribute("next", Paginator.getNextPageLink());
 			request.setAttribute("first", Paginator.getFirstPageLink());
 			request.setAttribute("last", Paginator.getLastPageLink());
-			request.getRequestDispatcher("/pages/ingredients.jsp").forward(request, response);
+			request.getRequestDispatcher("ingredients.jsp").forward(request, response);
 
 		} else {
 			doPost(request, response);
@@ -67,7 +67,7 @@ public class IngredientServlet extends HttpServlet {
 		ArrayList<Ingredient> ingredients = DatabaseSingleton.searchIngredients(search_param);
 		int size = ingredients.size();
 
-		Paginator Paginator = new Paginator("IngredientServlet", spageid, size, 10);
+		Paginator Paginator = new Paginator("IngredientServlet", spageid, size, 9);
 		Paginator.setSearchTerm(search_param);
 
 		ArrayList<Ingredient> subList = new ArrayList<Ingredient>(
@@ -89,7 +89,7 @@ public class IngredientServlet extends HttpServlet {
 		request.setAttribute("last", Paginator.getLastPageLink());
 		request.setAttribute("search_term", search_param);
 		request.setAttribute("showPagination", showPagination);
-		request.getRequestDispatcher("/pages/ingredients.jsp").forward(request, response);
+		request.getRequestDispatcher("ingredients.jsp").forward(request, response);
 	}
 
 }
