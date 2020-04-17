@@ -88,6 +88,7 @@ public class IngredientServlet extends HttpServlet {
 		request.setAttribute("first", Paginator.getFirstPageLink());
 		request.setAttribute("last", Paginator.getLastPageLink());
 		request.setAttribute("search_term", search_param);
+		request.setAttribute("show_param", "block");
 		request.setAttribute("showPagination", showPagination);
 		request.getRequestDispatcher("ingredients.jsp").forward(request, response);
 	}

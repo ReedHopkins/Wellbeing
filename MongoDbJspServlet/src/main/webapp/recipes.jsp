@@ -71,11 +71,22 @@
 				</div>
 			</div>
 		</form>
+		
+		<button class="btn btn-success dropdown-toggle"
+			type="button" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="false">Filters</button>
+		<div class="dropdown-menu">
+			<a class="dropdown-item" href="#">Filter 1</a> 
+			<a class="dropdown-item"
+				href="#">Filter 2</a> 
+			<a class="dropdown-item" href="#">Filter 3</a>
+		</div>
+		<br><br>
 
-		<br>
+		<p class="search_param" style="display: ${show_param}">Showing results for: "${search_term}"</p>
+		
 		<h3>${subtitle}</h3>
-		<br>
-
+		
 		<div class="grid-container">
 			<c:forEach items="${recipe}" var="recipe">
 

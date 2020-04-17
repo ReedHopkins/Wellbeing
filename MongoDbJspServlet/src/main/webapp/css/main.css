@@ -29,8 +29,6 @@ img {
   vertical-align: text-bottom;
 }
 
-
-
 /*-------------------------------*/
 /*--------   Home Page   --------*/
 /*-------------------------------*/
@@ -62,6 +60,14 @@ img {
 /*-------------------------------*/
 .fa-refresh {
 	color: var(--wellBeingGreen);
+}
+
+.page-item .page-link {
+  	color: var(--wellBeingGreen);
+}
+
+.search_param {
+	display: none;
 }
 
 #search_form {

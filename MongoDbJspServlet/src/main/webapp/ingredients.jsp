@@ -85,11 +85,11 @@
 				href="#">Filter 2</a> 
 			<a class="dropdown-item" href="#">Filter 3</a>
 		</div>
-		<br>
-
-		<br>
+		<br><br>
+		
+		<p class="search_param" style="display: ${show_param}">Showing results for: "${search_term}"</p>
+		
 		<h3>${subtitle}</h3>
-		<br>
 		
 		<div class="grid-container">
 			<c:forEach items="${ingredient}" var="ingredient">

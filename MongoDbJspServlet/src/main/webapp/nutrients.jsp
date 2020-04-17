@@ -39,7 +39,7 @@
 					href="IngredientServlet">Ingredients</a></li>
 				<li class="nav-item"><a class="nav-link" href="RecipeServlet">Recipes</a>
 				</li>
-				<li class="nav-item"><a class="nav-link" href="NutrientServlet">Nutrients</a>
+				<li class="nav-item"><a class="nav-link" href="ModelServlet">Nutrients</a>
 				</li>
 				<li class="nav-item"><a class="nav-link" href="user.html">User</a>
 				</li>
@@ -79,10 +79,12 @@
 			<a class="dropdown-item" href="NutrientServlet?filter=macro">Macronutrients</a>
 			<a class="dropdown-item" href="NutrientServlet?filter=micro">Micronutrients</a>
 		</div>
-		<br> <br>
+		<br><br>
+		
+		<p class="search_param" style="display: ${show_param}">Showing results for: "${search_term}"</p>
+		
 		<h3>${subtitle}</h3>
-		<br>
-
+		
 		<div class="grid-container">
 			<c:forEach items="${nutrient}" var="nutrient">
 

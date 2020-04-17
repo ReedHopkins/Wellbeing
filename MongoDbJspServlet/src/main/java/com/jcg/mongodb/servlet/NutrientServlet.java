@@ -17,7 +17,7 @@ public class NutrientServlet extends HttpServlet {
 
 		// Retrieve all nutrients in database
 		DatabaseSingleton.getInstance();
-		ArrayList<Nutrient> nutrients = DatabaseSingleton.getNutrients();
+		ArrayList<?> nutrients = DatabaseSingleton.getNutrients();
 		int size = nutrients.size();
 
 		// begin pagination calculations
@@ -31,7 +31,7 @@ public class NutrientServlet extends HttpServlet {
 		if (search_term == null || "".equals(search_term)) {
 			
 			Paginator Paginator = new Paginator("NutrientServlet", spageid, size, 9);
-			ArrayList<Nutrient> subList = new ArrayList<Nutrient>(nutrients.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
+			ArrayList<?> subList = new ArrayList<Object>(nutrients.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
 
 			// set calculated attributes
 			request.setAttribute("subtitle", subtitle);
@@ -87,6 +87,7 @@ public class NutrientServlet extends HttpServlet {
 		request.setAttribute("first", Paginator.getFirstPageLink());
 		request.setAttribute("last", Paginator.getLastPageLink());
 		request.setAttribute("search_term", search_param);
+		request.setAttribute("show_param", "block");
 		request.setAttribute("showPagination", showPagination);
 		request.getRequestDispatcher("nutrients.jsp").forward(request, response);
 	}
