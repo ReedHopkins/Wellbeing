@@ -121,12 +121,13 @@
 			<tr>
 				<th>Food</th>
 				<th>Price</th>
+				<th>Image</th>
 			</tr>
 			<c:forEach items="${ingredient}" var="ingredient">
 				<tr>
-					<td><c:out value="${ingredient.item}" /></td>
-					<td><c:out value="${ingredient.price}" />/<c:out
-							value="${ingredient.unit}" /></td>
+					<td><a href="IngredientInstanceServlet?ingredientTitle=<c:out value="${ingredient.item}"/>"><c:out value="${ingredient.item}" /></td>
+					<td><c:out value="${ingredient.price}" />/<c:out value="${ingredient.unit}" /></td>
+					<%--<td><c:out value="${ingredient.image}" /></td>--%>
 				</tr>
 			</c:forEach>
 		</table>

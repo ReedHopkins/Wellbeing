@@ -23,6 +23,10 @@
 		<servlet-name>RecipeInstanceServlet</servlet-name>
 		<servlet-class>com.jcg.mongodb.servlet.RecipeInstanceServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>IngredientInstanceServlet</servlet-name>
+		<servlet-class>com.jcg.mongodb.servlet.IngredientInstanceServlet</servlet-class>
+	</servlet>
    	<servlet-mapping>
       <servlet-name>RecipeServlet</servlet-name>
       <url-pattern>/RecipeServlet</url-pattern>
@@ -38,6 +42,10 @@
 	<servlet-mapping>
 		<servlet-name>RecipeInstanceServlet</servlet-name>
 		<url-pattern>/RecipeInstanceServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>IngredientInstanceServlet</servlet-name>
+		<url-pattern>/IngredientInstanceServlet</url-pattern>
 	</servlet-mapping>
    	
 	<!-- Welcome File List -->
