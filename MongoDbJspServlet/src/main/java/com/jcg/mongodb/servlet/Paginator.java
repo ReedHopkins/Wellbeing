@@ -20,9 +20,9 @@ public class Paginator {
 	String searchTerm;
 	ArrayList<Integer> pageNums;
 	
-	public Paginator(String servletName, String spage, int s, int t) {
+	public Paginator(String model, String spage, int s, int t) {
 		
-		this.servlet = servletName;
+		this.servlet = "ModelServlet?model=" + model;
 		this.spageid = spage;
 		this.pageId = Integer.parseInt(this.spageid);
 		this.size = s;
@@ -33,9 +33,9 @@ public class Paginator {
 		this.pageNums = setPaginatorNums(this.pageId, this.last);
 		
 		if (this.pageId > 1)
-			this.previous = this.servlet + "?page=" + (pageId - 1);
+			this.previous = this.servlet + "&page=" + (pageId - 1);
 		if (this.pageId < this.last)
-			this.next = this.servlet + "?page=" + (pageId + 1);
+			this.next = this.servlet + "&page=" + (pageId + 1);
 	}
 	
 	public void setSearchTerm(String s) {
@@ -112,10 +112,10 @@ public class Paginator {
 	public String getPreviousPageLink() {
 		if (this.searchTerm == null) {
 			if (this.pageId > 1)
-				this.previous = this.servlet + "?page=" + (this.pageId - 1);
+				this.previous = this.servlet + "&page=" + (this.pageId - 1);
 		} else {
 			if (this.pageId > 1)
-				this.previous = this.servlet + "?search_term=" + this.searchTerm + "&page=" + (this.pageId - 1);
+				this.previous = this.servlet + "&search_term=" + this.searchTerm + "&page=" + (this.pageId - 1);
 		}
 		return this.previous;
 	}
@@ -123,28 +123,28 @@ public class Paginator {
 	public String getNextPageLink() {
 		if (this.searchTerm == null) {
 			if (this.pageId < this.last)
-				this.next = this.servlet + "?page=" + (this.pageId + 1);
+				this.next = this.servlet + "&page=" + (this.pageId + 1);
 		} else {
 			if (this.pageId < this.last)
-				this.next = this.servlet + "?search_term=" + this.searchTerm + "&page=" + (this.pageId + 1);
+				this.next = this.servlet + "&search_term=" + this.searchTerm + "&page=" + (this.pageId + 1);
 		}
 		return this.next;
 	}
 
 	public String getFirstPageLink() {
 		if (this.searchTerm == null) {
-			this.firstLink = this.servlet + "?page=1";
+			this.firstLink = this.servlet + "&page=1";
 		} else {
-			this.firstLink = this.servlet + "?search_term=" + this.searchTerm + "&page=1";
+			this.firstLink = this.servlet + "&search_term=" + this.searchTerm + "&page=1";
 		}
 		return this.firstLink;
 	}
 	
 	public String getLastPageLink() {
 		if (this.searchTerm == null) {
-			this.lastLink = this.servlet + "?page=" + this.last;
+			this.lastLink = this.servlet + "&page=" + this.last;
 		} else {
-			this.lastLink = this.servlet + "?search_term=" + this.searchTerm + "&page=" + this.last;
+			this.lastLink = this.servlet + "&search_term=" + this.searchTerm + "&page=" + this.last;
 		}
 		return this.lastLink;
 	}

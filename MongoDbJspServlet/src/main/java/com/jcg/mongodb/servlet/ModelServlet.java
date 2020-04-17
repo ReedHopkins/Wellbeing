@@ -37,12 +37,12 @@ public class ModelServlet extends HttpServlet {
 
 		if (search_term == null || "".equals(search_term)) {
 			
-			Paginator Paginator = new Paginator("NutrientServlet", spageid, size, 9);
+			Paginator Paginator = new Paginator(model, spageid, size, 9);
 			ArrayList<?> subList = new ArrayList<Object>(list.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
 
 			// set calculated attributes
 			request.setAttribute("subtitle", subtitle);
-			request.setAttribute("nutrient", subList);
+			request.setAttribute(model.toLowerCase(), subList);
 			request.setAttribute("pageNums", Paginator.getPageNums());
 			request.setAttribute("previous", Paginator.getPreviousPageLink());
 			request.setAttribute("next", Paginator.getNextPageLink());
@@ -81,7 +81,7 @@ public class ModelServlet extends HttpServlet {
 		
 		int size = list.size();
 
-		Paginator Paginator = new Paginator(model + "Servlet", spageid, size, 9);
+		Paginator Paginator = new Paginator(model, spageid, size, 9);
 		Paginator.setSearchTerm(search_param);
 		
 		ArrayList<?> subList = new ArrayList<Object>(list.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
@@ -94,7 +94,7 @@ public class ModelServlet extends HttpServlet {
 
 		// set calculated attributes
 		request.setAttribute("subtitle", subtitle);
-		request.setAttribute("nutrient", subList);
+		request.setAttribute(model.toLowerCase(), subList);
 		request.setAttribute("pageNums", Paginator.getPageNums());
 		request.setAttribute("previous", Paginator.getPreviousPageLink());
 		request.setAttribute("next", Paginator.getNextPageLink());
