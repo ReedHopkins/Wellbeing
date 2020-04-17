@@ -64,12 +64,12 @@
 	<br>
 
 	<div style="text-align: center;">
-		<a href="IngredientServlet">
+		<a href="ModelServlet?model=Ingredient">
 			<button type="button" class="btn btn-success">Food &
 				Ingredients</button>
-		</a> <br> <br> <a href="RecipeServlet">
+		</a> <br> <br> <a href="ModelServlet?model=Recipe">
 			<button type="button" class="btn btn-success">Recipe</button>
-		</a> <br> <br> <a href="NutrientServlet">
+		</a> <br> <br> <a href="ModelServlet?model=Nutrient">
 			<button type="button" class="btn btn-success">Nutrients</button>
 		</a>
 	</div>
