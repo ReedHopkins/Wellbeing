@@ -10,12 +10,13 @@ import pymongo
 from pymongo import MongoClient
 
 
-def insert_nutrient(name, desc, rda, pic):
+def insert_nutrient(name, desc, rda, pic, tags):
     toInsert = {
         "title":name,
         "description":desc,
         "reccommendedDailyIntake":rda,
-        "pictureURL":pic
+        "pictureURL":pic,
+        "tags":tags
     }
     collection.insert_one(toInsert)
 
@@ -27,7 +28,7 @@ IMAGE_URL = "https://shutterstock.com/search/"
 
 client = pymongo.MongoClient("mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority")
 db = client['wellbeing']
-collection = db['nutrients']
+collection = db['nutrientsTest']
 
 url = urllib.request.urlopen(BASE_URL)
 soup = bs4.BeautifulSoup(url.read(), "html.parser")
@@ -88,7 +89,12 @@ for n in names:
 
 for i in range(27):
     print(names[i] + ', ' + itemInfo[2*i+1] + ', ' + amounts[i] + ', ' + images[i])
-    insert_nutrient(names[i], itemInfo[2*i + 1], amounts[i], images[i])
+    tag = "mineral"
+    if("vitamin" in names[i]):
+        tag = "vitamin"
+    if("-" in amounts[i]):
+        amounts[i].replace("-","&ndash")
+    insert_nutrient(names[i], itemInfo[2*i + 1], amounts[i], images[i], ("micronutrient", tag))
 
 
 #Start of accesssing Macronutrients 
@@ -120,6 +126,6 @@ for n in three:
     images.append(imgURL)
 
 for i in range(3):
-    print(headings[i].text + ", " + descriptions[i+2].text + ", " + finalDesc[(i+2)%3])
-    insert_nutrient(headings[i].text, descriptions[i+2].text, finalDesc[(i+2)%3], images[i])
+    print(headings[i].text[:-1] + ", " + descriptions[i+2].text + ", " + finalDesc[(i+2)%3])
+    insert_nutrient(headings[i].text[:-1], descriptions[i+2].text, finalDesc[(i+2)%3], images[i], ("macronutrient"))
 
