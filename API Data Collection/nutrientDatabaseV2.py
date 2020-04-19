@@ -25,6 +25,8 @@ BASE_URL = "https://www.healthline.com/nutrition/micronutrients#types-and-functi
 MACRO_URL = "https://mybodymykitchen.com/calculate-your-macronutrients-protein-fats-carbs/"
 GOOGLE_URL = "https://www.google.com/search?tbm=isch&q="
 IMAGE_URL = "https://shutterstock.com/search/"
+SUB_MACRO_URL = "https://avitahealth.org/health-library/macronutrients-a-simple-guide-to-macros/"
+SUPPLEMENT_URL = "https://www.bodybuilding.com/content/stacked-your-guide-to-supplement-dosage-and-timing.html"
 
 client = pymongo.MongoClient("mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority")
 db = client['wellbeing']
@@ -114,8 +116,8 @@ for test in finalDesc:
     count+=1
 
 images = []
-three = {0,1,2}
-for n in three:
+
+for n in range(3):
     curName = headings[n].text
     url = urllib.request.urlopen(IMAGE_URL+(curName)+"nutrient")
     soup = bs4.BeautifulSoup(url.read(),"html.parser")
@@ -126,6 +128,52 @@ for n in three:
     images.append(imgURL)
 
 for i in range(3):
-    print(headings[i].text[:-1] + ", " + descriptions[i+2].text + ", " + finalDesc[(i+2)%3])
+    #print(headings[i].text[:-1] + ", " + descriptions[i+2].text + ", " + finalDesc[(i+2)%3])
     insert_nutrient(headings[i].text[:-1], descriptions[i+2].text, finalDesc[(i+2)%3], images[i], ("macronutrient"))
 
+
+#Start of accessing sub-macronutrients
+
+url = urllib.request.urlopen(SUPPLEMENT_URL)
+soup = bs4.BeautifulSoup(url.read(), "html.parser")
+
+listItems = soup.find_all("h4", {"class":""})
+itemAmounts = soup.find_all("li", {"class":""})
+descriptions = soup.find_all("p",{"class":""})
+finalDesc = []
+
+#for item in listItems:
+for desc in descriptions:
+        #print(item.text + " " + desc.text)
+    line = desc.find("a", {"class":""})
+    if not(line == None) and not("BCAA" in line.text) and not("pre-workout" in line.text) and not("nitric" in line.text):
+    #if not(line == None):
+        #print(line)
+        finalDesc.append(line.next_sibling)
+        if("Citrulline" in line.text):
+            finalDesc.append("suggested in numerous studies to enhance aerobic performance, delayed fatigue, and an increase in exercise tolerance")
+        if("Glutamine" in line.text):
+            finalDesc.append("key when it comes to regulating protein metabolism, promoting protein synthesis, and suppressing protein degradation")    
+    #if not(desc == None):
+     #   print(desc.text.split(",")[0])
+
+images = []
+for n in range(15):
+    print(listItems[n])
+    curName = listItems[n].text
+    if(curName == "Citrulline malate"):
+        curName = "Citrulline"
+    if(curName == "Beta-hydroxy-B-methylbutyrate (HMB)"):
+        curName = "HMB"
+    url = urllib.request.urlopen(IMAGE_URL+(curName))
+    soup = bs4.BeautifulSoup(url.read(),"html.parser")
+    searchResults = soup.find("script",{'type':'application/ld+json'})
+    dictResults = json.loads(((searchResults.text)))
+    imgURL = dictResults[0]["contentUrl"]
+
+    images.append(imgURL)
+
+for i in range(15):
+    print(listItems[i].text + ": " + finalDesc[i + 1].split(".")[0] + " - " + itemAmounts[i+182].text.split(":")[1])
+    insert_nutrient(listItems[i].text, finalDesc[i+1].split(".")[0], itemAmounts[i+182].text.split(":")[1] ,images[i], ("workout suppliment"))
+    
