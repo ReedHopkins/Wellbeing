@@ -174,6 +174,6 @@ for n in range(15):
     images.append(imgURL)
 
 for i in range(15):
-    print(listItems[i].text + ": " + finalDesc[i + 1].split(".")[0] + " - " + itemAmounts[i+182].text.split(":")[1])
+    #print(listItems[i].text + ": " + finalDesc[i + 1].split(".")[0] + " - " + itemAmounts[i+182].text.split(":")[1])
     insert_nutrient(listItems[i].text, finalDesc[i+1].split(".")[0], itemAmounts[i+182].text.split(":")[1] ,images[i], ("workout suppliment"))
     
