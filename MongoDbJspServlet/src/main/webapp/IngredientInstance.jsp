@@ -1,3 +1,6 @@
+<%@ page import="com.jcg.mongodb.servlet.Ingredient" %>
+<%@ page import="org.bson.Document" %>
+<%@ page import="com.jcg.mongodb.servlet.DatabaseSingleton" %>
 <html>
 <head>
 <link rel="stylesheet"
@@ -22,12 +25,34 @@
 	</div>
 	<div class="container" style="align-items: center">
 		<div style="text-align: center;">
-			<!-- <img src=${ingredient.image} width="300" height="200"> -->
+			 <img src=${ingredient.image} width="300" height="200">
 		</div>
 		<br>
-		<h3>Ingredient Nutrients</h3>
 		<h3>Price</h3>
-		<p>${ingredient.price}${ingredient.unit}</p>
+		<p>${ingredient.price} per ${ingredient.unit}</p>
+		<br>
+		<h3>Ingredient Nutrients</h3>
+		<%
+			Ingredient ingredient = (Ingredient) request.getAttribute("ingredient");
+			for (String nutrient : ingredient.getnutrients()) {
+				String name = DatabaseSingleton.findNutrient(nutrient);
+				if (name != null) {
+					out.print("<li><a href=\"NutrientInstanceServlet?nutrientTitle=" + name + "\">"
+					+ nutrient + "</a> </li>");
+				}else{
+					out.print("<li>" + nutrient + "</li>");
+				}
+			}
+		%>
+		<br>
+		<h3>Tags</h3>
+		<%
+			for (String tag : ingredient.gettags()) {
+				out.print("<li>" + tag + "</li>");
+			}
+
+		%>
+		<br>
 	</div>
 </body>
 </html>

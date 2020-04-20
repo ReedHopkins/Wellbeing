@@ -44,14 +44,14 @@ public class RecipeInstanceServlet extends HttpServlet {
 
         //searching for ingredients to construct links
         List<String> ingredientURL = new ArrayList<String>();
-        for (Document ingredient : recipe.getingredients()){
+        //for (Document ingredient : recipe.getingredients()){
 
-            for(Ingredient match: DatabaseSingleton.getIngredients()) {
-                if(ingredient.getString("item").contains(match.getitem())){
-                    ingredientURL.add(match.getitem());
-                }
-            }
-        }
+           // for(Ingredient match: DatabaseSingleton.getIngredients()) {
+             //   if(ingredient.getString("item").contains(match.getitem())){
+               //     ingredientURL.add(match.getitem());
+                //}
+           // }
+        //}
 
 
         request.setAttribute("recipe", recipe);
