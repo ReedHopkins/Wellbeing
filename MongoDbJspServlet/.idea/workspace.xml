@@ -7,26 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79539f01-e313-454c-a67c-82b62e8333e1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/DatabaseSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/DatabaseSingleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Ingredient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/RecipeInstanceServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/RecipeInstanceServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/IngredientInstance.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/IngredientInstance.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API Data Collection/nutrientDatabaseV2.py" beforeDir="false" afterPath="$PROJECT_DIR$/../API Data Collection/nutrientDatabaseV2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../API Data Collection/scrapeHEB.py" beforeDir="false" afterPath="$PROJECT_DIR$/../API Data Collection/scrapeHEB.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/RecipeInstance.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/RecipeInstance.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/MongoDbJspServlet.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/MongoDbJspServlet.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/MongoDbJspServlet/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/MongoDbJspServlet/WEB-INF/web.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/MongoDbJspServlet/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/target/MongoDbJspServlet/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/DatabaseSingleton.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/DatabaseSingleton.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/Ingredient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/Ingredient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/IngredientServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/IngredientServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/Nutrient.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/Nutrient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/NutrientServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/NutrientServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/Recipe.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/Recipe.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/RecipeInstanceServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/RecipeInstanceServlet.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/RecipeServlet.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -71,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/RecipeInstance.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
+            <state relative-caret-position="320">
+              <caret line="90" column="17" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
             </state>
           </provider>
         </entry>
@@ -101,7 +84,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/IngredientInstance.jsp">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-68">
@@ -167,10 +150,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/RecipeInstanceServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/testServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/DatabaseSingleton.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/RecipeInstance.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/IngredientInstanceServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Ingredient.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/IngredientInstance.jsp" />
+        <option value="$PROJECT_DIR$/src/main/webapp/RecipeInstance.jsp" />
       </list>
     </option>
   </component>
@@ -345,12 +328,12 @@
       <workItem from="1586664661150" duration="132000" />
       <workItem from="1587339712493" duration="3945000" />
       <workItem from="1587411878233" duration="2413000" />
-      <workItem from="1587415173803" duration="2915000" />
+      <workItem from="1587415173803" duration="3035000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26978000" />
+    <option name="totallyTimeSpent" value="27098000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -593,13 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/RecipeInstance.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="45" column="34" selection-start-line="45" selection-start-column="34" selection-end-line="45" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/IngredientInstanceServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -623,6 +599,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-68">
           <caret line="32" column="12" lean-forward="true" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/RecipeInstance.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="90" column="17" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
         </state>
       </provider>
     </entry>
