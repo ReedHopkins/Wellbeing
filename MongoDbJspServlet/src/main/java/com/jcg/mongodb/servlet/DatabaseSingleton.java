@@ -10,6 +10,7 @@ import org.bson.Document;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class DatabaseSingleton {
     public static DatabaseSingleton instance;
@@ -26,7 +27,7 @@ public class DatabaseSingleton {
         db = mongoClient.getDatabase(db_name);
 
         //Creating ingredient list
-        MongoCollection<Document> colIngr = db.getCollection("hebDataFinal1");
+        MongoCollection<Document> colIngr = db.getCollection("hebDataFinal2");
         FindIterable<Document> elementsIngr = colIngr.find();
         MongoCursor<Document> cursorIngr = elementsIngr.iterator();
         try {
@@ -122,6 +123,50 @@ public class DatabaseSingleton {
     		
     	}
         return output;
+    }
+    
+    public static ArrayList<Ingredient> getSortedIngredients(String sort) {
+    	ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>(ingredientList);
+    	
+    	if (sort.equals("atoz") || sort.equals("ztoa")) {
+			Collections.sort(ingredients, new SortIngredientsByName());
+			if (sort.contentEquals("ztoa")) {
+				Collections.reverse(ingredients);
+			}
+		} else if (sort.equals("lowtohigh") || sort.contentEquals("hightolow")) {
+			Collections.sort(ingredients, new SortIngredientsByPrice());
+			if (sort.contentEquals("hightolow")) {
+				Collections.reverse(ingredients);
+			}
+		}
+    	return ingredients;
+    }
+    
+    public static ArrayList<Recipe> getSortedRecipes(String sort) {
+    	ArrayList<Recipe> recipes = new ArrayList<Recipe>(recipeList);
+    	
+    	if (sort.equals("atoz") || sort.equals("ztoa")) {
+			Collections.sort(recipes, new SortRecipesByName());
+			if (sort.contentEquals("ztoa")) {
+				Collections.reverse(recipes);
+			}
+		} else if (sort.equals("timelowtohigh") || sort.contentEquals("timehightolow")) {
+			Collections.sort(recipes, new SortRecipesByTime());
+			if (sort.contentEquals("timehightolow")) {
+				Collections.reverse(recipes);
+			}
+		} else if (sort.equals("servingslowtohigh") || sort.contentEquals("servingshightolow")) {
+			Collections.sort(recipes, new SortRecipesByServings());
+			if (sort.contentEquals("servingshightolow")) {
+				Collections.reverse(recipes);
+			}
+		} else if (sort.equals("healthlowtohigh") || sort.contentEquals("healthhightolow")) {
+			Collections.sort(recipes, new SortRecipesByHealth());
+			if (sort.contentEquals("healthhightolow")) {
+				Collections.reverse(recipes);
+			}
+		}
+    	return recipes;
     }
 
     public static MongoClient getConnection(){

@@ -44,22 +44,57 @@
 				</div>
 			</div>
 		</form>
-		
-		<button class="btn btn-success dropdown-toggle"
-			type="button" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="false">Filters</button>
-		<div class="dropdown-menu">
-			<a class="dropdown-item" href="#">Filter 1</a> 
-			<a class="dropdown-item"
-				href="#">Filter 2</a> 
-			<a class="dropdown-item" href="#">Filter 3</a>
-		</div>
-		<br><br>
 
-		<p class="search_param" style="display: ${show_param}">Showing results for: "${search_term}"</p>
-		
+		<div class="dropdown">
+			<button class="btn btn-success dropdown-toggle" type="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</button>
+			<div class="dropdown-menu">
+				<a class="dropdown-item" href="#">Filter 1</a> <a
+					class="dropdown-item" href="#">Filter 2</a> <a
+					class="dropdown-item" href="#">Filter 3</a>
+			</div>
+		</div>
+
+		<br>
+
+		<div class="dropdown">
+			<button class="btn btn-success dropdown-toggle" type="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
+			<div class="dropdown-menu">
+				<a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=atoz">Alphabetical:
+					A-Z</a> 
+				<a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=ztoa">Alphabetical:
+					Z-A</a> 
+				<a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=timelowtohigh">Prep Time:
+					Low to High</a> 
+				<a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=timehightolow">Prep Time:
+					High to Low</a>
+				<a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=servingslowtohigh">Servings:
+					Low to High</a> 
+				<a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=servingshightolow">Servings:
+					High to Low</a>
+				<a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=healthlowtohigh">HealthScore:
+					Low to High</a> 
+				<a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=healthhightolow">HealthScore:
+					High to Low</a>
+			</div>
+		</div>
+		<br>
+		<br>
+
+		<p class="search_param" style="display: ${show_param}">Showing
+			results for: "${search_term}"</p>
+
 		<h3>${subtitle}</h3>
-		
+
 		<div class="grid-container">
 			<c:forEach items="${recipe}" var="recipe">
 

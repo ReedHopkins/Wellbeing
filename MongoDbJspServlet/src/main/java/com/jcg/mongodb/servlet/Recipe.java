@@ -3,6 +3,7 @@ package com.jcg.mongodb.servlet;
 import org.bson.Document;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Recipe {
@@ -127,4 +128,36 @@ public class Recipe {
     	
     	return false;
     }
+}
+
+class SortRecipesByName implements Comparator<Recipe> { 
+    // Used for sorting in ascending order of name
+    public int compare(Recipe a, Recipe b) 
+    { 
+        return a.title.toLowerCase().compareTo(b.title.toLowerCase()); 
+    } 
+}
+
+class SortRecipesByTime implements Comparator<Recipe> { 
+    // Used for sorting in ascending order of name
+    public int compare(Recipe a, Recipe b) 
+    { 
+    	return Integer.parseInt(a.readyInMinutes) - Integer.parseInt(b.readyInMinutes);
+    } 
+}
+
+class SortRecipesByServings implements Comparator<Recipe> { 
+    // Used for sorting in ascending order of name
+    public int compare(Recipe a, Recipe b) 
+    { 
+    	return Integer.parseInt(a.servings) - Integer.parseInt(b.servings);
+    } 
+}
+
+class SortRecipesByHealth implements Comparator<Recipe> { 
+    // Used for sorting in ascending order of name
+    public int compare(Recipe a, Recipe b) 
+    { 
+    	return Integer.parseInt(a.healthScore) - Integer.parseInt(b.healthScore);
+    } 
 }

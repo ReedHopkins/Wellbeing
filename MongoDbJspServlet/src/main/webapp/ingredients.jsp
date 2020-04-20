@@ -8,7 +8,7 @@
 <link href="css/main.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-	
+
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 	rel="stylesheet">
@@ -46,21 +46,43 @@
 			</div>
 		</form>
 
-		<button class="btn btn-success dropdown-toggle"
-			type="button" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="false">Filters</button>
-		<div class="dropdown-menu">
-			<a class="dropdown-item" href="#">Filter 1</a> 
-			<a class="dropdown-item"
-				href="#">Filter 2</a> 
-			<a class="dropdown-item" href="#">Filter 3</a>
+		<div class="dropdown">
+			<button class="btn btn-success dropdown-toggle" type="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</button>
+			<div class="dropdown-menu">
+				<a class="dropdown-item"
+					href="ModelServlet?model=Ingredient&filter=filter1">Filter 1</a> <a
+					class="dropdown-item"
+					href="ModelServlet?model=Ingredient&filter=filter2">Filter 2</a> <a
+					class="dropdown-item"
+					href="ModelServlet?model=Ingredient&filter=filter3">Filter 3</a>
+			</div>
 		</div>
-		<br><br>
 		
-		<p class="search_param" style="display: ${show_param}">Showing results for: "${search_term}"</p>
-		
+		<br>
+
+		<div class="dropdown">
+			<button class="btn btn-success dropdown-toggle" type="button"
+				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
+			<div class="dropdown-menu">
+				<a class="dropdown-item"
+					href="ModelServlet?model=Ingredient&sort=atoz">Alphabetical:
+					A-Z</a> <a class="dropdown-item"
+					href="ModelServlet?model=Ingredient&sort=ztoa">Alphabetical:
+					Z-A</a> <a class="dropdown-item"
+					href="ModelServlet?model=Ingredient&sort=lowtohigh">Unit Price: Low
+					to High</a> <a class="dropdown-item"
+					href="ModelServlet?model=Ingredient&sort=hightolow">Unit Price: High
+					to Low</a>
+			</div>
+		</div>
+		<br> <br>
+
+		<p class="search_param" style="display: ${show_param}">Showing
+			results for: "${search_term}"</p>
+
 		<h3>${subtitle}</h3>
-		
+
 		<div class="grid-container">
 			<c:forEach items="${ingredient}" var="ingredient">
 
@@ -83,7 +105,7 @@
 						<footer class="content__footer">
 							<a
 								href="IngredientInstanceServlet?ingredientTitle=<c:out value="${ingredient.item}"/>">View
-								Ingredient Details</a>
+								Ingredient</a>
 						</footer>
 					</div>
 				</div>
@@ -104,7 +126,7 @@
 
 			<c:forEach items="${pageNums}" var="page">
 				<li class="page-item"><a class="page-link"
-					href="ModelServlet?model=Ingredient&search_term=${search_term}&page=${page}"><c:out
+					href="ModelServlet?model=Ingredient&page=${page}${params}"><c:out
 							value="${page}" /></a></li>
 			</c:forEach>
 

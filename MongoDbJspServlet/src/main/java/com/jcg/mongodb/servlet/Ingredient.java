@@ -1,6 +1,7 @@
 package com.jcg.mongodb.servlet;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import org.bson.Document;
@@ -58,4 +59,22 @@ public class Ingredient {
     	
     	return false;
     }
+}
+
+class SortIngredientsByName implements Comparator<Ingredient> { 
+    // Used for sorting in ascending order of name
+    public int compare(Ingredient a, Ingredient b) 
+    { 
+        return a.item.toLowerCase().compareTo(b.item.toLowerCase()); 
+    } 
+}
+
+class SortIngredientsByPrice implements Comparator<Ingredient> { 
+    // Used for sorting in ascending order of name
+    public int compare(Ingredient a, Ingredient b) 
+    { 
+        if (Double.parseDouble(a.price) < Double.parseDouble(b.price)) return -1;
+        if (Double.parseDouble(a.price) > Double.parseDouble(b.price)) return 1;
+        return 0;
+    } 
 }
