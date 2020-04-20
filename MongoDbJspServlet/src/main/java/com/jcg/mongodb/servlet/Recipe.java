@@ -154,10 +154,10 @@ class SortRecipesByServings implements Comparator<Recipe> {
     } 
 }
 
-class SortRecipesByHealth implements Comparator<Recipe> { 
+class SortRecipesByIngredients implements Comparator<Recipe> { 
     // Used for sorting in ascending order of name
     public int compare(Recipe a, Recipe b) 
     { 
-    	return Integer.parseInt(a.healthScore) - Integer.parseInt(b.healthScore);
+    	return a.ingredients.size() - b.ingredients.size();
     } 
 }

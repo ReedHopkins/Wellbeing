@@ -37,6 +37,7 @@ public class DatabaseSingleton {
         } finally {
             cursorIngr.close();
         }
+        Collections.sort(ingredientList, new SortIngredientsByName());
 
         //Creating recipe list
         MongoCollection<Document> colRec = db.getCollection("recipes");
@@ -49,6 +50,7 @@ public class DatabaseSingleton {
         } finally {
             cursorRec.close();
         }
+        Collections.sort(recipeList, new SortRecipesByName());
 
         //Creating nutrient list
         MongoCollection<Document> colNut = db.getCollection("nutrients");
@@ -61,6 +63,8 @@ public class DatabaseSingleton {
         } finally {
             cursorNut.close();
         }
+//        Collections.sort(nutrientList, new SortNutrientsByName());
+        
         mongoClient.close();
     }
 
@@ -160,9 +164,9 @@ public class DatabaseSingleton {
 			if (sort.contentEquals("servingshightolow")) {
 				Collections.reverse(recipes);
 			}
-		} else if (sort.equals("healthlowtohigh") || sort.contentEquals("healthhightolow")) {
-			Collections.sort(recipes, new SortRecipesByHealth());
-			if (sort.contentEquals("healthhightolow")) {
+		} else if (sort.equals("ingredientslowtohigh") || sort.contentEquals("ingredientshightolow")) {
+			Collections.sort(recipes, new SortRecipesByIngredients());
+			if (sort.contentEquals("ingredientshightolow")) {
 				Collections.reverse(recipes);
 			}
 		}
