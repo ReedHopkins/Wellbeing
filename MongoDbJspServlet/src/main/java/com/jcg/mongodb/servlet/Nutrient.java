@@ -1,5 +1,8 @@
 package com.jcg.mongodb.servlet;
 
+import java.util.Comparator;
+import java.util.regex.Pattern;
+
 import org.bson.Document;
 
 public class Nutrient {
@@ -11,8 +14,11 @@ public class Nutrient {
     public Nutrient(Document nutrientDoc){
         title = (String) nutrientDoc.get("title");
         description = (String) nutrientDoc.get("description");
-        dailyIntake = (String) nutrientDoc.get("reccommendedDailyIntake");
+        dailyIntake = ((String) nutrientDoc.get("reccommendedDailyIntake")).trim();
         pictureURL = (String) nutrientDoc.get("pictureURL");
+        
+        dailyIntake = dailyIntake.replace("-", "&ndash;");
+        dailyIntake = dailyIntake.replace("–", "&ndash;");
     }
 
     public Nutrient(){
@@ -48,4 +54,32 @@ public class Nutrient {
     	
     	return false;
     }
+}
+
+class SortNutrientsByName implements Comparator<Nutrient> { 
+    // Used for sorting in ascending order of name
+    public int compare(Nutrient a, Nutrient b) 
+    { 
+        return a.title.toLowerCase().compareTo(b.title.toLowerCase()); 
+    } 
+}
+
+class SortNutrientsByIntake implements Comparator<Nutrient> { 
+    // Used for sorting in ascending order of name
+    public int compare(Nutrient a, Nutrient b) 
+    { 
+    	String compA = a.dailyIntake.split("&ndash;")[0];
+    	String compB = b.dailyIntake.split("&ndash;")[0];
+    	compA = compA.split(" ")[0];
+    	compB = compB.split(" ")[0];
+    	compA = compA.replaceAll("[^\\d.]", "");
+    	compB = compB.replaceAll("[^\\d.]", "");
+    	
+    	if (compA.isEmpty()) return -1;
+    	if (compB.isEmpty()) return 1;
+    	
+    	if (Double.parseDouble(compA) < Double.parseDouble(compB)) return -1;
+        if (Double.parseDouble(compA) > Double.parseDouble(compB)) return 1;
+        return 0;
+    } 
 }

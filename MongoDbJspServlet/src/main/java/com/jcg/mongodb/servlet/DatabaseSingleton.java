@@ -63,7 +63,7 @@ public class DatabaseSingleton {
         } finally {
             cursorNut.close();
         }
-//        Collections.sort(nutrientList, new SortNutrientsByName());
+        Collections.sort(nutrientList, new SortNutrientsByName());
         
         mongoClient.close();
     }
@@ -171,6 +171,23 @@ public class DatabaseSingleton {
 			}
 		}
     	return recipes;
+    }
+    
+    public static ArrayList<Nutrient> getSortedNutrients(String sort) {
+    	ArrayList<Nutrient> nutrients = new ArrayList<Nutrient>(nutrientList);
+    	
+    	if (sort.equals("atoz") || sort.equals("ztoa")) {
+			Collections.sort(nutrients, new SortNutrientsByName());
+			if (sort.contentEquals("ztoa")) {
+				Collections.reverse(nutrients);
+			}
+		} else if (sort.equals("intakelowtohigh") || sort.contentEquals("intakehightolow")) {
+			Collections.sort(nutrients, new SortNutrientsByIntake());
+			if (sort.contentEquals("intakehightolow")) {
+				Collections.reverse(nutrients);
+			}
+		}
+    	return nutrients;
     }
 
     public static MongoClient getConnection(){

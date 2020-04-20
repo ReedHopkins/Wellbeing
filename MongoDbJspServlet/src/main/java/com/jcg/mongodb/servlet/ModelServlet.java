@@ -33,7 +33,7 @@ public class ModelServlet extends HttpServlet {
 		if (!nosort) {
 			if (model.equals("Ingredient")) list = DatabaseSingleton.getSortedIngredients(sort);
 			if (model.equals("Recipe")) list = DatabaseSingleton.getSortedRecipes(sort);
-			if (model.equals("Nutrient")) list = DatabaseSingleton.getNutrients();
+			if (model.equals("Nutrient")) list = DatabaseSingleton.getSortedNutrients(sort);
 		} else {
 			if (model.equals("Ingredient")) list = DatabaseSingleton.getIngredients();
 			if (model.equals("Recipe")) list = DatabaseSingleton.getRecipes();
