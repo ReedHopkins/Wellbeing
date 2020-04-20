@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="org.bson.Document"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.mongodb.MongoClient"%>
 <%@page import="com.mongodb.client.MongoCollection"%>
 <%@page import="com.jcg.mongodb.servlet.Recipe"%>
@@ -42,9 +43,16 @@
 
 			<%
 				Recipe recipe = (Recipe) request.getAttribute("recipe");
+				ArrayList<String> ingredientURL = (ArrayList) request.getAttribute("ingredientURL");
 
 				for (Document ingredient : recipe.getingredients()) {
-					out.print("<li>" + ingredient.getString("originalString") + "</li>");
+                    if (ingredientURL.contains(ingredient.getString("item"))) {
+                        out.print("<li><a href=\"IngredientInstanceServlet?ingredientTitle=<c:out value="${ingredient.getString("item")}"/>>"
+                        + ingredient.getString("name") + "</a></li>");
+                    } else{
+					    out.print("<li>" + ingredient.getString("name") + "</li>");
+					}
+
 				}
 			%>
 		</ul>
@@ -59,11 +67,27 @@
 			<li>Fat: ${recipe.fat}</li>
 			<li>Protein: ${recipe.protein}</li>
 			<%
+			    ArrayList<String> nutrientURL = (ArrayList) request.getAttribute("nutrientURL");
+
 				for (Document nutrient : recipe.getgoodnutrients()) {
+
+				if (nutrientURL.contains(nutrient.getString("title"))) {
+                    out.print("<li><a href=\"NutrientInstanceServlet?nutrientTitle=<c:out value="${nutrient.getString("title")}"/>>"
+                    + nutrient.getString("title") + "</a> : " + nutrient.getString("amount") + "</li>");
+                 }else{
 					out.print("<li>" + nutrient.getString("title") + ": " + nutrient.getString("amount") + "</li>");
+				    }
 				}
 				for (Document nutrient : recipe.getbadnutrients()) {
+
+				if (nutrientURL.contains(nutrient.getString("title"))) {
+                    out.print("<li><a href=\"NutrientInstanceServlet?nutrientTitle=<c:out value="${nutrient.getString("title")}"/>>"
+                    + nutrient.getString("title") + "</a> : " + nutrient.getString("amount") + "</li>");
+                 }else{
 					out.print("<li>" + nutrient.getString("title") + ": " + nutrient.getString("amount") + "</li>");
+				    }
+				}
+				
 				}
 			%>
 		</ul>

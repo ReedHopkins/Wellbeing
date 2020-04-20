@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RecipeInstanceServlet extends HttpServlet {
 
@@ -20,10 +22,41 @@ public class RecipeInstanceServlet extends HttpServlet {
                 recipe = d;
             }
         }
-		
-		
-		
+
+		// searching for matching nutrients to construct links
+        List<String> nutrientURL = new ArrayList<String>();
+        for (Document nutrient : recipe.getgoodnutrients()){
+
+            for(Nutrient match: DatabaseSingleton.getNutrients()) {
+                if(nutrient.getString("title").equals(match.gettitle())){
+                    nutrientURL.add("NutrientInstanceServlet?nutrientTitle=" + match.gettitle());
+                }
+            }
+        }
+        for (Document nutrient : recipe.getbadnutrients()){
+
+            for(Nutrient match: DatabaseSingleton.getNutrients()) {
+                if(nutrient.getString("title").equals(match.gettitle())){
+                    nutrientURL.add("NutrientInstanceServlet?nutrientTitle=" + match.gettitle());
+                }
+            }
+        }
+
+        //searching for ingredients to construct links
+        List<String> ingredientURL = new ArrayList<String>();
+        for (Document ingredient : recipe.getingredients()){
+
+            for(Ingredient match: DatabaseSingleton.getIngredients()) {
+                if(ingredient.getString("item").contains(match.getitem())){
+                    ingredientURL.add(match.getitem());
+                }
+            }
+        }
+
+
         request.setAttribute("recipe", recipe);
+        request.setAttribute("nutrientURL", nutrientURL);
+        request.setAttribute("ingredientURL", ingredientURL);
         request.getRequestDispatcher("RecipeInstance.jsp").forward(request, response);
     }
 }
