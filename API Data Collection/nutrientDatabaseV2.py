@@ -30,7 +30,7 @@ SUPPLEMENT_URL = "https://www.bodybuilding.com/content/stacked-your-guide-to-sup
 
 client = pymongo.MongoClient("mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority")
 db = client['wellbeing']
-collection = db['nutrientsTest']
+collection = db['nutrients']
 
 url = urllib.request.urlopen(BASE_URL)
 soup = bs4.BeautifulSoup(url.read(), "html.parser")
@@ -95,8 +95,8 @@ for i in range(27):
     if("vitamin" in names[i]):
         tag = "vitamin"
     if("-" in amounts[i]):
-        amounts[i].replace("-","&ndash")
-    insert_nutrient(names[i], itemInfo[2*i + 1], amounts[i], images[i], ("micronutrient", tag))
+        amounts[i].replace("-","&ndash;")
+    insert_nutrient(names[i], itemInfo[2*i + 1], amounts[i], images[i], ["micronutrient", tag])
 
 
 #Start of accesssing Macronutrients 
@@ -129,7 +129,7 @@ for n in range(3):
 
 for i in range(3):
     #print(headings[i].text[:-1] + ", " + descriptions[i+2].text + ", " + finalDesc[(i+2)%3])
-    insert_nutrient(headings[i].text[:-1], descriptions[i+2].text, finalDesc[(i+2)%3], images[i], ("macronutrient"))
+    insert_nutrient(headings[i].text[:-1], descriptions[i+2].text, finalDesc[(i+2)%3], images[i], ["macronutrient"])
 
 
 #Start of accessing sub-macronutrients
@@ -139,6 +139,9 @@ soup = bs4.BeautifulSoup(url.read(), "html.parser")
 
 listItems = soup.find_all("h4", {"class":""})
 itemAmounts = soup.find_all("li", {"class":""})
+for amount in itemAmounts:
+    if (not (amount == None) and "-" in amount):
+        amount = amount.replace("-","&ndash;")
 descriptions = soup.find_all("p",{"class":""})
 finalDesc = []
 
@@ -175,5 +178,5 @@ for n in range(15):
 
 for i in range(15):
     #print(listItems[i].text + ": " + finalDesc[i + 1].split(".")[0] + " - " + itemAmounts[i+182].text.split(":")[1])
-    insert_nutrient(listItems[i].text, finalDesc[i+1].split(".")[0], itemAmounts[i+182].text.split(":")[1] ,images[i], ("workout suppliment"))
+    insert_nutrient(listItems[i].text, finalDesc[i+1].split(".")[0], (itemAmounts[i+182].text.split(":")[1].split("g")[0]) + "g",images[i], ["workout suppliment"])
     
