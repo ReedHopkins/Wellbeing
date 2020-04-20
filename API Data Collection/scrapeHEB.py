@@ -21,24 +21,17 @@ def get_connection():
     
     
 def get_ingredients(database):
-    #ingredients = ['broccoli','extra lean beef', 'strawberries']
     ingredients_db = database["wellbeing"]
     ingredients_collection = ingredients_db["recipes"]
-    #Trial with one recipe
-    #cursor = ingredients_collection.find()[0]['extendedIngredients']
     cursorArray = []
     for element in ingredients_collection.find():
         cursorArray.append(element['extendedIngredients'])
     return cursorArray
     
 def find_items(database, ingredients):
-#    for itm in  database.find():
-#        print(itm["item"])
 
     for itm in  database.find():
         if itm["item"] in ingredients:
-#            print(itm["item"])
-#            print(ingredients)
             ingredients.remove(itm["item"])
 
     total_price=0.0
@@ -75,20 +68,22 @@ def find_items(database, ingredients):
                 item = combined.rstrip()
             insert_to_db(database,item,price,unit)
 
-#        total_price += data['price']
-#    print("total price: "+str(total_price))
     
 def insert_to_db(db,item, price,unit):
     URL='https://api.nal.usda.gov/fdc/v1/foods/search?api_key=r1knfJuecwQVSuMrRDDFk7XckUdXlogGfdMhiRSh&query='+item+'%20'
     URL2 = 'https://pixabay.com/api/?key=16010077-3561220afa690b1f217609838&q='+item+'&image_type=photo'
+    IMAGE_URL ='https://shutterstock.com/search/'
+    url1 = urllib.request.urlopen(IMAGE_URL+item.replace(" ", "+"))
+    soup = bs4.BeautifulSoup(url1.read(),"html.parser")
+    searchResults = soup.find("script",{'type':'application/ld+json'})
+    dictResults = json.loads(((searchResults.text)))
+    imgURL = ""
+    if dictResults[0] != None:
+        imgURL = dictResults[0]["contentUrl"]
+    print(imgURL)
     r=requests.get(url=URL)
     rImage=requests.get(url=URL2)
     data=r.json()
-    rStatus = 0
-    dataImage=rImage.json()
-    if len(dataImage['hits']) != 0:
-        rStatus = 1
-        print("HELLO IT IS ME: ",dataImage['hits'][0]['largeImageURL'])
     nutrientsValue = []
     nutrientsName = []
     nutrientsUnitName = []
@@ -101,32 +96,42 @@ def insert_to_db(db,item, price,unit):
         nutrientsUnitName.append(i['unitName'])
     nutrientsFinal = []
     image = ""
-    if rStatus != 0:
-        image = dataImage['hits'][0]['largeImageURL']
+    tags = []
+    image = imgURL;
     i=0
     for value in nutrientsName:
-        nutrientsFinal.append([value,nutrientsUnitName[i],nutrientsValue[i]])
+        if 'Carbohydrate' in value:
+            if nutrientsValue[i] < 15:
+                tags.append('low carb');
+        if 'Protein' in value:
+            if nutrientsValue[i] > 10:
+                tags.append('high protein')
+        if 'Sodium' in value:
+            if nutrientsValue[i] < 100:
+                tags.append('low sodium')
+        nutrientsFinal.append(value+": "+str(nutrientsValue[i])+" "+nutrientsUnitName[i])
         i+=1
+    print("TAGSSSS",tags)
     if db.find({"item":item}).count() == 0:
         emp_rec1 = {
                 "item":item,
                 "price":price,
                 "unit":unit,
                 "nutrients": nutrientsFinal,
-                "image": image
+                "image": image,
+                "tags": tags
                 }
         collection.insert(
            emp_rec1
         )
     else:
         print("This item is already in the db")
-    #rec_id1 = collection.update_one(emp_rec1)
 
 BASE_URL = "https://www.heb.com"
 conn = get_connection()
 mydb = conn["wellbeing"]
 print(mydb.collection_names())
-collection = mydb["hebDataFinal1"]
+collection = mydb["ingredients"]
 
 ingredients = []
 cursorA = get_ingredients(conn)
@@ -136,5 +141,5 @@ for elem in cursorA:
     for c in elem:
         ingredients.append(c['name'])
     print(ingredients)
-    find_items(mydb.hebDataFinal1, ingredients)
+    find_items(mydb.ingredients, ingredients)
     num += 1
