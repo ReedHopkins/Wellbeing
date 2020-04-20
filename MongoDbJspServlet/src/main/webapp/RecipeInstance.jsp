@@ -87,7 +87,7 @@
 					out.print("<li>" + nutrient.getString("title") + ": " + nutrient.getString("amount") + "</li>");
 				    }
 				}
-				
+
 				}
 			%>
 		</ul>
