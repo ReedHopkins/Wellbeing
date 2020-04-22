@@ -4,6 +4,7 @@
 <%@page import="com.mongodb.MongoClient"%>
 <%@page import="com.mongodb.client.MongoCollection"%>
 <%@page import="com.jcg.mongodb.servlet.Recipe"%>
+<%@ page import="com.jcg.mongodb.servlet.DatabaseSingleton" %>
 
 <html>
 <head>
@@ -43,12 +44,13 @@
 
 			<%
 				Recipe recipe = (Recipe) request.getAttribute("recipe");
-				ArrayList<String> ingredientURL = (ArrayList) request.getAttribute("ingredientURL");
+				//ArrayList<String> ingredientURL = (ArrayList) request.getAttribute("ingredientURL");
 
 				for (Document ingredient : recipe.getingredients()) {
-                    if (ingredientURL.contains(ingredient.getString("item"))) {
-                        out.print("<li><a href=\"IngredientInstanceServlet?ingredientTitle=<c:out value="${ingredient.getString("item")}"/>>"
-                        + ingredient.getString("name") + "</a></li>");
+					String name = DatabaseSingleton.findIngredient(ingredient.getString("name"));
+                    if (name != null) {
+                        out.print("<li><a href=\"IngredientInstanceServlet?ingredientTitle="+ name +"\">"
+                        + ingredient.getString("name") + "</a></li>\n");
                     } else{
 					    out.print("<li>" + ingredient.getString("name") + "</li>");
 					}
@@ -70,24 +72,22 @@
 			    ArrayList<String> nutrientURL = (ArrayList) request.getAttribute("nutrientURL");
 
 				for (Document nutrient : recipe.getgoodnutrients()) {
-
-				if (nutrientURL.contains(nutrient.getString("title"))) {
-                    out.print("<li><a href=\"NutrientInstanceServlet?nutrientTitle=<c:out value="${nutrient.getString("title")}"/>>"
-                    + nutrient.getString("title") + "</a> : " + nutrient.getString("amount") + "</li>");
-                 }else{
-					out.print("<li>" + nutrient.getString("title") + ": " + nutrient.getString("amount") + "</li>");
+				    String name = DatabaseSingleton.findNutrient(nutrient.getString("title"));
+					if (name != null) {
+                    	out.print("<li><a href=\"NutrientInstanceServlet?nutrientTitle=" + name + "\">"
+                    	+ nutrient.getString("title") + "</a> : " + nutrient.getString("amount") + "</li>");
+                 	}else{
+						out.print("<li>" + nutrient.getString("title") + ": " + nutrient.getString("amount") + "</li>");
 				    }
 				}
 				for (Document nutrient : recipe.getbadnutrients()) {
-
-				if (nutrientURL.contains(nutrient.getString("title"))) {
-                    out.print("<li><a href=\"NutrientInstanceServlet?nutrientTitle=<c:out value="${nutrient.getString("title")}"/>>"
-                    + nutrient.getString("title") + "</a> : " + nutrient.getString("amount") + "</li>");
-                 }else{
-					out.print("<li>" + nutrient.getString("title") + ": " + nutrient.getString("amount") + "</li>");
+                    String name = DatabaseSingleton.findNutrient(nutrient.getString("title"));
+					if (nutrientURL.contains(nutrient.getString("title"))) {
+                    	out.print("<li><a href=\"NutrientInstanceServlet?nutrientTitle=" + name + "\">"
+                    	+ nutrient.getString("title") + "</a> : " + nutrient.getString("amount") + "</li>");
+                 	}else{
+						out.print("<li>" + nutrient.getString("title") + ": " + nutrient.getString("amount") + "</li>");
 				    }
-				}
-				
 				}
 			%>
 		</ul>

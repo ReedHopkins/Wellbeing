@@ -11,14 +11,16 @@ public class Ingredient {
     String price;
     String unit;
     String image;
-    List<Document> nutrients;
+    List<String> nutrients;
+    List<String> tags;
 
     public Ingredient(Document ingredient){
         item = (String) ingredient.get("item");
         price = (String) ingredient.get("price");
         unit = (String) ingredient.get("unit");
-        nutrients = (List<Document>) ingredient.get("nutrients");
+        nutrients = (List<String>) ingredient.get("nutrients");
         image = (String) ingredient.get("image");
+        tags = (List<String>) ingredient.get("tags");
     }
 
     public Ingredient(){
@@ -26,7 +28,8 @@ public class Ingredient {
         price = "error";
         unit = "error";
         image = "error";
-        nutrients = new ArrayList<Document>();
+        nutrients = new ArrayList<String>();
+        tags = new ArrayList<String>();
     }
 
     public String getitem(){
@@ -45,8 +48,12 @@ public class Ingredient {
         return image;
     }
 
-    public List<Document> getnutrients() {
+    public List<String> getnutrients() {
         return nutrients;
+    }
+
+    public List<String> gettags() {
+        return tags;
     }
     
     public boolean isMatch(String s) {

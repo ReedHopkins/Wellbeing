@@ -7,7 +7,7 @@
 	
 	<display-name>WellbeingEating</display-name>
 	
-	<servlet>
+	<!-- <servlet>
       <servlet-name>RecipeServlet</servlet-name>
       <servlet-class>com.jcg.mongodb.servlet.RecipeServlet</servlet-class>
    	</servlet>
@@ -18,16 +18,25 @@
 	<servlet>
 		<servlet-name>NutrientServlet</servlet-name>
 		<servlet-class>com.jcg.mongodb.servlet.NutrientServlet</servlet-class>
-	</servlet>
+	</servlet> -->
 	<servlet>
 		<servlet-name>RecipeInstanceServlet</servlet-name>
 		<servlet-class>com.jcg.mongodb.servlet.RecipeInstanceServlet</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>NutrientInstanceServlet</servlet-name>
+		<servlet-class>com.jcg.mongodb.servlet.NutrientInstanceServlet</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>IngredientInstanceServlet</servlet-name>
 		<servlet-class>com.jcg.mongodb.servlet.IngredientInstanceServlet</servlet-class>
 	</servlet>
-   	<servlet-mapping>
+	<servlet>
+		<servlet-name>ModelServlet</servlet-name>
+		<servlet-class>com.jcg.mongodb.servlet.ModelServlet</servlet-class>
+	</servlet>
+	
+   	<!-- <servlet-mapping>
       <servlet-name>RecipeServlet</servlet-name>
       <url-pattern>/RecipeServlet</url-pattern>
    	</servlet-mapping>
@@ -38,18 +47,26 @@
 	<servlet-mapping>
 		<servlet-name>NutrientServlet</servlet-name>
 		<url-pattern>/NutrientServlet</url-pattern>
-	</servlet-mapping>
+	</servlet-mapping> -->
 	<servlet-mapping>
 		<servlet-name>RecipeInstanceServlet</servlet-name>
 		<url-pattern>/RecipeInstanceServlet</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
+		<servlet-name>NutrientInstanceServlet</servlet-name>
+		<url-pattern>/NutrientInstanceServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
 		<servlet-name>IngredientInstanceServlet</servlet-name>
 		<url-pattern>/IngredientInstanceServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ModelServlet</servlet-name>
+		<url-pattern>/ModelServlet</url-pattern>
 	</servlet-mapping>
    	
 	<!-- Welcome File List -->
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>

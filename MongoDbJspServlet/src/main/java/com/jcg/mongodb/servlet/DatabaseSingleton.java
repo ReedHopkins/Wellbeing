@@ -11,6 +11,8 @@ import org.bson.Document;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.StringTokenizer;
 
 public class DatabaseSingleton {
     public static DatabaseSingleton instance;
@@ -19,6 +21,9 @@ public class DatabaseSingleton {
     private static ArrayList<Nutrient> nutrientList = new ArrayList<Nutrient>();
     private static MongoClient mongoClient;
     private static MongoDatabase db;
+    private static HashMap<Integer, Recipe> recipeMap;
+    private static HashMap<Integer, Ingredient> ingredientMap;
+    private static HashMap<Integer, Nutrient> nutrientMap;
 
     private DatabaseSingleton() throws UnknownHostException {
         String db_name = "wellbeing";
@@ -27,7 +32,7 @@ public class DatabaseSingleton {
         db = mongoClient.getDatabase(db_name);
 
         //Creating ingredient list
-        MongoCollection<Document> colIngr = db.getCollection("hebDataFinal2");
+        MongoCollection<Document> colIngr = db.getCollection("ingredients");
         FindIterable<Document> elementsIngr = colIngr.find();
         MongoCursor<Document> cursorIngr = elementsIngr.iterator();
         try {
@@ -66,6 +71,18 @@ public class DatabaseSingleton {
         Collections.sort(nutrientList, new SortNutrientsByName());
         
         mongoClient.close();
+        recipeMap = new HashMap<Integer, Recipe>();
+        for(Recipe r: recipeList){
+            recipeMap.put( r.title.hashCode(), r);
+        }
+        ingredientMap = new HashMap<Integer, Ingredient>();
+        for(Ingredient i: ingredientList){
+            ingredientMap.put( i.item.hashCode(), i);
+        }
+        nutrientMap = new HashMap<Integer, Nutrient>();
+        for(Nutrient n: nutrientList){
+            nutrientMap.put( n.title.hashCode(), n);
+        }
     }
 
     public static DatabaseSingleton getInstance() throws UnknownHostException{
@@ -96,7 +113,6 @@ public class DatabaseSingleton {
         			output.add(i);
         		}
     		}
-    		
     	}
         return output;
     }
@@ -192,6 +208,79 @@ public class DatabaseSingleton {
 
     public static MongoClient getConnection(){
         return mongoClient;
+    }
+
+    public static String findIngredient(String s){
+        StringTokenizer strtok = new StringTokenizer(s);
+        int tokenSize = strtok.countTokens();
+        String[] tokens = new String[tokenSize];
+        int iter = 0;
+        while(strtok.hasMoreTokens()){
+            tokens[iter] = strtok.nextToken();
+            iter++;
+        }
+        String findString;
+        for(int i = tokenSize; i > 0; i--){
+            for(int j = 0; j <= tokenSize - i; j++){
+                findString = tokens[j];
+                for(int k = j+1; k < i+j; k++){
+                    findString += " " + tokens[k];
+                }
+                if(ingredientMap.containsKey(findString.hashCode())){
+                    return ingredientMap.get(findString.hashCode()).item;
+                }
+            }
+        }
+        return null;
+    }
+
+    public static String findRecipe(String s){
+        StringTokenizer strtok = new StringTokenizer(s);
+        int tokenSize = strtok.countTokens();
+        String[] tokens = new String[tokenSize];
+        int iter = 0;
+        while(strtok.hasMoreTokens()){
+            tokens[iter] = strtok.nextToken();
+            iter++;
+        }
+        String findString;
+        for(int i = tokenSize; i > 0; i--){
+            for(int j = 0; j <= tokenSize - i; j++){
+                findString = tokens[j];
+                for(int k = j+1; k < i+j; k++){
+                    findString += " " + tokens[k];
+                }
+                if(recipeMap.containsKey(findString.hashCode())){
+                    return recipeMap.get(findString.hashCode()).id;
+                }
+            }
+        }
+
+        return null;
+    }
+
+    public static String findNutrient(String s){
+        StringTokenizer strtok = new StringTokenizer(s);
+        int tokenSize = strtok.countTokens();
+        String[] tokens = new String[tokenSize];
+        int iter = 0;
+        while(strtok.hasMoreTokens()){
+            tokens[iter] = strtok.nextToken();
+            iter++;
+        }
+        String findString;
+        for(int i = tokenSize; i > 0; i--){
+            for(int j = 0; j <= tokenSize - i; j++){
+                findString = tokens[j];
+                for(int k = j+1; k < i+j; k++){
+                    findString += " " + tokens[k];
+                }
+                if(nutrientMap.containsKey(findString.hashCode())){
+                    return nutrientMap.get(findString.hashCode()).title;
+                }
+            }
+        }
+        return null;
     }
 
 }

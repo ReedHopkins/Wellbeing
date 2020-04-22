@@ -1,3 +1,37 @@
+@import url("https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700|Work+Sans:100,200,300,400,500,600");
+:root {
+  --headlinesFont: 'Josefin Sans', sans-serif;
+  --bodyFont: 'Work Sans', sans-serif;
+  --wellBeingGreen: LimeGreen;
+  --fuelYellow: #f0a035;
+  --textColor: #323232;
+  --bodyBg: default;
+  --white: #fff;
+  --black: #000;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bodyBg);
+  font-family: var(--bodyFont);
+  color: var(--textColor);
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+img {
+  vertical-align: text-bottom;
+}
+
+/*-------------------------------*/
+/*--------   Home Page   --------*/
+/*-------------------------------*/
 .carousel-item {
     width: 100%;
     height: 600px;
@@ -9,6 +43,171 @@
     width: 100%;
 }
 
+.center {
+	position: absolute;
+	top: 50%;
+	right: 50%;
+	transform: translate(-50%,-50%);
+	background-color: red;
+}
+
 .jumbotron {
-    margin-bottom: 0;
+	margin: 0;
+}
+
+/*-------------------------------*/
+/*-------   Search Page   -------*/
+/*-------------------------------*/
+.fa-refresh {
+	color: var(--wellBeingGreen);
+}
+
+.page-item .page-link {
+  	color: var(--wellBeingGreen);
+}
+
+.search_param {
+	display: none;
+}
+
+#search_form {
+	width: 80%; 
+	max-width: 1500px;
+	margin: 0 auto; 
+	text-align: center;
+	margin-top: 20px;
+}
+
+.grid-container a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+
+.ft-recipe {
+	width: 90%;
+	height: 500px;
+	margin: 5%;
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px
+		rgba(0, 0, 0, 0.23);
+	transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.ft-recipe:hover {
+	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px
+		rgba(0, 0, 0, 0.22);
+}
+
+.ft-recipe .ft-recipe__thumb {
+	position: relative;
+	height: 50%;
+}
+
+.ft-recipe .ft-recipe__thumb img {
+	width: 80%;
+	height: 80%;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px
+		rgba(0, 0, 0, 0.23);
+	border-radius: 10px;
+	margin: 10% 0;
+	-o-object-fit: cover;
+	object-fit: cover;
+	-o-object-position: 50% 50%;
+	object-position: 50% 50%;
+	-o-object-fit: cover
+}
+
+.ft-recipe .ft-recipe__content {
+	-webkit-box-flex: 1;
+	flex: 1;
+	padding: 0 2em 1em;
+}
+
+.ft-recipe .ft-recipe__content .content__header .row-wrapper {
+	display: -webkit-box;
+	display: flex;
+	padding: .55em 0 .3em;
+	border-bottom: 1px solid #d8d8d8;
+}
+
+.ft-recipe .ft-recipe__content .content__header .row-wrapper .recipe-title
+	{
+	font-family: var(- -headlinesFont);
+	font-weight: 600;
+}
+
+.ft-recipe .ft-recipe__content .content__header .recipe-details {
+	display: -webkit-box;
+	display: flex;
+	list-style: none;
+	padding: 1.4em 0 1em;
+	margin: 0;
+	-webkit-box-pack: justify;
+	justify-content: space-between;
+}
+
+.ft-recipe .ft-recipe__content .content__header .recipe-details .recipe-details-item
+	{
+	-webkit-box-flex: 1;
+	flex: 1;
+}
+
+.ft-recipe .ft-recipe__content .content__header .recipe-details .recipe-details-item i
+	{
+	font-size: 30px;
+}
+
+.ft-recipe .ft-recipe__content .content__header .recipe-details .recipe-details-item .value
+	{
+	color: var(--wellBeingGreen);
+	margin-left: .35em;
+	vertical-align: bottom;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.ft-recipe .ft-recipe__content .content__header .recipe-details .recipe-details-item .title
+	{
+	display: block;
+	margin-top: -4px;
+	font-family: var(- -headlinesFont);
+	font-size: 18px;
+	font-weight: 300;
+}
+
+
+.ft-recipe .ft-recipe__content .content__footer {
+	text-align: center;
+	margin: 0 3rem;
+}
+
+.ft-recipe .ft-recipe__content .content__footer a {
+	font-family: var(- -headlinesFont);
+	display: inline-block;
+	background: var(--wellBeingGreen);;
+	padding: .45em 1em;
+	width: 100%;
+	text-align: center;
+	border-radius: 5px;
+	color: #fff;
+	font-weight: 500;
+	letter-spacing: .2px;
+	font-size: 17px;
+	-webkit-transition: box-shadow 250ms ease, -webkit-transform 250ms ease;
+	transition: box-shadow 250ms ease, -webkit-transform 250ms ease;
+	transition: transform 250ms ease, box-shadow 250ms ease;
+	transition: transform 250ms ease, box-shadow 250ms ease,
+		-webkit-transform 250ms ease;
+}
+
+.ft-recipe .ft-recipe__content .content__footer a:hover {
+	-webkit-transform: translateY(-3px);
+	transform: translateY(-3px);
 }
