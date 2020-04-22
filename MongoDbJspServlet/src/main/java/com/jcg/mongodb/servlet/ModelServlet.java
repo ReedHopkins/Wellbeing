@@ -49,7 +49,7 @@ public class ModelServlet extends HttpServlet {
 		}
 		String subtitle = "All " + model + "s (Page " + spageid + "):";
 		
-		if (nosearch || nofilter) {
+		if (nosearch && nofilter) {
 			
 			Paginator Paginator = new Paginator(model, spageid, size, 9);
 			if (!nosort) Paginator.setSortTerm(sort);
@@ -79,9 +79,7 @@ public class ModelServlet extends HttpServlet {
 		
 		String model = request.getParameter("model");
 		String search_term = request.getParameter("search_term");
-		search_term = search_term.toLowerCase();
 		String filter = request.getParameter("filter");
-		String sort = request.getParameter("sort");
 		
 		String spageid = request.getParameter("page");
 		if (spageid == null) {
@@ -90,35 +88,26 @@ public class ModelServlet extends HttpServlet {
 		
 		boolean nosearch = search_term == null || "".equals(search_term);
 		boolean nofilter = filter == null || "".equals(filter);
-		boolean nosort = sort == null || "".equals(sort);
+		
+		if (!nofilter) search_term = filter;
+		search_term = search_term.toLowerCase();
 		
 		String subtitle = "Search Results (Page " + spageid + "):";
 
 		// Search for matched nutrients
 		DatabaseSingleton.getInstance();
-		ArrayList<?> list = new ArrayList<Object>();
-		ArrayList<?> subList = new ArrayList<Object>();
-		Paginator Paginator = new Paginator();
+		ArrayList<?> list = new ArrayList<Object>();		
+			
+		if (model.equals("Ingredient")) list = DatabaseSingleton.searchIngredients(search_term);
+		if (model.equals("Recipe")) list = DatabaseSingleton.searchRecipes(search_term);
+		if (model.equals("Nutrient")) list = DatabaseSingleton.searchNutrients(search_term);
 		
-		if (nofilter && nosort) { //do search
-			
-			if (model.equals("Ingredient")) list = DatabaseSingleton.searchIngredients(search_term);
-			if (model.equals("Recipe")) list = DatabaseSingleton.searchRecipes(search_term);
-			if (model.equals("Nutrient")) list = DatabaseSingleton.searchNutrients(search_term);
-			
-			int size = list.size();
+		int size = list.size();
 
-			Paginator P = new Paginator(model, spageid, size, 9);
-			P.setSearchTerm(search_term);
-			
-			subList = new ArrayList<Object>(list.subList(P.getStartIndex(), P.getEndIndex()));
-			Paginator = P;
-			
-		} else if (nosearch && nosort) { //do filter
-			
-		} else if (nosearch && nofilter) { // do sort
-			
-		}
+		Paginator Paginator = new Paginator(model, spageid, size, 9);
+		Paginator.setSearchTerm(search_term);
+		
+		ArrayList<?> subList = new ArrayList<Object>(list.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
 
 		String showPagination = "default";
 		if (subList.size() < 1) {

@@ -1,15 +1,20 @@
 package com.jcg.mongodb.servlet;
 
+import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.regex.Pattern;
+import java.util.List;
 
 import org.bson.Document;
+
+import com.mongodb.BasicDBList;
 
 public class Nutrient {
     String title;
     String description;
     String dailyIntake;
     String pictureURL;
+    List<Document> tags;
+    String tagString;
 
     public Nutrient(Document nutrientDoc){
         title = (String) nutrientDoc.get("title");
@@ -17,8 +22,11 @@ public class Nutrient {
         dailyIntake = ((String) nutrientDoc.get("reccommendedDailyIntake")).trim();
         pictureURL = (String) nutrientDoc.get("pictureURL");
         
-        dailyIntake = dailyIntake.replace("-", "&ndash;");
-        dailyIntake = dailyIntake.replace("–", "&ndash;");
+        tags = (List<Document>) nutrientDoc.get("tags");
+//        tagString = (String) nutrientDoc.get("tags");
+        
+        dailyIntake = dailyIntake.replace("-", "&ndash;"); //normal keyboard dash to HTML dash
+        dailyIntake = dailyIntake.replace("–", "&ndash;"); //special character dash to HTML dash
     }
 
     public Nutrient(){
@@ -51,6 +59,12 @@ public class Nutrient {
     			dailyIntake.toLowerCase().contains(s)) {
     		return true;
     	}
+    	
+//    	for (String tag: tags) {
+//    		if (tag.toLowerCase().contains(s)) {
+//    			return true;
+//    		}
+//    	}
     	
     	return false;
     }

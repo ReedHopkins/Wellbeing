@@ -193,4 +193,5 @@ public class DatabaseSingleton {
     public static MongoClient getConnection(){
         return mongoClient;
     }
+
 }
