@@ -185,6 +185,11 @@ public class DatabaseSingleton {
 			if (sort.contentEquals("ingredientshightolow")) {
 				Collections.reverse(recipes);
 			}
+		} else if (sort.equals("healthlowtohigh") || sort.contentEquals("healthhightolow")) {
+			Collections.sort(recipes, new SortRecipesByHealth());
+			if (sort.contentEquals("healthhightolow")) {
+				Collections.reverse(recipes);
+			}
 		}
     	return recipes;
     }

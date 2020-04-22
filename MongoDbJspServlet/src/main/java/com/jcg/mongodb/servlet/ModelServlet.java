@@ -18,13 +18,14 @@ public class ModelServlet extends HttpServlet {
 			throws ServletException, IOException {
 		
 		String model = request.getParameter("model");
-		String filter = request.getParameter("filter");
 		String search_term = request.getParameter("search_term");
 		String sort = request.getParameter("sort");
 		
 		boolean nosearch = search_term == null || "".equals(search_term);
-		boolean nofilter = filter == null || "".equals(filter);
 		boolean nosort = sort == null || "".equals(sort);
+		
+		if (search_term == null) search_term = "";
+		if (sort == null) sort = "";
 
 		// Retrieve all elements in database based on model
 		DatabaseSingleton.getInstance();
@@ -49,12 +50,12 @@ public class ModelServlet extends HttpServlet {
 		}
 		String subtitle = "All " + model + "s (Page " + spageid + "):";
 		
-		if (nosearch && nofilter) {
+		if (nosearch) {
 			
 			Paginator Paginator = new Paginator(model, spageid, size, 9);
 			if (!nosort) Paginator.setSortTerm(sort);
 			ArrayList<?> subList = new ArrayList<Object>(list.subList(Paginator.getStartIndex(), Paginator.getEndIndex()));
-			String params = "&search_term=" + search_term + "&sort=" + sort;
+			String params = "&sort=" + sort;
 
 			// set calculated attributes
 			request.setAttribute("subtitle", subtitle);
@@ -79,17 +80,12 @@ public class ModelServlet extends HttpServlet {
 		
 		String model = request.getParameter("model");
 		String search_term = request.getParameter("search_term");
-		String filter = request.getParameter("filter");
 		
 		String spageid = request.getParameter("page");
 		if (spageid == null) {
 			spageid = "1";
 		}
 		
-		boolean nosearch = search_term == null || "".equals(search_term);
-		boolean nofilter = filter == null || "".equals(filter);
-		
-		if (!nofilter) search_term = filter;
 		search_term = search_term.toLowerCase();
 		
 		String subtitle = "Search Results (Page " + spageid + "):";
@@ -114,6 +110,7 @@ public class ModelServlet extends HttpServlet {
 			showPagination = "none";
 			subtitle = "No results found...";
 		}
+		String params = "&search_term=" + search_term;
 
 		// set calculated attributes
 		request.setAttribute("subtitle", subtitle);
@@ -123,6 +120,8 @@ public class ModelServlet extends HttpServlet {
 		request.setAttribute("next", Paginator.getNextPageLink());
 		request.setAttribute("first", Paginator.getFirstPageLink());
 		request.setAttribute("last", Paginator.getLastPageLink());
+		request.setAttribute("params", params);
+		
 		request.setAttribute("search_term", search_term);
 		request.setAttribute("show_param", "block");
 		request.setAttribute("showPagination", showPagination);

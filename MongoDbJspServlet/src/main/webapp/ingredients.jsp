@@ -51,11 +51,11 @@
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</button>
 			<div class="dropdown-menu">
 				<a class="dropdown-item"
-					href="ModelServlet?model=Ingredient&filter=filter1">Filter 1</a> <a
+					href="ModelServlet?model=Ingredient&search_term=highprotein">High Protein</a> <a
 					class="dropdown-item"
-					href="ModelServlet?model=Ingredient&filter=filter2">Filter 2</a> <a
+					href="ModelServlet?model=Ingredient&search_term=lowcarb">Low Carb</a> <a
 					class="dropdown-item"
-					href="ModelServlet?model=Ingredient&filter=filter3">Filter 3</a>
+					href="ModelServlet?model=Ingredient&search_term=lowsodium">Low Sodium</a>
 			</div>
 		</div>
 		

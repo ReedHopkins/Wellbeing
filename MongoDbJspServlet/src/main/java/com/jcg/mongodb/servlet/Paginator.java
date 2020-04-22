@@ -113,6 +113,11 @@ public class Paginator {
 
 		return output;
 	}
+	
+	private void checkParams() {
+		if (this.searchTerm == null) this.searchTerm = "";
+		if (this.sortTerm == null) this.sortTerm = "";
+	}
 
 	public int getStartIndex() {
 		return this.start;
@@ -123,6 +128,7 @@ public class Paginator {
 	}
 
 	public String getPreviousPageLink() {
+		checkParams();
 		if (this.pageId > 1)
 			this.previous = this.servlet + "&search_term=" + this.searchTerm + "&page=" + (this.pageId - 1) + "&sort="
 					+ this.sortTerm;
@@ -130,6 +136,7 @@ public class Paginator {
 	}
 
 	public String getNextPageLink() {
+		checkParams();
 		if (this.pageId < this.last)
 			this.next = this.servlet + "&search_term=" + this.searchTerm + "&page=" + (this.pageId + 1) + "&sort="
 					+ this.sortTerm;
@@ -137,11 +144,13 @@ public class Paginator {
 	}
 
 	public String getFirstPageLink() {
+		checkParams();
 		this.firstLink = this.servlet + "&search_term=" + this.searchTerm + "&page=1" + "&sort=" + this.sortTerm;
 		return this.firstLink;
 	}
 
 	public String getLastPageLink() {
+		checkParams();
 		this.lastLink = this.servlet + "&search_term=" + this.searchTerm + "&page=" + this.last + "&sort="
 				+ this.sortTerm;
 		return this.lastLink;
