@@ -145,6 +145,18 @@ public class DatabaseSingleton {
         return output;
     }
     
+    public static ArrayList<String> searchRecipesForIngredient(String ingredient){
+        ArrayList<ArrayList<String>> output = new ArrayList<<ArrayList<String>>();
+        for(Recipe r: recipeMap){
+            for(Object elem : r['extendedIngredients']){
+                if(elem['name'] == ingredient){
+                    output.add([r['_id'],r['title']]);
+                } 
+            }
+        }
+        return output;
+    }
+    
     public static ArrayList<Ingredient> getSortedIngredients(String sort) {
     	ArrayList<Ingredient> ingredients = new ArrayList<Ingredient>(ingredientList);
     	

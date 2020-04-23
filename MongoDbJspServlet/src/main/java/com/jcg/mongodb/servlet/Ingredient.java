@@ -22,6 +22,8 @@ public class Ingredient {
 		nutrients = (List<String>) ingredient.get("nutrients");
 		image = (String) ingredient.get("image");
 		tags = (List<String>) ingredient.get("tags");
+        badges = (List<String>) ingredient.get("badges");
+        aisle = (String) ingredient.get("aisle");
 	}
 
 	public Ingredient() {
@@ -31,6 +33,8 @@ public class Ingredient {
 		image = "error";
 		nutrients = new ArrayList<String>();
 		tags = new ArrayList<String>();
+        badges = new ArrayList<String>();
+        aisle = "error";
 	}
 
 	private String capitalize(String string) {
@@ -71,6 +75,14 @@ public class Ingredient {
 	public List<String> gettags() {
 		return tags;
 	}
+    
+    public List<String> getbadges() {
+        return badges;
+    }
+    
+    public String getaisle() {
+        return aisle;
+    }
 
 	public boolean isMatch(String s) {
 
