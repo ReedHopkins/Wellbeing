@@ -13,7 +13,8 @@ public class Ingredient {
 	String image;
 	List<String> nutrients;
 	List<String> tags;
-
+	List<String> badges;
+	String aisle;
 	public Ingredient(Document ingredient) {
 		item = ((String) ingredient.get("item"));
 		item = capitalize(item);

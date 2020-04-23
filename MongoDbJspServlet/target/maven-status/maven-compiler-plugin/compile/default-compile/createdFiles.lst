@@ -1,4 +1,5 @@
 com\jcg\mongodb\servlet\Ingredient.class
+com\jcg\mongodb\servlet\SortRecipesByHealth.class
 com\jcg\mongodb\servlet\ModelServlet.class
 com\jcg\mongodb\servlet\NutrientInstanceServlet.class
 com\jcg\mongodb\servlet\Paginator.class

@@ -7,9 +7,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79539f01-e313-454c-a67c-82b62e8333e1" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../API Data Collection/nutrientDatabaseV2.py" beforeDir="false" afterPath="$PROJECT_DIR$/../API Data Collection/nutrientDatabaseV2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../API Data Collection/scrapeHEB.py" beforeDir="false" afterPath="$PROJECT_DIR$/../API Data Collection/scrapeHEB.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/RecipeInstance.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/RecipeInstance.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/DatabaseSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/DatabaseSingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Ingredient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Nutrient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Nutrient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/NutrientInstanceServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/NutrientInstanceServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Recipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Recipe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/IngredientInstance.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/IngredientInstance.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/NutrientInstance.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/NutrientInstance.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/MongoDbJspServlet.war" beforeDir="false" afterPath="$PROJECT_DIR$/target/MongoDbJspServlet.war" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/MongoDbJspServlet/IngredientInstance.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/MongoDbJspServlet/IngredientInstance.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/MongoDbJspServlet/NutrientInstance.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/MongoDbJspServlet/NutrientInstance.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/MongoDbJspServlet/ingredients.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/MongoDbJspServlet/ingredients.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/MongoDbJspServlet/nutrients.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/MongoDbJspServlet/nutrients.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/MongoDbJspServlet/recipes.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/MongoDbJspServlet/recipes.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/DatabaseSingleton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/Ingredient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/IngredientServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/Nutrient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/NutrientServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/Recipe.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/jcg/mongodb/servlet/RecipeInstanceServlet.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/classes/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,17 +47,39 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Ingredient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-493">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="-714">
+              <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/DatabaseSingleton.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="224">
+              <caret line="83" column="61" selection-start-line="83" selection-start-column="61" selection-end-line="83" selection-end-column="61" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#7233#7241#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/DatabaseSingleton.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/NutrientInstanceServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="279" column="17" selection-start-line="279" selection-start-column="17" selection-end-line="279" selection-end-column="17" />
+            <state relative-caret-position="306">
+              <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/NutrientServlet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="170">
+              <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -46,40 +88,73 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/RecipeServlet.java">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/NutrientInstance.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/RecipeInstance.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="90" column="17" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
+            <state relative-caret-position="215">
+              <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/ingredients.jsp">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/recipes.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-459" />
+            <state relative-caret-position="-2366" />
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/nutrients.jsp">
-          <provider selected="true" editor-type-id="text-editor" />
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Recipe.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="53" column="11" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#552#569#0" expanded="true" />
+                <element signature="e#2845#2846#0" expanded="true" />
+                <element signature="e#2870#2871#0" expanded="true" />
+                <element signature="e#2902#2903#0" expanded="true" />
+                <element signature="e#2930#2931#0" expanded="true" />
+                <element signature="e#2971#2972#0" expanded="true" />
+                <element signature="e#3008#3009#0" expanded="true" />
+                <element signature="e#3043#3044#0" expanded="true" />
+                <element signature="e#3074#3075#0" expanded="true" />
+                <element signature="e#3112#3113#0" expanded="true" />
+                <element signature="e#3146#3147#0" expanded="true" />
+                <element signature="e#3178#3179#0" expanded="true" />
+                <element signature="e#3206#3207#0" expanded="true" />
+                <element signature="e#3238#3239#0" expanded="true" />
+                <element signature="e#3266#3267#0" expanded="true" />
+                <element signature="e#3301#3302#0" expanded="true" />
+                <element signature="e#3332#3333#0" expanded="true" />
+                <element signature="e#3362#3363#0" expanded="true" />
+                <element signature="e#3388#3389#0" expanded="true" />
+                <element signature="e#3422#3423#0" expanded="true" />
+                <element signature="e#3452#3453#0" expanded="true" />
+                <element signature="e#3500#3501#0" expanded="true" />
+                <element signature="e#3527#3528#0" expanded="true" />
+                <element signature="e#3574#3575#0" expanded="true" />
+                <element signature="e#3600#3601#0" expanded="true" />
+                <element signature="e#3639#3640#0" expanded="true" />
+                <element signature="e#3674#3675#0" expanded="true" />
+                <element signature="e#3720#3721#0" expanded="true" />
+                <element signature="e#3754#3755#0" expanded="true" />
+                <element signature="e#4382#4383#0" expanded="true" />
+                <element signature="e#4467#4468#0" expanded="true" />
+                <element signature="e#4915#4916#0" expanded="true" />
+                <element signature="e#5005#5006#0" expanded="true" />
+                <element signature="e#5183#5184#0" expanded="true" />
+                <element signature="e#5257#5258#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/IngredientInstanceServlet.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Nutrient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+            <state relative-caret-position="258">
+              <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -87,20 +162,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/IngredientInstance.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-68">
-              <caret line="32" column="12" lean-forward="true" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/IngredientServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="20" column="38" selection-start-line="20" selection-start-column="38" selection-end-line="20" selection-end-column="38" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="1343">
+              <caret line="79" column="10" lean-forward="true" selection-start-line="79" selection-start-column="10" selection-end-line="79" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -108,8 +171,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/RecipeInstanceServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-366">
-              <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
+            <state relative-caret-position="85">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,8 +205,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/IngredientServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/NutrientServlet.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/index.html" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Nutrient.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Recipe.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/ingredients.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
         <option value="$PROJECT_DIR$/src/main/webapp/pages/nutrients.jsp" />
@@ -149,11 +213,15 @@
         <option value="$PROJECT_DIR$/src/main/webapp/pages/recipes.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/RecipeInstanceServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/testServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/DatabaseSingleton.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/IngredientInstanceServlet.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Ingredient.java" />
-        <option value="$PROJECT_DIR$/src/main/webapp/IngredientInstance.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/RecipeInstance.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/NutrientInstanceServlet.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/NutrientInstance.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Nutrient.java" />
+        <option value="$PROJECT_DIR$/src/main/webapp/IngredientInstance.jsp" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Ingredient.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Recipe.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/DatabaseSingleton.java" />
       </list>
     </option>
   </component>
@@ -192,6 +260,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -239,6 +309,15 @@
               <item name="MongoDbJspServlet" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="servlet" type="462c0819:PsiDirectoryNode" />
+              <item name="Nutrient.java" type="529ef68f:ClassesTreeStructureProvider$PsiClassOwnerTreeNode" />
+            </path>
+            <path>
+              <item name="MongoDbJspServlet" type="b2602c69:ProjectViewProjectNode" />
+              <item name="MongoDbJspServlet" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -272,8 +351,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -328,12 +405,16 @@
       <workItem from="1586664661150" duration="132000" />
       <workItem from="1587339712493" duration="3945000" />
       <workItem from="1587411878233" duration="2413000" />
-      <workItem from="1587415173803" duration="3035000" />
+      <workItem from="1587415173803" duration="3349000" />
+      <workItem from="1587494163843" duration="196000" />
+      <workItem from="1587513910872" duration="2627000" />
+      <workItem from="1587615479095" duration="727000" />
+      <workItem from="1587674591279" duration="8945000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27098000" />
+    <option name="totallyTimeSpent" value="39907000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -348,7 +429,7 @@
     <frame x="-6" y="-6" width="1549" height="846" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.13480885" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2112676" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -374,7 +455,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="Maven" order="3" visible="true" weight="0.3293092" />
+      <window_info active="true" anchor="right" id="Maven" order="3" visible="true" weight="0.15895373" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Google Cloud Storage" order="5" show_stripe_button="false" />
       <window_info anchor="right" id="Kubernetes Explorer" order="6" />
@@ -384,7 +465,7 @@
       <window_info anchor="right" id="Theme Preview" order="10" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12877263" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2112676" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -393,8 +474,8 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32960895" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.27653632" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -410,7 +491,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.3293092" />
+      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.15895373" />
       <window_info anchor="right" id="Palette" order="4" />
       <window_info anchor="right" id="Google Cloud Storage" order="5" show_stripe_button="false" />
       <window_info anchor="right" id="Kubernetes Explorer" order="6" />
@@ -489,17 +570,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Util.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/NutrientServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="20" column="48" selection-start-line="20" selection-start-column="48" selection-end-line="20" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#546#556#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/onerecipe.html" />
     <entry file="file://$PROJECT_DIR$/src/main/webapp/pages/nutrientselector.html">
       <provider selected="true" editor-type-id="text-editor" />
@@ -525,44 +595,16 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/testServlet.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Nutrient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="16" column="29" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Recipe.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="44" column="33" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/RecipeServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/ingredients.jsp">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/nutrients.jsp">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/RecipeInstanceServlet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/IngredientInstanceServlet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-366">
-          <caret line="8" column="12" selection-start-line="8" selection-start-column="12" selection-end-line="8" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/DatabaseSingleton.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="279" column="17" selection-start-line="279" selection-start-column="17" selection-end-line="279" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="255">
+          <caret line="21" column="9" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -576,36 +618,133 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/IngredientInstanceServlet.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/RecipeServlet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/ingredients.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-459" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Ingredient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-493">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/IngredientInstance.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-68">
-          <caret line="32" column="12" lean-forward="true" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
+          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/RecipeInstance.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
+        <state relative-caret-position="663">
           <caret line="90" column="17" selection-start-line="90" selection-start-column="17" selection-end-line="90" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/RecipeInstanceServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/recipes.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2366" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/NutrientServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/NutrientInstanceServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="24" column="43" selection-start-line="24" selection-start-column="43" selection-end-line="24" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/NutrientInstance.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="36" column="12" selection-start-line="36" selection-start-column="12" selection-end-line="36" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Nutrient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="23" column="43" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/IngredientInstance.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1343">
+          <caret line="79" column="10" lean-forward="true" selection-start-line="79" selection-start-column="10" selection-end-line="79" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Ingredient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-714">
+          <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/Recipe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="53" column="11" selection-start-line="53" selection-start-column="11" selection-end-line="53" selection-end-column="11" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#552#569#0" expanded="true" />
+            <element signature="e#2845#2846#0" expanded="true" />
+            <element signature="e#2870#2871#0" expanded="true" />
+            <element signature="e#2902#2903#0" expanded="true" />
+            <element signature="e#2930#2931#0" expanded="true" />
+            <element signature="e#2971#2972#0" expanded="true" />
+            <element signature="e#3008#3009#0" expanded="true" />
+            <element signature="e#3043#3044#0" expanded="true" />
+            <element signature="e#3074#3075#0" expanded="true" />
+            <element signature="e#3112#3113#0" expanded="true" />
+            <element signature="e#3146#3147#0" expanded="true" />
+            <element signature="e#3178#3179#0" expanded="true" />
+            <element signature="e#3206#3207#0" expanded="true" />
+            <element signature="e#3238#3239#0" expanded="true" />
+            <element signature="e#3266#3267#0" expanded="true" />
+            <element signature="e#3301#3302#0" expanded="true" />
+            <element signature="e#3332#3333#0" expanded="true" />
+            <element signature="e#3362#3363#0" expanded="true" />
+            <element signature="e#3388#3389#0" expanded="true" />
+            <element signature="e#3422#3423#0" expanded="true" />
+            <element signature="e#3452#3453#0" expanded="true" />
+            <element signature="e#3500#3501#0" expanded="true" />
+            <element signature="e#3527#3528#0" expanded="true" />
+            <element signature="e#3574#3575#0" expanded="true" />
+            <element signature="e#3600#3601#0" expanded="true" />
+            <element signature="e#3639#3640#0" expanded="true" />
+            <element signature="e#3674#3675#0" expanded="true" />
+            <element signature="e#3720#3721#0" expanded="true" />
+            <element signature="e#3754#3755#0" expanded="true" />
+            <element signature="e#4382#4383#0" expanded="true" />
+            <element signature="e#4467#4468#0" expanded="true" />
+            <element signature="e#4915#4916#0" expanded="true" />
+            <element signature="e#5005#5006#0" expanded="true" />
+            <element signature="e#5183#5184#0" expanded="true" />
+            <element signature="e#5257#5258#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/jcg/mongodb/servlet/DatabaseSingleton.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="83" column="61" selection-start-line="83" selection-start-column="61" selection-end-line="83" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#7233#7241#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

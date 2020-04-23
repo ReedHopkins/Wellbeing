@@ -1,3 +1,4 @@
+<%@ page import="com.jcg.mongodb.servlet.Recipe" %>
 <html>
 <head>
 <link rel="stylesheet"
@@ -27,8 +28,26 @@
 		<br>
 		<h3>Nutrient Description</h3>
 		<p>${nutrient.description}</p>
+		<br>
 		<h3>Recommended Daily Intake</h3>
 		<p>${nutrient.dailyIntake}</p>
+		<br>
+		<h3>Medical Info</h3>
+		<p>${nutrient.medicalInfo}</p>
+		<br>
+		<% Recipe[] top3 = (Recipe[]) request.getAttribute("top3");
+		if(top3 != null){%>
+		<h3>Recipes with the Highest Content</h3>
+		<p><%
+			for (int i = 0; i<3; i++) {
+				if (top3[i] != null) {
+					out.print("<li><a href=\"RecipeInstanceServlet?recipeId=" + top3[i].getid() + "\">"
+							+ top3[i].gettitle() + "</a> </li>");
+				}
+			}
+		%>
+		</p>
+		<%}%>
 	</div>
 </body>
 </html>

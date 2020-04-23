@@ -15,15 +15,15 @@ public class Nutrient {
 	String pictureURL;
 	List<String> tags;
 	String tagString;
+	String medicalInfo;
 
 	public Nutrient(Document nutrientDoc) {
 		title = (String) nutrientDoc.get("title");
 		description = (String) nutrientDoc.get("description");
 		dailyIntake = ((String) nutrientDoc.get("reccommendedDailyIntake")).trim();
 		pictureURL = (String) nutrientDoc.get("pictureURL");
-
+		medicalInfo = (String) nutrientDoc.get("medicalInfo");
 		tags = (List<String>) nutrientDoc.get("tags");
-//        tagString = (String) nutrientDoc.get("tags");
 
 		dailyIntake = dailyIntake.replace("-", "&ndash;"); // normal keyboard dash to HTML dash
 		dailyIntake = dailyIntake.replace("–", "&ndash;"); // special character dash to HTML dash
@@ -51,6 +51,8 @@ public class Nutrient {
 	public String getpictureURL() {
 		return pictureURL;
 	}
+
+	public String getmedicalInfo() {return medicalInfo;}
 
 	public boolean isMatch(String s) {
 
