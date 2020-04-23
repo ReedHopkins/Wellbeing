@@ -10,20 +10,20 @@ import pymongo
 from pymongo import MongoClient
 
 
-def insert_nutrient(name, desc, rda, pic, tags):
+def insert_nutrient(name, desc, rda, pic, tags, medical):
     toInsert = {
         "title":name,
         "description":desc,
         "reccommendedDailyIntake":rda,
         "pictureURL":pic,
-        "tags":tags
+        "tags":tags,
+        "medicalInfo":medical
     }
     collection.insert_one(toInsert)
 
 
 BASE_URL = "https://www.healthline.com/nutrition/micronutrients#types-and-functions"
 MACRO_URL = "https://mybodymykitchen.com/calculate-your-macronutrients-protein-fats-carbs/"
-GOOGLE_URL = "https://www.google.com/search?tbm=isch&q="
 IMAGE_URL = "https://shutterstock.com/search/"
 SUB_MACRO_URL = "https://avitahealth.org/health-library/macronutrients-a-simple-guide-to-macros/"
 SUPPLEMENT_URL = "https://www.bodybuilding.com/content/stacked-your-guide-to-supplement-dosage-and-timing.html"
@@ -88,7 +88,7 @@ for n in names:
     print(imgURL)
     images.append(imgURL)
     
-
+medicalInfo = "This nutrient is essential to your health, and if you're not getting the recommended amount, you should take vitamins to do so."
 for i in range(27):
     print(names[i] + ', ' + itemInfo[2*i+1] + ', ' + amounts[i] + ', ' + images[i])
     tag = "mineral"
@@ -96,7 +96,7 @@ for i in range(27):
         tag = "vitamin"
     if("-" in amounts[i]):
         amounts[i].replace("-","&ndash;")
-    insert_nutrient(names[i], itemInfo[2*i + 1], amounts[i], images[i], ["micronutrient", tag])
+    insert_nutrient(names[i], itemInfo[2*i + 1].split("(")[0], amounts[i], images[i], ["micronutrient", tag], medicalInfo)
 
 
 #Start of accesssing Macronutrients 
@@ -127,12 +127,14 @@ for n in range(3):
 
     images.append(imgURL)
 
+medicalInfo = "This is a major part of your diet, and since supplements aren't the ideal solution, you should look to add more of it in your diet. "
+medicalInfo += "See the ingredients database to find foods with this nutrient."
 for i in range(3):
     #print(headings[i].text[:-1] + ", " + descriptions[i+2].text + ", " + finalDesc[(i+2)%3])
-    insert_nutrient(headings[i].text[:-1], descriptions[i+2].text, finalDesc[(i+2)%3], images[i], ["macronutrient"])
+    insert_nutrient(headings[i].text[:-1], descriptions[i+2].text, finalDesc[(i+2)%3], images[i], ["macronutrient"], medicalInfo)
 
 
-#Start of accessing sub-macronutrients
+#Start of accessing workout supplements
 
 url = urllib.request.urlopen(SUPPLEMENT_URL)
 soup = bs4.BeautifulSoup(url.read(), "html.parser")
@@ -178,5 +180,9 @@ for n in range(15):
 
 for i in range(15):
     #print(listItems[i].text + ": " + finalDesc[i + 1].split(".")[0] + " - " + itemAmounts[i+182].text.split(":")[1])
-    insert_nutrient(listItems[i].text, finalDesc[i+1].split(".")[0], (itemAmounts[i+182].text.split(":")[1].split("g")[0]) + "g",images[i], ["workout suppliment"])
+    curDesc = finalDesc[i+1].split(".")[0]
+    if(curDesc[0] == ","):
+        curDesc = curDesc[1:]
+    medicalInfo = "This is just a workout supplement, so while it will help your body, you don't have to worry about health issues involved with not getting enough!"
+    insert_nutrient(listItems[i].text, curDesc, (itemAmounts[i+182].text.split(":")[1].split("g")[0]) + "g",images[i], ["workout suppliment"], medicalInfo)
     

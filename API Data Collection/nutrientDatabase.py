@@ -1,154 +1,86 @@
-import requests
-from pprint import pprint
-from nutritionix import Nutritionix
+import urllib.request              # to construct url file-like objects
+import json                 # to interpret json
+import bs4                  # for BeautifulSoup to scrape easier
+import re                   # regex parsing html
+import csv                  # to write output at csv
+import os.path              # to check if file exists for writing output
+from datetime import date   # to put date on output
+import sys                  # to get command line inputs
+import pymongo
 from pymongo import MongoClient
 
-import json
-import string
 
-#Set up client and database
-#client = MongoClient('mongodb://localhost:27017/')
-client = MongoClient("mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority")
-db = client.wellbeing
+def insert_nutrient(name, desc, rda, pic, tags, medical):
+    toInsert = {
+        "title":name,
+        "description":desc,
+        "reccommendedDailyIntake":rda,
+        "pictureURL":pic,
+        "tags":tags,
+        "medicalInfo":medical
+    }
+    collection.insert_one(toInsert)
 
-allFoods = ("Acai berry", "Adzuki bean", "Almonds", "Amaranth", "Apple", "Apricot", "Artichoke", "Arugula", "Asian pear", "Asparagus", "Avocado", "Banana",
-"Basil", "Bean", "Beef", "Beets", "Blackberry", "Blueberry", "Bok choy", "Broccoli", "Brussels sprouts", "Cabbage", "Canola", "Cantaloupe", "Carrots",
-"Cashew", "Cauliflower", "Cayenne pepper", "Celeriac", "Celery", "Chamomile","Chard","Cheese","Cherry","Chestnuts","Chicken","Chili pepper","Chinese cabbage",
-"Chocolate","Cilantro","Cinnamon","Coconut","Codfish","Collards","Corn","Cranberry","Cumin","Dates","Dragon fruit","Dill","Eggplant","Eggs","Fig","Garlic","Ginger"
-,"Grapefruit","Grapes","Hazelnut","Hibiscus","Hickory nut","Honey","Honeydew melon","Horseradish","Kale","Kiwi","Kohlrabi","Kombucha","Lemon","Lemon grass","Lentils","Lettuce"
-,"Licorice root","Lilac","Lime","Lotus","Lychee","Mango","Maple","Mustard","Nectarine","Nettle","Noni","Nori seaweed","Nutmeg","Nutritional yeast","Oats","Octopus","Okra","Olive","Onion"
-,"Orange","Oregano","Oyster mushroom","Pak choy","Panax ginseng","Parsley","Peaches","Peanuts","Pear","Peas","Pecan","Pepino melon","Pepper","Peppermint","Persimmon","Pineapple","Pine nuts","Pistachio"
-,"Plantain","Plum","Pomegranate","Pomelo","Porcini mushrooms","Pork","Portobella mushroom","Potatoes","Pumpkin","Purslane","Quinoa","Radicchio","Radish","Rambutan","Raspberry","Rhubarb","Rice"
-,"Rose","Rutabaga","Safflower","Sage","Salmon","Serrano pepper","Serviceberry","Sesame","Shallots","Shiitake mushroom","Soy","Spaghetti squash","Spearmint","Strawberry","Sugar cane","Spinach","Sunflower"
-,"Sweet peppers","Tamarillo","Tamarind","Tapioca","Taro","Tatsoi","Tea","Thistle","Thyme","Tomato","Tomatillo","Trout lily","Tuna","Turkey","Turmeric","Turnip","Vanilla","Venison"
-,"Wakame","Walnut","Water chestnuts","Watercress","Watermelon","Watermint","Woodland sorrel","Yam","Yerba mate","Yo choy sum","Yuca","Yumberry","Zucchini")
-numbers1 = {1}
-runOnce = 0
-for food in allFoods:
-#get all relevant information for items coming up in the query of "pie"
-    url = ("https://api.nutritionix.com/v1_1/search/{}?fields=item_name,nf_total_fat,nf_sugars,nf_sodium,nf_cholesterol,nf_protein&appId=973d994f&appKey=e5b17ecd535365487edd736593279f89".format(food))
-    #url = ("https://api.nutritionix.com/v1_1/search/cookie?fields=item_name,nf_total_fat,nf_sugars,nf_sodium,nf_cholesterol,nf_protein&appId=973d994f&appKey=e5b17ecd535365487edd736593279f89")
-    headerInfo = {"x-app-id": "973d994f", "x-app-key": "e5b17ecd535365487edd736593279f89"}
-    parameters = {"fields":"item_name"}
-    #?adkfjasjdkh
-    #jsonData holds the response as a JSON array
-    #asString holds the JSON as a string
-    #items is the actual information with all the items that the query returned
-    response = requests.get(url = url, headers = headerInfo)
-    jsonData = response.json()
-    asString = response.text
-    items = jsonData["hits"]
-    collection = db.nutrientsV2
+client = pymongo.MongoClient("mongodb://projectUser:team7@cluster0-shard-00-00-rwcw3.mongodb.net:27017,cluster0-shard-00-01-rwcw3.mongodb.net:27017,cluster0-shard-00-02-rwcw3.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority")
+db = client['wellbeing']
+collection = db['nutrients']
 
-    if runOnce == 0:
-        collection.insert_one({"nutrient":"fat"})
-        collection.insert_one({"nutrient":"sugar"})
-        collection.insert_one({"nutrient":"sodium"})
-        collection.insert_one({"nutrient":"protein"})
-        collection.insert_one({"nutreint":"cholesterol"})
-        runOnce = 1
+URL2 = "https://www.innerbody.com/nutrition/macronutrients"
+IMAGE_URL = "https://shutterstock.com/search/"
 
-    onlyDoOnce = {1}
-    print("hello")
-    for i in onlyDoOnce:
-        item = items[0]
-        #print(item["fields"])
-        #Section that sets up fats
-        if (item["fields"]["nf_total_fat"]) == None:
-                    
-            collection.update_one( 
-                {"nutrient": "fat"}, 
-                {
-                    '$set': {item["fields"]["item_name"] : 0
-                    }    
-            })
-        
-        else:
-            collection.update_one( 
-                {"nutrient": "fat"}, 
-                {
-                    '$set': {item["fields"]["item_name"] : item["fields"]["nf_total_fat"]}
-                }    
-            )
+url = urllib.request.urlopen(URL2)
+soup = bs4.BeautifulSoup(url.read(), "html.parser")
+
+names = soup.find_all("strong", {'class' : ''})
 
 
-        #Section that sets up sugars
-        if (item["fields"]["nf_sugars"]) == None:
-                    
-            collection.update_one( 
-                {"nutrient": "sugar"}, 
-                {
-                    '$set': {item["fields"]["item_name"] : 0
-                    }    
-            })
-        
-        else:
-            collection.update_one( 
-                {"nutrient": "sugar"}, 
-                {
-                    '$set': {item["fields"]["item_name"] : item["fields"]["nf_sugars"]}
-                }    
-            ) 
 
+descriptions = []
+for i in range(2):
+    d = names[i+2].next_sibling
+    if (d[0] == ","):
+        d = d[1:]
+    descriptions.append(d)
 
-        #Section that sets up Sodium
-        if (item["fields"]["nf_sodium"]) == None:
-                    
-            collection.update_one( 
-                {"nutrient": "sodium"}, 
-                {
-                    '$set': {item["fields"]["item_name"] : 0
-                    }    
-            })
-        
-        else:
-            collection.update_one( 
-                {"nutrient": "sodium"}, 
-                {
-                    '$set': {item["fields"]["item_name"] : item["fields"]["nf_sodium"]}
-                }    
-            ) 
+    url = urllib.request.urlopen(IMAGE_URL+(names[i+2].text))
+    soup2 = bs4.BeautifulSoup(url.read(),"html.parser")
+    searchResults = soup2.find("script",{'type':'application/ld+json'})
+    dictResults = json.loads(((searchResults.text)))
+    imgURL = dictResults[0]["contentUrl"]
+    insert_nutrient(names[i+2].text, d, "See carbohydrates", imgURL, ["macronutrient"], "See carbohydrates")
 
+transFat = []
+transFat.append("Trans Fat")
+transFat.append("These partially hydrogenated trans fats can increase total blood cholesterol, LDL cholesterol and triglyceride levels, but lower HDL cholesterol")
+transFat.append("Try to avoid")
+transFat.append("If trans fat is a big part of your diet, you should do your best to cut down on your intake.")
+url = urllib.request.urlopen(IMAGE_URL+("Trans Fat"))
+soup2 = bs4.BeautifulSoup(url.read(),"html.parser")
+searchResults = soup2.find("script",{'type':'application/ld+json'})
+dictResults = json.loads(((searchResults.text)))
+imgURL = dictResults[0]["contentUrl"]
+insert_nutrient(transFat[0], transFat[1], transFat[2], imgURL, ["macronutrient"], transFat[3])
 
-        #Section that sets up protein
-        if (item["fields"]["nf_protein"]) == None:
-                    
-            collection.update_one( 
-                {"nutrient": "protein"}, 
-                {
-                    '$set$': {item["fields"]["item_name"] : 0
-                    }    
-            })
-        
-        else:
-            collection.update_one( 
-                {"nutrient": "protein"}, 
-                {
-                    '$set': {item["fields"]["item_name"] : item["fields"]["nf_protein"]}
-                }    
-            )        
+satFat = []
+satFat.append("Saturated Fat")
+satFat.append("raise high-density lipoprotein cholesterol and low-density lipoprotein cholesterol levels, which may increase your risk of cardiovascular disease")
+satFat.append("Less than 10 percent of calories")
+satFat.append("If trans fat is a big part of your diet, you should do your best to cut down on your intake.")
+url = urllib.request.urlopen(IMAGE_URL+("Saturated Fat"))
+soup2 = bs4.BeautifulSoup(url.read(),"html.parser")
+searchResults = soup2.find("script",{'type':'application/ld+json'})
+dictResults = json.loads(((searchResults.text)))
+imgURL = dictResults[0]["contentUrl"]
+insert_nutrient(satFat[0], satFat[1], satFat[2], imgURL, ["macronutrient"], satFat[3])
 
-        #Section that sets up cholesterol
-        if (item["fields"]["nf_cholesterol"]) == None:
-                    
-            collection.update_one( 
-                {"nutrient": "cholesterol"}, 
-                {
-                    '$set': {item["fields"]["item_name"] : 0
-                    }    
-            })
-        
-        else:
-            collection.update_one( 
-                {"nutrient": "cholesterol"}, 
-                {
-                    '$set': {item["fields"]["item_name"] : item["fields"]["nf_cholesterol"]}
-                }    
-            ) 
-        #collection.insert_one(item["fields"])
-
-    #  retrieve one instance in collection 
-
-#for i in db.nutrients.find({},{"item_name":"apple"}):
-    #print(i)
-#print(db.nutrients.find_one())
+unsatFat = []
+satFat.append("Unsaturated Fatty Acids")
+satFat.append("considered beneficial fats because they can improve blood cholesterol levels, ease inflammation, stabilize heart rhythms, and play a number of other beneficial roles")
+satFat.append("Should be most of your fat intake (see Fat)")
+satFat.append("Vitamins won't help here, but make sure your diet contains unsaturated fats rather than saturated fats.")
+url = urllib.request.urlopen(IMAGE_URL+("Unsaturated Fat"))
+soup2 = bs4.BeautifulSoup(url.read(),"html.parser")
+searchResults = soup2.find("script",{'type':'application/ld+json'})
+dictResults = json.loads(((searchResults.text)))
+imgURL = dictResults[0]["contentUrl"]
+insert_nutrient(satFat[0], satFat[1], satFat[2], imgURL, ["macronutrient"], satFat[3])
