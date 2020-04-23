@@ -53,6 +53,33 @@
 
 		%>
 		<br>
+        <h3>Badges</h3>
+		<%
+			for (String badge : ingredient.getbadges()) {
+				out.print("<li>" + badge + "</li>");
+			}
+
+		%>
+		<br>
+        <h3>Aisle</h3>
+		<p>${ingredient.aisle}</p>
+		<br>
+        <h3>Recipes with this ingredient: </h3>
+		<%
+			Ingredient ingredient = (Ingredient) request.getAttribute("ingredient");
+			ArrayList info = DatabaseSingleton.searchRecipesForIngredient(ingredient.item);
+            for(String r: info){
+                if (id != null) {
+				    out.print("<li><a href=\"RecipeInstanceServlet?recipeId=" + r[0] + "\">"
+					+ r[1] + "</a> </li>");
+                }else{
+				    out.print("<li>" + r[1] + "</li>");
+                }
+            }
+            
+			}
+		%>
+		<br>
 	</div>
 </body>
 </html>
