@@ -9,6 +9,7 @@ import sys                  # to get command line inputs
 import pymongo
 from pymongo import MongoClient
 import requests
+import re
 
 def get_soup(base, link):
     url = urllib.request.urlopen(base + link)
@@ -88,15 +89,16 @@ def insert_to_db(db,item, price,unit):
     badges = []
     aisle = ""
     if response.json() is not None:
-        if response.json()['products'][0] != None:
-            if response.json()['products'][0]['id'] != None:
-                id_to_use = response.json()['products'][0]['id']
-                response2 = requests.request("GET", url_report+str(id_to_use), headers=headers)
-                if response2.json() != None:
-                    if response2.json()['badges'] != None:
-                        badges = response2.json()['badges']
-                    if response2.json()['aisle'] != None:
-                        aisle = response2.json()['aisle']
+        if len(response.json()['products']) != 0:
+            if response.json()['products'][0] != None:
+                if response.json()['products'][0]['id'] != None:
+                    id_to_use = response.json()['products'][0]['id']
+                    response2 = requests.request("GET", url_report+str(id_to_use), headers=headers)
+                    if response2.json() != None:
+                        if response2.json()['badges'] != None:
+                            badges = response2.json()['badges']
+                        if response2.json()['aisle'] != None:
+                            aisle = response2.json()['aisle']
 
     IMAGE_URL ='https://shutterstock.com/search/'
     url1 = urllib.request.urlopen(IMAGE_URL+item.replace(" ", "+"))
@@ -118,13 +120,16 @@ def insert_to_db(db,item, price,unit):
     extras = ["none","none"]
     if data['foods'] != None:
         if data['foods'][0] != None:
-            for i in data['foods'][0]['foodNutrients']:
-                print(i['value'])
-                print(i['nutrientName'])
-                print(i['unitName'])
-                nutrientsValue.append(i['value'])
-                nutrientsName.append(i['nutrientName'])
-                nutrientsUnitName.append(i['unitName'])
+            if data['foods'][0]['foodNutrients'] != None:
+                for i in data['foods'][0]['foodNutrients']:
+                    if(sum(c.isalpha() for c in i['nutrientName']) >= sum(c.isdigit() for c in i['nutrientName'])):
+                        if(str(i['value']).find("0.0") == -1):
+                            print(i['value'])
+                            print(i['nutrientName'])
+                            print(i['unitName'])
+                            nutrientsValue.append(i['value'])
+                            nutrientsName.append(i['nutrientName'])
+                            nutrientsUnitName.append(i['unitName'])
     nutrientsFinal = []
     image = ""
     tags = []
@@ -143,7 +148,7 @@ def insert_to_db(db,item, price,unit):
         nutrientsFinal.append(value+": "+str(nutrientsValue[i])+" "+nutrientsUnitName[i])
         i+=1
     print("TAGSSSS",tags)
-    if db.find({"item":item}).count() == 0:
+    if ((db.find({"item":item}).count() == 0) and (db.find({"item":item+"s"}).count() == 0) and (db.find({"item":item+"es"}).count() == 0) and (db.find({"item":item.replace("s","")}).count() == 0) and (db.find({"item":item.replace("es","")}).count() == 0)):
         emp_rec1 = {
                 "item":item,
                 "price":price,
