@@ -51,9 +51,11 @@
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</button>
 			<div class="dropdown-menu">
 				<a class="dropdown-item"
-					href="ModelServlet?model=Nutrient&filter=macro">Macronutrients</a>
+					href="ModelServlet?model=Nutrient&search_term=macro">Macronutrients</a>
 				<a class="dropdown-item"
-					href="ModelServlet?model=Nutrient&filter=micro">Micronutrients</a>
+					href="ModelServlet?model=Nutrient&search_term=micro">Micronutrients</a>
+				<a class="dropdown-item"
+					href="ModelServlet?model=Nutrient&search_term=mineral">Minerals</a>
 			</div>
 		</div>
 		

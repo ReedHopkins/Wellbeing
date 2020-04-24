@@ -49,9 +49,10 @@
 			<button class="btn btn-success dropdown-toggle" type="button"
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</button>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="#">Filter 1</a> <a
-					class="dropdown-item" href="#">Filter 2</a> <a
-					class="dropdown-item" href="#">Filter 3</a>
+				<a class="dropdown-item" href="ModelServlet?model=Recipe&search_term=healthy">Healthy</a> <a
+					class="dropdown-item" href="ModelServlet?model=Recipe&search_term=unhealthy">Unhealthy</a> <a
+					class="dropdown-item" href="ModelServlet?model=Recipe&search_term=highprotein">High Protein</a> <a
+					class="dropdown-item" href="ModelServlet?model=Recipe&search_term=lowcarb">Low Carbs</a>
 			</div>
 		</div>
 
@@ -85,6 +86,10 @@
 				<a class="dropdown-item"
 					href="ModelServlet?model=Recipe&sort=ingredientshightolow">Ingredients:
 					High to Low</a>
+				<a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=healthlowtohigh">Unhealthiest to Healthiest</a> 
+				<a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=healthhightolow">Healthiest to Unhealthiest</a>
 			</div>
 		</div>
 		<br>

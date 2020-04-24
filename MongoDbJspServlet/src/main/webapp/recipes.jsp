@@ -49,10 +49,14 @@
 			<button class="btn btn-success dropdown-toggle" type="button"
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</button>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="ModelServlet?model=Recipe&search_term=healthy">Healthy</a> <a
-					class="dropdown-item" href="ModelServlet?model=Recipe&search_term=unhealthy">Unhealthy</a> <a
-					class="dropdown-item" href="ModelServlet?model=Recipe&search_term=highprotein">High Protein</a> <a
-					class="dropdown-item" href="ModelServlet?model=Recipe&search_term=lowcarb">Low Carbs</a>
+				<a class="dropdown-item"
+					href="ModelServlet?model=Recipe&search_term=healthy">Healthy</a> <a
+					class="dropdown-item"
+					href="ModelServlet?model=Recipe&search_term=unhealthy">Unhealthy</a>
+				<a class="dropdown-item"
+					href="ModelServlet?model=Recipe&search_term=highprotein">High
+					Protein</a> <a class="dropdown-item"
+					href="ModelServlet?model=Recipe&search_term=lowcarb">Low Carbs</a>
 			</div>
 		</div>
 
@@ -62,38 +66,29 @@
 			<button class="btn btn-success dropdown-toggle" type="button"
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
 			<div class="dropdown-menu">
-				<a class="dropdown-item"
-					href="ModelServlet?model=Recipe&sort=atoz">Alphabetical:
-					A-Z</a> 
-				<a class="dropdown-item"
-					href="ModelServlet?model=Recipe&sort=ztoa">Alphabetical:
-					Z-A</a> 
-				<a class="dropdown-item"
+				<a class="dropdown-item" href="ModelServlet?model=Recipe&sort=atoz">Alphabetical:
+					A-Z</a> <a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=ztoa">Alphabetical: Z-A</a> <a
+					class="dropdown-item"
 					href="ModelServlet?model=Recipe&sort=timelowtohigh">Prep Time:
-					Low to High</a> 
-				<a class="dropdown-item"
+					Low to High</a> <a class="dropdown-item"
 					href="ModelServlet?model=Recipe&sort=timehightolow">Prep Time:
-					High to Low</a>
-				<a class="dropdown-item"
+					High to Low</a> <a class="dropdown-item"
 					href="ModelServlet?model=Recipe&sort=servingslowtohigh">Servings:
-					Low to High</a> 
-				<a class="dropdown-item"
+					Low to High</a> <a class="dropdown-item"
 					href="ModelServlet?model=Recipe&sort=servingshightolow">Servings:
-					High to Low</a>
-				<a class="dropdown-item"
+					High to Low</a> <a class="dropdown-item"
 					href="ModelServlet?model=Recipe&sort=ingredientslowtohigh">Ingredients:
-					Low to High</a> 
-				<a class="dropdown-item"
+					Low to High</a> <a class="dropdown-item"
 					href="ModelServlet?model=Recipe&sort=ingredientshightolow">Ingredients:
-					High to Low</a>
-				<a class="dropdown-item"
-					href="ModelServlet?model=Recipe&sort=healthlowtohigh">Unhealthiest to Healthiest</a> 
-				<a class="dropdown-item"
-					href="ModelServlet?model=Recipe&sort=healthhightolow">Healthiest to Unhealthiest</a>
+					High to Low</a> <a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=healthlowtohigh">Unhealthiest
+					to Healthiest</a> <a class="dropdown-item"
+					href="ModelServlet?model=Recipe&sort=healthhightolow">Healthiest
+					to Unhealthiest</a>
 			</div>
 		</div>
-		<br>
-		<br>
+		<br> <br>
 
 		<p class="search_param" style="display: ${show_param}">Showing
 			results for: "${search_term}"</p>
@@ -103,35 +98,36 @@
 		<div class="grid-container">
 			<c:forEach items="${recipe}" var="recipe">
 
-				<div class="ft-recipe">
-					<div class="ft-recipe__thumb">
-						<img src="${recipe.image}" alt="${recipe.title}" />
+				<a
+					href="NutrientInstanceServlet?nutrientTitle=<c:out value="${nutrient.title}"/>">
+					<div class="ft-recipe">
+						<div class="ft-recipe__thumb">
+							<img src="${recipe.image}" alt="${recipe.title}" />
+						</div>
+						<div class="ft-recipe__content">
+							<header class="content__header">
+								<div class="row-wrapper">
+									<h4 class="recipe-title">${recipe.title}</h4>
+									<div class="user-rating"></div>
+								</div>
+								<ul class="recipe-details">
+									<li class="recipe-details-item time"><i
+										class="ion ion-ios-clock-outline"></i><span class="value">${recipe.readyInMinutes}</span><span
+										class="title">Minutes</span></li>
+									<li class="recipe-details-item ingredients"><i
+										class="ion ion-ios-book-outline"></i><span class="value">${recipe.ingredients.size()}</span><span
+										class="title">Ingredients</span></li>
+									<li class="recipe-details-item servings"><i
+										class="ion ion-ios-person-outline"></i><span class="value">${recipe.servings}</span><span
+										class="title">Servings</span></li>
+								</ul>
+							</header>
+							<footer class="content__footer">
+								<p>View Recipe</p>
+							</footer>
+						</div>
 					</div>
-					<div class="ft-recipe__content">
-						<header class="content__header">
-							<div class="row-wrapper">
-								<h4 class="recipe-title">${recipe.title}</h4>
-								<div class="user-rating"></div>
-							</div>
-							<ul class="recipe-details">
-								<li class="recipe-details-item time"><i
-									class="ion ion-ios-clock-outline"></i><span class="value">${recipe.readyInMinutes}</span><span
-									class="title">Minutes</span></li>
-								<li class="recipe-details-item ingredients"><i
-									class="ion ion-ios-book-outline"></i><span class="value">${recipe.ingredients.size()}</span><span
-									class="title">Ingredients</span></li>
-								<li class="recipe-details-item servings"><i
-									class="ion ion-ios-person-outline"></i><span class="value">${recipe.servings}</span><span
-									class="title">Servings</span></li>
-							</ul>
-						</header>
-						<footer class="content__footer">
-							<a
-								href="RecipeInstanceServlet?recipeId=<c:out value="${recipe.id}"/>">View
-								Recipe</a>
-						</footer>
-					</div>
-				</div>
+				</a>
 			</c:forEach>
 		</div>
 	</div>

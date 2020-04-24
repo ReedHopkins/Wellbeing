@@ -200,7 +200,7 @@ p {
 	<script src="js/main.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(function() {
-			$("#opensource-projects").loadRepositories();
+			commits = $("#opensource-projects").loadRepositories();
 			$("#adrian-stats").loadContributorStats("adrianmb0");
 			$("#shawheen-stats").loadContributorStats("shawheenattar");
 			$("#cam-stats").loadContributorStats("cameronsanders");

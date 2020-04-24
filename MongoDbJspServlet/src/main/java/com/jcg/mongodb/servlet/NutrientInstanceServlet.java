@@ -20,7 +20,9 @@ public class NutrientInstanceServlet extends HttpServlet {
                 nutrient = d;
             }
         }
+		Recipe[] top3 = DatabaseSingleton.topThreeRecipes(instanceTitle);
 		System.out.println(instanceTitle);
+		request.setAttribute("top3", top3);
         request.setAttribute("nutrient", nutrient);
         request.getRequestDispatcher("NutrientInstance.jsp").forward(request, response);
     }

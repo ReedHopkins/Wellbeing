@@ -1,6 +1,8 @@
 <%@ page import="com.jcg.mongodb.servlet.Ingredient" %>
 <%@ page import="org.bson.Document" %>
 <%@ page import="com.jcg.mongodb.servlet.DatabaseSingleton" %>
+<%@ page import="com.jcg.mongodb.servlet.Recipe" %>
+<%@ page import="java.util.ArrayList" %>
 <html>
 <head>
 <link rel="stylesheet"
@@ -29,7 +31,7 @@
 		</div>
 		<br>
 		<h3>Price</h3>
-		<p>${ingredient.price} per ${ingredient.unit}</p>
+		<p> $${ingredient.price} per ${ingredient.unit}</p>
 		<br>
 		<h3>Ingredient Nutrients</h3>
 		<%
@@ -51,6 +53,28 @@
 				out.print("<li>" + tag + "</li>");
 			}
 
+		%>
+		<br>
+        <h3>Badges</h3>
+		<%
+			for (String badge : ingredient.getbadges()) {
+				out.print("<li>" + badge + "</li>");
+			}
+
+		%>
+		<br>
+        <h3>Aisle</h3>
+		<p>${ingredient.aisle}</p>
+		<br>
+        <h3>Recipes with this ingredient: </h3>
+		<%
+			ArrayList<Recipe> info = DatabaseSingleton.searchRecipesForIngredient(ingredient.getitem());
+            for(Recipe r: info){
+                if (r != null) {
+				    out.print("<li><a href=\"RecipeInstanceServlet?recipeId=" + r.getid() + "\">"
+					+ r.gettitle() + "</a> </li>");
+                }
+            }
 		%>
 		<br>
 	</div>

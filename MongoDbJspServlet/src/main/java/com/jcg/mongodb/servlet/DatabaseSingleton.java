@@ -24,6 +24,8 @@ public class DatabaseSingleton {
     private static HashMap<Integer, Recipe> recipeMap;
     private static HashMap<Integer, Ingredient> ingredientMap;
     private static HashMap<Integer, Nutrient> nutrientMap;
+    private static HashMap<Integer, Ingredient> secingredientMap;
+    private static HashMap<Integer, Nutrient> secnutrientMap;
 
     private DatabaseSingleton() throws UnknownHostException {
         String db_name = "wellbeing";
@@ -43,7 +45,6 @@ public class DatabaseSingleton {
             cursorIngr.close();
         }
         Collections.sort(ingredientList, new SortIngredientsByName());
-        System.out.println(ingredientList.size());
 
         //Creating recipe list
         MongoCollection<Document> colRec = db.getCollection("recipes");
@@ -74,16 +75,56 @@ public class DatabaseSingleton {
         mongoClient.close();
         recipeMap = new HashMap<Integer, Recipe>();
         for(Recipe r: recipeList){
-            recipeMap.put( r.title.hashCode(), r);
+            recipeMap.put( r.title.toLowerCase().hashCode(), r);
         }
         ingredientMap = new HashMap<Integer, Ingredient>();
-        for(Ingredient i: ingredientList){
-            ingredientMap.put( i.item.hashCode(), i);
+        secingredientMap = new HashMap<Integer, Ingredient>();
+        for(Ingredient ing: ingredientList){
+            ingredientMap.put( ing.item.toLowerCase().hashCode(), ing);
+            String[] tokens = tokenize(ing.item.toLowerCase());
+            int tokenSize = tokens.length;
+            String findString;
+            for(int i = tokenSize; i > 0; i--){
+                for(int j = 0; j <= tokenSize - i; j++){
+                    findString = tokens[j];
+                    for(int k = j+1; k < i+j; k++){
+                        findString += " " + tokens[k];
+                    }
+                    secingredientMap.put(findString.hashCode(), ing);
+                }
+            }
         }
         nutrientMap = new HashMap<Integer, Nutrient>();
+        secnutrientMap = new HashMap<Integer, Nutrient>();
         for(Nutrient n: nutrientList){
-            nutrientMap.put( n.title.hashCode(), n);
+            nutrientMap.put( n.title.toLowerCase().hashCode(), n);
+            String temp = n.title;
+            temp = temp.toLowerCase();
+            for(int i = 0; i < temp.length(); i++){
+                if(temp.substring(i,i+1).equals("(") || temp.substring(i,i+1).equals(")")){
+                    temp = temp.substring(0,i) + temp.substring(i+1);
+                    i--;
+                }
+                if(temp.substring(i,i+1).equals("-")){
+                    temp = temp.substring(0,i) + " " + temp.substring(i+1);
+                }
+            }
+            String[] tokens = tokenize(temp);
+            int tokenSize = tokens.length;
+            String findString;
+            for(int i = tokenSize; i > 0; i--){
+                for(int j = 0; j <= tokenSize - i; j++){
+                    findString = tokens[j];
+                    for(int k = j+1; k < i+j; k++){
+                        findString += " " + tokens[k];
+                    }
+                    secnutrientMap.put(findString.hashCode(), n);
+                }
+            }
         }
+        secnutrientMap.remove("beta".hashCode());
+        secnutrientMap.remove("acid".hashCode());
+        secnutrientMap.remove("acids".hashCode());
     }
 
     public static DatabaseSingleton getInstance() throws UnknownHostException{
@@ -143,6 +184,19 @@ public class DatabaseSingleton {
     		}
     		
     	}
+        return output;
+    }
+    
+    public static ArrayList<Recipe> searchRecipesForIngredient(String ingredient){
+
+        ArrayList<Recipe> output = new ArrayList<Recipe>();
+        for(Recipe r: recipeList){
+            for(Document elem : r.ingredients){
+                if(elem.getString("name") == ingredient){
+                    output.add(r);
+                } 
+            }
+        }
         return output;
     }
     
@@ -217,14 +271,8 @@ public class DatabaseSingleton {
     }
 
     public static String findIngredient(String s){
-        StringTokenizer strtok = new StringTokenizer(s);
-        int tokenSize = strtok.countTokens();
-        String[] tokens = new String[tokenSize];
-        int iter = 0;
-        while(strtok.hasMoreTokens()){
-            tokens[iter] = strtok.nextToken();
-            iter++;
-        }
+        String[] tokens = tokenize(s);
+        int tokenSize = tokens.length;
         String findString;
         for(int i = tokenSize; i > 0; i--){
             for(int j = 0; j <= tokenSize - i; j++){
@@ -237,18 +285,23 @@ public class DatabaseSingleton {
                 }
             }
         }
+        for(int i = tokenSize; i > 0; i--){
+            for(int j = 0; j <= tokenSize - i; j++){
+                findString = tokens[j];
+                for(int k = j+1; k < i+j; k++){
+                    findString += " " + tokens[k];
+                }
+                if(secingredientMap.containsKey(findString.hashCode())){
+                    return secingredientMap.get(findString.hashCode()).item;
+                }
+            }
+        }
         return null;
     }
 
     public static String findRecipe(String s){
-        StringTokenizer strtok = new StringTokenizer(s);
-        int tokenSize = strtok.countTokens();
-        String[] tokens = new String[tokenSize];
-        int iter = 0;
-        while(strtok.hasMoreTokens()){
-            tokens[iter] = strtok.nextToken();
-            iter++;
-        }
+        String[] tokens = tokenize(s);
+        int tokenSize = tokens.length;
         String findString;
         for(int i = tokenSize; i > 0; i--){
             for(int j = 0; j <= tokenSize - i; j++){
@@ -261,19 +314,18 @@ public class DatabaseSingleton {
                 }
             }
         }
-
         return null;
     }
 
     public static String findNutrient(String s){
-        StringTokenizer strtok = new StringTokenizer(s);
-        int tokenSize = strtok.countTokens();
-        String[] tokens = new String[tokenSize];
-        int iter = 0;
-        while(strtok.hasMoreTokens()){
-            tokens[iter] = strtok.nextToken();
-            iter++;
+        for(int i = 0; i < s.length(); i++){
+            if(s.substring(i,i+1).equals(",") || s.substring(i,i+1).equals(":") || s.substring(i,i+1).equals("-") || s.substring(i,i+1).equals("(") || s.substring(i,i+1).equals(")")){
+                s = s.substring(0,i) + s.substring(i+1);
+                i--;
+            }
         }
+        String[] tokens = tokenize(s);
+        int tokenSize = tokens.length;
         String findString;
         for(int i = tokenSize; i > 0; i--){
             for(int j = 0; j <= tokenSize - i; j++){
@@ -286,7 +338,71 @@ public class DatabaseSingleton {
                 }
             }
         }
+        for(int i = tokenSize; i > 0; i--){
+            for(int j = 0; j <= tokenSize - i; j++){
+                findString = tokens[j];
+                for(int k = j+1; k < i+j; k++){
+                    findString += " " + tokens[k];
+                }
+                if(secnutrientMap.containsKey(findString.hashCode())){
+                    return secnutrientMap.get(findString.hashCode()).title;
+                }
+            }
+        }
+
         return null;
     }
 
+    public static Recipe[] topThreeRecipes(String nutrient){
+        String[] tokens = tokenize(nutrient.toLowerCase());
+        int tokenSize = tokens.length;
+        double[] top3 = {0,0,0};
+        Recipe[] top3Objects = new Recipe[3];
+        String findString;
+        for(Recipe r: getRecipes()){
+            for(int i = tokenSize; i > 0; i--){
+                for(int j = 0; j <= tokenSize - i; j++){
+                    findString = tokens[j];
+                    for(int k = j+1; k < i+j; k++){
+                        findString += " " + tokens[k];
+                    }
+                    if(r.nutrientMap.containsKey(findString.hashCode())){
+                        Double recipeValue = r.nutrientMap.get(findString.hashCode());
+                        if(recipeValue>top3[0]){
+                            top3[2] = top3[1];
+                            top3[1] = top3[0];
+                            top3Objects[2] = top3Objects[1];
+                            top3Objects[1] = top3Objects[0];
+                            top3[0] = recipeValue;
+                            top3Objects[0] = r;
+                        } else if(recipeValue>top3[1]){
+                            top3[2] = top3[1];
+                            top3Objects[2] = top3Objects[1];
+                            top3[1] = recipeValue;
+                            top3Objects[1] = r;
+                        } else if(recipeValue>top3[2]){
+                            top3[2] = recipeValue;
+                            top3Objects[2] = r;
+                        }
+                    }
+                }
+            }
+        }
+        if(top3Objects[0] == null && top3Objects[1] == null && top3Objects[2] == null){
+            return null;
+        }
+        return top3Objects;
+    }
+
+    public static String[] tokenize(String s){
+        StringTokenizer strtok = new StringTokenizer(s.toLowerCase());
+        int tokenSize = strtok.countTokens();
+        String[] tokens = new String[tokenSize];
+        int iter = 0;
+        while(strtok.hasMoreTokens()){
+            tokens[iter] = strtok.nextToken();
+            iter++;
+        }
+        return tokens;
+    }
 }

@@ -15,18 +15,19 @@ public class Nutrient {
 	String pictureURL;
 	List<String> tags;
 	String tagString;
+	String medicalInfo;
 
 	public Nutrient(Document nutrientDoc) {
 		title = (String) nutrientDoc.get("title");
-		description = (String) nutrientDoc.get("description");
+		description = ((String) nutrientDoc.get("description")).trim();
 		dailyIntake = ((String) nutrientDoc.get("reccommendedDailyIntake")).trim();
 		pictureURL = (String) nutrientDoc.get("pictureURL");
-
+		medicalInfo = (String) nutrientDoc.get("medicalInfo");
 		tags = (List<String>) nutrientDoc.get("tags");
-//        tagString = (String) nutrientDoc.get("tags");
 
 		dailyIntake = dailyIntake.replace("-", "&ndash;"); // normal keyboard dash to HTML dash
 		dailyIntake = dailyIntake.replace("–", "&ndash;"); // special character dash to HTML dash
+		description = description.substring(0, 1).toUpperCase() + description.substring(1);
 	}
 
 	public Nutrient() {
@@ -52,6 +53,8 @@ public class Nutrient {
 		return pictureURL;
 	}
 
+	public String getmedicalInfo() {return medicalInfo;}
+
 	public boolean isMatch(String s) {
 
 		if (title.toLowerCase().contains(s) || description.toLowerCase().contains(s)
@@ -59,7 +62,10 @@ public class Nutrient {
 			return true;
 		} else {
 			for (String tag : tags) {
-				if (tag.toLowerCase().equals(s)) {
+				System.out.println("testing nutrient tags");
+				System.out.println(tag.toLowerCase());
+				System.out.println(s);
+				if (tag.toLowerCase().contains(s)) {
 					return true;
 				}
 			}

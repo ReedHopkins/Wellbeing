@@ -62,28 +62,14 @@ jQuery.fn.loadRepositories = function () {
                         }
                         
                 	})
-                	.done(function() {
-                		
-	                	$.getJSON(url + "/issues?per_page=100", {}, function (data) {
-	                        console.log(data);
-	                        $(data).each(function () {
-	                        	issuesDict[this.user.login] = issuesDict[this.user.login] + 1;
-	                        })
-	                    })
-	                    
-	                    .done(function() {
-	                    	
-	                    	console.log("totalCommits: " + totalCommits);
-	                        console.log(commitDict);
-	                        console.log("issue: ");
-	                        console.log(issuesDict);
-	                        
-	                    });  
-                	}); 
+                	
                 });
             }
         });
+        
     });
+    
+    return commitDict;
 
     function sortByNumberOfWatchers(repos) {
         repos.sort(function (a, b) {
@@ -92,62 +78,48 @@ jQuery.fn.loadRepositories = function () {
     }
 };
 
-
-
 jQuery.fn.loadContributorStats = function (username) {
-    var target = this;
-    
-    var list = $('<div/>');
-    target.empty().append(list);
-    list.append('<p><strong>Number of commits: </strong>' + commitDict[username] + '</p>');
-    list.append('<p><strong>Number of issues: </strong>' + issuesDict[username] + '</p>');
+	var target = this;
+	
+	$.getJSON('https://api.github.com/orgs/WellBeingEating/repos', {}, function (data) {
+	
+		var repos = data;
+		
+		var list = $('<div/>');
+		target.empty().append(list);
+		$(repos).each(function () {
+		
+			if (this.name == "Wellbeing") {
+				var url = this.url;
+				
+				var commits = 0;
+				$.getJSON(url + "/commits?per_page=100&page=1", {}, function (data) {
+					$(data).each(function () {
+						if (this.author.login == username) commits = commits + 1;
+					})
+				})
+				.done(function() {
+					$.getJSON(url + "/commits?per_page=100&page=2", {}, function (data) {
+						$(data).each(function () {
+							if (this.author.login == username) commits = commits + 1;
+						})
+					})
+					.done(function() {
+						list.append('<p><strong>Number of commits: </strong>' + commits + '</p>');
+					});
+					
+				});
+				var issues = 0;
+				$.getJSON(url + "/issues?per_page=100", {}, function (data) {
+					$(data).each(function () {
+						if (this.user.login == username) issues = issues + 1;
+					})
+					list.append('<p><strong>Number of issues: </strong>' + issues + '</p>');
+				}); 
+			}
+		});
+	});
 };
-
-// jQuery.fn.loadContributorStats = function (username) {
-// var target = this;
-//
-// $.getJSON('https://api.github.com/orgs/WellBeingEating/repos', {}, function
-// (data) {
-//
-// var repos = data;
-//
-// var list = $('<div/>');
-// target.empty().append(list);
-// $(repos).each(function () {
-//
-// if (this.name == "Wellbeing") {
-// var url = this.url;
-//
-// var commits = 0;
-// $.getJSON(url + "/commits?per_page=100&page=1", {}, function (data) {
-// $(data).each(function () {
-// if (this.author.login == username) commits = commits + 1;
-// })
-// })
-// .done(function() {
-// $.getJSON(url + "/commits?per_page=100&page=2", {}, function (data) {
-// var commits = 0;
-// $(data).each(function () {
-// if (this.author.login == username) commits = commits + 1;
-// })
-// })
-// .done(function() {
-// list.append('<p><strong>Number of commits: </strong>' + commits + '</p>');
-// });
-// });
-//
-// var issues = 0;
-// $.getJSON(url + "/issues?per_page=100", {}, function (data) {
-// $(data).each(function () {
-// if (this.user.login == username) issues = issues + 1;
-// })
-//
-// list.append('<p><strong>Number of issues: </strong>' + issues + '</p>');
-// });
-// }
-// });
-// });
-// };
 
 
 
