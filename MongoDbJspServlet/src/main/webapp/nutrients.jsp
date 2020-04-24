@@ -142,6 +142,8 @@
 					<span class="sr-only">Last</span></a></li>
 		</ul>
 	</nav>
+	<br>
+	<br>
 
 </body>
 </html>

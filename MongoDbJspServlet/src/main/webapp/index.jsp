@@ -70,6 +70,19 @@
 	</div>
 	<br>
 	<br>
+	<div class="mission">
+		<h1>Our Mission</h1>
+		<p>Nutrition is a very important aspect in every person's life, but at times, planning clean nutrition can feel really complicated without proper guidance. 
+		We built WellBeing to be a solution that can make figuring out proper nutrition easier for all.
+		By providing information on recipes, ingredients, and nutrients we want to help people figure out how to eat excellently in their own way. 
+		This gives everyone a chance to give their bodies the fuel they deserve.</p>
+	</div>
+	
+	<br>
+	<br>
+	<br>
+	<br>
+	
 
 </body>
 
