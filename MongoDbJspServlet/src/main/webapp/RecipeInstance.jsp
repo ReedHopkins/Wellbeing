@@ -38,6 +38,7 @@
 		<ul>
 			<li>Prep Time: ${recipe.readyInMinutes} minutes</li>
 			<li>Makes: ${recipe.servings} servings</li>
+			<li>HealthScore: ${recipe.healthScore}/100</li>
 		</ul>
 		<h3>Ingredients</h3>
 		<ul>

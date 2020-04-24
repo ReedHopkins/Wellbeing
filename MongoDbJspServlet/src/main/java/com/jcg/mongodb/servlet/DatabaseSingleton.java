@@ -43,6 +43,7 @@ public class DatabaseSingleton {
             cursorIngr.close();
         }
         Collections.sort(ingredientList, new SortIngredientsByName());
+        System.out.println(ingredientList.size());
 
         //Creating recipe list
         MongoCollection<Document> colRec = db.getCollection("recipes");
