@@ -38,18 +38,26 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="images/healthyfoods.jpg"
-					alt="First slide">
+				<img class="d-block w-100" src="images/ingredients.jpg" alt="Ingredients">
+				<div class="carousel-caption d-none d-md-block">
+					<a href="ModelServlet?model=Ingredient"><button type="button" class="btn main-button">Foods & Ingredients</button></a>
+				</div>
+
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" src="images/healthypeople.jpg"
-					alt="Second slide">
+				<img class="d-block w-100" src="images/recipes.jpg" alt="Recipes">
+				<div class="carousel-caption d-none d-md-block">
+					<a href="ModelServlet?model=Recipe"><button type="button" class="btn main-button">Recipes</button></a>
+				</div>
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" src="images/exercise.jpg"
-					alt="Third slide">
+				<img class="d-block w-100" src="images/nutrients.jpg" alt="Nutrients">
+				<div class="carousel-caption d-none d-md-block">
+					<a href="ModelServlet?model=Nutrient"> <button type="button" class="btn main-button">Nutrients</button> </a>
+				</div>
 			</div>
 		</div>
+		
 		<a class="carousel-control-prev" href="#carouselExampleIndicators"
 			role="button" data-slide="prev"> <span
 			class="carousel-control-prev-icon" aria-hidden="true"></span> <span
@@ -62,18 +70,6 @@
 	</div>
 	<br>
 	<br>
-
-	<div style="text-align: center;">
-		<a href="ModelServlet?model=Ingredient">
-			<button type="button" class="btn btn-success">Food &
-				Ingredients</button>
-		</a> <br> <br> <a href="ModelServlet?model=Recipe">
-			<button type="button" class="btn btn-success">Recipe</button>
-		</a> <br> <br> <a href="ModelServlet?model=Nutrient">
-			<button type="button" class="btn btn-success">Nutrients</button>
-		</a>
-	</div>
-
 
 </body>
 

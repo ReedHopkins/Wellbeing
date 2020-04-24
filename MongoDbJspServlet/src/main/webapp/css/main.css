@@ -55,6 +55,16 @@ img {
 	margin: 0;
 }
 
+.main-button {
+	background: var(--wellBeingGreen);
+	font-size: 20px;
+	font-weight: 600;
+	color: white;
+  	padding: 15px 32px;
+  	margin: 40px 20px;
+  	box-shadow: 0px 11px 62px 35px rgba(0,0,0,0.75);
+}
+
 /*-------------------------------*/
 /*-------   Search Page   -------*/
 /*-------------------------------*/
