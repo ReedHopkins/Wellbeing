@@ -20,6 +20,8 @@ Build file: MongoDbJspServlet/pom.xml
         
         Testing: 3 hours
 
+        Styling the website: 3 hours
+
     Backend:
     
         Scraping and collection of final database items in correct format: 4 hours
