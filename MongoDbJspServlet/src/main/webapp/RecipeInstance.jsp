@@ -72,18 +72,9 @@
 			<%
 			    ArrayList<String> nutrientURL = (ArrayList) request.getAttribute("nutrientURL");
 
-				for (Document nutrient : recipe.getgoodnutrients()) {
+				for (Document nutrient : recipe.getnutrients()) {
 				    String name = DatabaseSingleton.findNutrient(nutrient.getString("title"));
 					if (name != null) {
-                    	out.print("<li><a href=\"NutrientInstanceServlet?nutrientTitle=" + name + "\">"
-                    	+ nutrient.getString("title") + "</a> : " + nutrient.getString("amount") + "</li>");
-                 	}else{
-						out.print("<li>" + nutrient.getString("title") + ": " + nutrient.getString("amount") + "</li>");
-				    }
-				}
-				for (Document nutrient : recipe.getbadnutrients()) {
-                    String name = DatabaseSingleton.findNutrient(nutrient.getString("title"));
-					if (nutrientURL.contains(nutrient.getString("title"))) {
                     	out.print("<li><a href=\"NutrientInstanceServlet?nutrientTitle=" + name + "\">"
                     	+ nutrient.getString("title") + "</a> : " + nutrient.getString("amount") + "</li>");
                  	}else{

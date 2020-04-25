@@ -58,28 +58,25 @@
 					href="ModelServlet?model=Nutrient&search_term=mineral">Minerals</a>
 			</div>
 		</div>
-		
+
 		<br>
 
 		<div class="dropdown">
 			<button class="btn btn-success dropdown-toggle" type="button"
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort</button>
 			<div class="dropdown-menu">
-				<a class="dropdown-item" href="ModelServlet?model=Nutrient&sort=atoz">Alphabetical:
-					A-Z</a> 
 				<a class="dropdown-item"
-					href="ModelServlet?model=Nutrient&sort=ztoa">Alphabetical: Z-A</a> 
-				<a
-					class="dropdown-item"
-					href="ModelServlet?model=Nutrient&sort=intakelowtohigh">Daily Intake:
-					Low to High</a>
+					href="ModelServlet?model=Nutrient&sort=atoz">Alphabetical: A-Z</a>
 				<a class="dropdown-item"
-					href="ModelServlet?model=Nutrient&sort=intakehightolow">Daily Intake:
-					High to Low</a> 
+					href="ModelServlet?model=Nutrient&sort=ztoa">Alphabetical: Z-A</a>
+				<a class="dropdown-item"
+					href="ModelServlet?model=Nutrient&sort=intakelowtohigh">Daily
+					Intake: Low to High</a> <a class="dropdown-item"
+					href="ModelServlet?model=Nutrient&sort=intakehightolow">Daily
+					Intake: High to Low</a>
 			</div>
 		</div>
-		<br>
-		<br>
+		<br> <br>
 
 		<p class="search_param" style="display: ${show_param}">Showing
 			results for: "${search_term}"</p>
@@ -89,30 +86,32 @@
 		<div class="grid-container">
 			<c:forEach items="${nutrient}" var="nutrient">
 
-				<div class="ft-recipe">
-					<div class="ft-recipe__thumb">
-						<img src="${nutrient.pictureURL}" alt="${nutrient.title}" />
+				<a href="NutrientInstanceServlet?nutrientTitle=<c:out value="${nutrient.title}"/>">
+					<div class="ft-recipe" style="height: 600px;">
+
+						<div class="ft-recipe__thumb">
+							<img src="${nutrient.pictureURL}" alt="${nutrient.title}" />
+						</div>
+						<div class="ft-recipe__content">
+							<header class="content__header">
+								<div class="row-wrapper">
+									<h4 class="recipe-title">${nutrient.title}</h4>
+									<div class="user-rating"></div>
+								</div>
+								<ul class="recipe-details">
+									<li class="recipe-details-item time"><i
+										class="ion ion-ios-calendar-outline"></i><span class="value">${nutrient.dailyIntake}</span><span
+										class="title">Daily Intake</span></li>
+								</ul>
+							</header>
+							<p class="description">${nutrient.description}</p>
+							<footer class="content__footer">
+								<p>View Nutrient</p>
+							</footer>
+						</div>
+
 					</div>
-					<div class="ft-recipe__content">
-						<header class="content__header">
-							<div class="row-wrapper">
-								<h4 class="recipe-title">${nutrient.title}</h4>
-								<div class="user-rating"></div>
-							</div>
-							<ul class="recipe-details">
-								<li class="recipe-details-item time"><i
-									class="ion ion-ios-calendar-outline"></i><span class="value">${nutrient.dailyIntake}</span><span
-									class="title">Daily Intake</span></li>
-							</ul>
-						</header>
-						<p class="description">${nutrient.description}</p>
-						<footer class="content__footer">
-							<a
-								href="NutrientInstanceServlet?nutrientTitle=<c:out value="${nutrient.title}"/>">View
-								Nutrient Details</a>
-						</footer>
-					</div>
-				</div>
+				</a>
 			</c:forEach>
 		</div>
 
@@ -143,6 +142,8 @@
 					<span class="sr-only">Last</span></a></li>
 		</ul>
 	</nav>
+	<br>
+	<br>
 
 </body>
 </html>

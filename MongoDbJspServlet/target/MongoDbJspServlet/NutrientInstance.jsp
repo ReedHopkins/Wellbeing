@@ -1,4 +1,6 @@
 <%@ page import="com.jcg.mongodb.servlet.Recipe" %>
+<%@ page import="com.jcg.mongodb.servlet.Ingredient" %>
+<%@ page import="java.util.ArrayList" %>
 <html>
 <head>
 <link rel="stylesheet"
@@ -35,19 +37,35 @@
 		<h3>Medical Info</h3>
 		<p>${nutrient.medicalInfo}</p>
 		<br>
-		<% Recipe[] top3 = (Recipe[]) request.getAttribute("top3");
-		if(top3 != null){%>
-		<h3>Recipes with the Highest Content</h3>
+		<h3>Recipes containing ${nutrient.title}</h3>
 		<p><%
-			for (int i = 0; i<3; i++) {
-				if (top3[i] != null) {
-					out.print("<li><a href=\"RecipeInstanceServlet?recipeId=" + top3[i].getid() + "\">"
-							+ top3[i].gettitle() + "</a> </li>");
-				}
+			ArrayList<Recipe> matches = (ArrayList<Recipe>) request.getAttribute("recipes");
+			if(matches.size() > 0) {
+				for(int i = 0; i < 5 && i < matches.size(); i++){
+                    out.print("<li><a href=\"RecipeInstanceServlet?recipeId=" + matches.get(i).getid() + "\">"
+                            + matches.get(i).gettitle() + "</a> </li>");
+                }
+			} else {
+				out.print("<p>Not enough data to collect</p>");
 			}
 		%>
 		</p>
-		<%}%>
+		<br>
+		<h3>Ingredients with the Highest Content</h3>
+		<p><%
+			Ingredient[] top3ing = (Ingredient[]) request.getAttribute("top3ing");
+			if(top3ing != null) {
+				for (int i = 0; i < 3; i++) {
+					if (top3ing[i] != null) {
+						out.print("<li><a href=\"IngredientInstanceServlet?ingredientTitle=" + top3ing[i].getitem() + "\">"
+								+ top3ing[i].getitem() + "</a> </li>");
+					}
+				}
+			} else {
+				out.print("<p>Not enough data to collect</p>");
+			}
+		%>
+		</p>
 	</div>
 </body>
 </html>

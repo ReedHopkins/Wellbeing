@@ -19,8 +19,6 @@
 				href="ModelServlet?model=Recipe">Recipes</a></li>
 			<li class="nav-item"><a class="nav-link"
 				href="ModelServlet?model=Nutrient">Nutrients</a></li>
-			<li class="nav-item"><a class="nav-link" href="user.jsp">User</a>
-			</li>
 			<li class="nav-item"><a class="nav-link" href="about.jsp">About</a>
 			</li>
 		</ul>

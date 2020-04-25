@@ -49,22 +49,35 @@
 		<br>
 		<h3>Tags</h3>
 		<%
-			for (String tag : ingredient.gettags()) {
-				out.print("<li>" + tag + "</li>");
+			if(ingredient.gettags().size()>0) {
+				for (String tag : ingredient.gettags()) {
+					out.print("<li>" + tag + "</li>");
+				}
+			} else {
+				out.print("<p>No data for this ingredient</p>");
 			}
 
 		%>
 		<br>
         <h3>Badges</h3>
 		<%
-			for (String badge : ingredient.getbadges()) {
+			if(ingredient.getbadges().size()>0) {
+				for (String badge : ingredient.getbadges()) {
 				out.print("<li>" + badge + "</li>");
 			}
+			} else {
+				out.print("<p>No data for this ingredient</p>");
+			}
+
 
 		%>
 		<br>
         <h3>Aisle</h3>
+		<% if(!ingredient.getaisle().equals("")){%>
 		<p>${ingredient.aisle}</p>
+		<% }else{%>
+		<p> No data for this ingredient</p>
+		<% } %>
 		<br>
         <h3>Recipes with this ingredient: </h3>
 		<%
@@ -73,7 +86,9 @@
                 if (r != null) {
 				    out.print("<li><a href=\"RecipeInstanceServlet?recipeId=" + r.getid() + "\">"
 					+ r.gettitle() + "</a> </li>");
-                }
+                } else {
+                	out.print("<p>There are no recipes with this ingredient.</p>");
+				}
             }
 		%>
 		<br>

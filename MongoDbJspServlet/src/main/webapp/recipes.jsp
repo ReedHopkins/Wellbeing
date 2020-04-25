@@ -99,7 +99,7 @@
 			<c:forEach items="${recipe}" var="recipe">
 
 				<a
-					href="NutrientInstanceServlet?nutrientTitle=<c:out value="${nutrient.title}"/>">
+					href="RecipeInstanceServlet?recipeId=<c:out value="${recipe.id}"/>">
 					<div class="ft-recipe">
 						<div class="ft-recipe__thumb">
 							<img src="${recipe.image}" alt="${recipe.title}" />

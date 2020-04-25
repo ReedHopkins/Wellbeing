@@ -51,14 +51,15 @@
 				data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Filters</button>
 			<div class="dropdown-menu">
 				<a class="dropdown-item"
-					href="ModelServlet?model=Ingredient&search_term=highprotein">High Protein</a> <a
-					class="dropdown-item"
-					href="ModelServlet?model=Ingredient&search_term=lowcarb">Low Carb</a> <a
-					class="dropdown-item"
-					href="ModelServlet?model=Ingredient&search_term=lowsodium">Low Sodium</a>
+					href="ModelServlet?model=Ingredient&search_term=highprotein">High
+					Protein</a> <a class="dropdown-item"
+					href="ModelServlet?model=Ingredient&search_term=lowcarb">Low
+					Carb</a> <a class="dropdown-item"
+					href="ModelServlet?model=Ingredient&search_term=lowsodium">Low
+					Sodium</a>
 			</div>
 		</div>
-		
+
 		<br>
 
 		<div class="dropdown">
@@ -70,10 +71,10 @@
 					A-Z</a> <a class="dropdown-item"
 					href="ModelServlet?model=Ingredient&sort=ztoa">Alphabetical:
 					Z-A</a> <a class="dropdown-item"
-					href="ModelServlet?model=Ingredient&sort=lowtohigh">Unit Price: Low
-					to High</a> <a class="dropdown-item"
-					href="ModelServlet?model=Ingredient&sort=hightolow">Unit Price: High
-					to Low</a>
+					href="ModelServlet?model=Ingredient&sort=lowtohigh">Unit Price:
+					Low to High</a> <a class="dropdown-item"
+					href="ModelServlet?model=Ingredient&sort=hightolow">Unit Price:
+					High to Low</a>
 			</div>
 		</div>
 		<br> <br>
@@ -85,30 +86,29 @@
 
 		<div class="grid-container">
 			<c:forEach items="${ingredient}" var="ingredient">
-
-				<div class="ft-recipe">
-					<div class="ft-recipe__thumb">
-						<img src="${ingredient.image}" alt="${ingredient.item}" />
+				<a
+					href="IngredientInstanceServlet?ingredientTitle=<c:out value="${ingredient.item}"/>">
+					<div class="ft-recipe">
+						<div class="ft-recipe__thumb">
+							<img src="${ingredient.image}" alt="${ingredient.item}" />
+						</div>
+						<div class="ft-recipe__content">
+							<header class="content__header">
+								<div class="row-wrapper">
+									<h4 class="recipe-title">${ingredient.item}</h4>
+								</div>
+								<ul class="recipe-details">
+									<li class="recipe-details-item time"><i
+										class="ion ion-ios-pricetag-outline"></i><span class="value">${ingredient.price}/${ingredient.unit}</span><span
+										class="title">Cost (USD)</span></li>
+								</ul>
+							</header>
+							<footer class="content__footer">
+								<p>View Ingredient</p>
+							</footer>
+						</div>
 					</div>
-					<div class="ft-recipe__content">
-						<header class="content__header">
-							<div class="row-wrapper">
-								<h4 class="recipe-title">${ingredient.item}</h4>
-								<div class="user-rating"></div>
-							</div>
-							<ul class="recipe-details">
-								<li class="recipe-details-item time"><i
-									class="ion ion-ios-pricetag-outline"></i><span class="value">${ingredient.price}/${ingredient.unit}</span><span
-									class="title">Cost (USD)</span></li>
-							</ul>
-						</header>
-						<footer class="content__footer">
-							<a
-								href="IngredientInstanceServlet?ingredientTitle=<c:out value="${ingredient.item}"/>">View
-								Ingredient</a>
-						</footer>
-					</div>
-				</div>
+				</a>
 			</c:forEach>
 		</div>
 	</div>
@@ -138,6 +138,8 @@
 					<span class="sr-only">Last</span></a></li>
 		</ul>
 	</nav>
+	<br>
+	<br>
 
 </body>
 </html>

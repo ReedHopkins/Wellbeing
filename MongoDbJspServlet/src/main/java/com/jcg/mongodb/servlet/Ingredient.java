@@ -2,6 +2,7 @@ package com.jcg.mongodb.servlet;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bson.Document;
@@ -15,6 +16,7 @@ public class Ingredient {
 	List<String> tags;
 	List<String> badges;
 	String aisle;
+	HashMap<Integer, Double> nutrientMap = new HashMap<Integer, Double>();
 	public Ingredient(Document ingredient) {
 		item = ((String) ingredient.get("item"));
 		item = capitalize(item);
@@ -25,6 +27,31 @@ public class Ingredient {
 		tags = (List<String>) ingredient.get("tags");
         badges = (List<String>) ingredient.get("badges");
         aisle = (String) ingredient.get("aisle");
+        for(String s: nutrients){
+			for(int i = 0; i < s.length(); i++){
+				if(s.substring(i,i+1).equals(",") || s.substring(i,i+1).equals(":") || s.substring(i,i+1).equals("-") || s.substring(i,i+1).equals("(") || s.substring(i,i+1).equals(")")){
+					s = s.substring(0,i) + s.substring(i+1);
+					i--;
+				}
+			}
+			String[] tokens = DatabaseSingleton.tokenize(s.toLowerCase());
+			int tokenSize = tokens.length;
+			double val = Double.parseDouble(tokens[tokenSize-2]);
+			String findString;
+			for(int i = tokenSize; i > 0; i--){
+				for(int j = 0; j <= tokenSize - i; j++){
+					findString = tokens[j];
+					for(int k = j+1; k < i+j; k++){
+						findString += " " + tokens[k];
+					}
+					nutrientMap.put(findString.hashCode(), val);
+				}
+			}
+		}
+		nutrientMap.remove("beta".hashCode());
+		nutrientMap.remove("acid".hashCode());
+		nutrientMap.remove("acids".hashCode());
+		nutrientMap.remove("vitamin".hashCode());
 	}
 
 	public Ingredient() {

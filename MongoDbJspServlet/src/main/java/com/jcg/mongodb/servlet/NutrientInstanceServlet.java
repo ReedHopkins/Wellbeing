@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class NutrientInstanceServlet extends HttpServlet {
 
@@ -20,9 +21,11 @@ public class NutrientInstanceServlet extends HttpServlet {
                 nutrient = d;
             }
         }
-		Recipe[] top3 = DatabaseSingleton.topThreeRecipes(instanceTitle);
+		ArrayList<Recipe> recipes = DatabaseSingleton.topThreeRecipes(instanceTitle);
+		Ingredient[] top3ing = DatabaseSingleton.topThreeIngredients(instanceTitle);
 		System.out.println(instanceTitle);
-		request.setAttribute("top3", top3);
+		request.setAttribute("recipes", recipes);
+        request.setAttribute("top3ing", top3ing);
         request.setAttribute("nutrient", nutrient);
         request.getRequestDispatcher("NutrientInstance.jsp").forward(request, response);
     }

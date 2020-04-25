@@ -87,7 +87,7 @@
 		<div class="grid-container">
 			<c:forEach items="${ingredient}" var="ingredient">
 				<a
-					href="NutrientInstanceServlet?nutrientTitle=<c:out value="${nutrient.title}"/>">
+					href="IngredientInstanceServlet?ingredientTitle=<c:out value="${ingredient.item}"/>">
 					<div class="ft-recipe">
 						<div class="ft-recipe__thumb">
 							<img src="${ingredient.image}" alt="${ingredient.item}" />

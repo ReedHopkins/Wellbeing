@@ -3,15 +3,12 @@ com\jcg\mongodb\servlet\SortRecipesByHealth.class
 com\jcg\mongodb\servlet\ModelServlet.class
 com\jcg\mongodb\servlet\NutrientInstanceServlet.class
 com\jcg\mongodb\servlet\Paginator.class
-com\jcg\mongodb\servlet\RecipeServlet.class
 com\jcg\mongodb\servlet\SortNutrientsByIntake.class
 com\jcg\mongodb\servlet\Nutrient.class
 com\jcg\mongodb\servlet\SortRecipesByServings.class
 com\jcg\mongodb\servlet\Recipe.class
 com\jcg\mongodb\servlet\SortIngredientsByName.class
-com\jcg\mongodb\servlet\NutrientServlet.class
 com\jcg\mongodb\servlet\RecipeInstanceServlet.class
-com\jcg\mongodb\servlet\IngredientServlet.class
 com\jcg\mongodb\servlet\DatabaseSingleton.class
 com\jcg\mongodb\servlet\SortIngredientsByPrice.class
 com\jcg\mongodb\servlet\SortRecipesByTime.class

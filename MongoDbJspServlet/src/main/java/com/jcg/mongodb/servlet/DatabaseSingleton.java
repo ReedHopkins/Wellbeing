@@ -186,15 +186,13 @@ public class DatabaseSingleton {
     	}
         return output;
     }
-    
+
     public static ArrayList<Recipe> searchRecipesForIngredient(String ingredient){
 
         ArrayList<Recipe> output = new ArrayList<Recipe>();
         for(Recipe r: recipeList){
-            for(Document elem : r.ingredients){
-                if(elem.getString("name") == ingredient){
+            if(r.ingredientMap.containsKey(ingredient.toLowerCase().hashCode())){
                     output.add(r);
-                } 
             }
         }
         return output;
@@ -353,11 +351,10 @@ public class DatabaseSingleton {
         return null;
     }
 
-    public static Recipe[] topThreeRecipes(String nutrient){
+    public static ArrayList<Recipe> topThreeRecipes(String nutrient){
         String[] tokens = tokenize(nutrient.toLowerCase());
         int tokenSize = tokens.length;
-        double[] top3 = {0,0,0};
-        Recipe[] top3Objects = new Recipe[3];
+        ArrayList<Recipe> matches = new ArrayList<Recipe>();
         String findString;
         for(Recipe r: getRecipes()){
             for(int i = tokenSize; i > 0; i--){
@@ -367,22 +364,54 @@ public class DatabaseSingleton {
                         findString += " " + tokens[k];
                     }
                     if(r.nutrientMap.containsKey(findString.hashCode())){
-                        Double recipeValue = r.nutrientMap.get(findString.hashCode());
-                        if(recipeValue>top3[0]){
+                        matches.add(r);
+                    }
+                }
+            }
+        }
+        Collections.shuffle(matches);
+        return matches;
+    }
+
+    public static Ingredient[] topThreeIngredients(String nutrient){
+        for(int i = 0; i < nutrient.length(); i++){
+            if(nutrient.substring(i,i+1).equals("(") || nutrient.substring(i,i+1).equals(")")){
+                nutrient = nutrient.substring(0,i) + nutrient.substring(i+1);
+                i--;
+            }
+            if(nutrient.substring(i,i+1).equals("-")){
+                nutrient = nutrient.substring(0,i) + " " + nutrient.substring(i+1);
+            }
+        }
+        String[] tokens = tokenize(nutrient.toLowerCase());
+        int tokenSize = tokens.length;
+        double[] top3 = {0.0,0.0,0.0};
+        Ingredient[] top3Objects = new Ingredient[3];
+        String findString;
+        for(Ingredient ing: getIngredients()){
+            for(int i = tokenSize; i > 0; i--){
+                for(int j = 0; j <= tokenSize - i; j++){
+                    findString = tokens[j];
+                    for(int k = j+1; k < i+j; k++){
+                        findString += " " + tokens[k];
+                    }
+                    if(ing.nutrientMap.containsKey(findString.hashCode())){
+                        Double recipeValue = ing.nutrientMap.get(findString.hashCode());
+                        if(recipeValue>top3[0] && top3Objects[0] != ing){
                             top3[2] = top3[1];
                             top3[1] = top3[0];
                             top3Objects[2] = top3Objects[1];
                             top3Objects[1] = top3Objects[0];
                             top3[0] = recipeValue;
-                            top3Objects[0] = r;
-                        } else if(recipeValue>top3[1]){
+                            top3Objects[0] = ing;
+                        } else if(recipeValue>top3[1] && top3Objects[1] != ing){
                             top3[2] = top3[1];
                             top3Objects[2] = top3Objects[1];
                             top3[1] = recipeValue;
-                            top3Objects[1] = r;
-                        } else if(recipeValue>top3[2]){
+                            top3Objects[1] = ing;
+                        } else if(recipeValue>top3[2] && top3Objects[2] != ing){
                             top3[2] = recipeValue;
-                            top3Objects[2] = r;
+                            top3Objects[2] = ing;
                         }
                     }
                 }

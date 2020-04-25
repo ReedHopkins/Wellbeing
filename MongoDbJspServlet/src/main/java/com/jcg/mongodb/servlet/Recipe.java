@@ -2,10 +2,7 @@ package com.jcg.mongodb.servlet;
 
 import org.bson.Document;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Recipe {
 
@@ -15,17 +12,18 @@ public class Recipe {
     String servings;
     String healthScore;
     String image;
-
     String carbs;
     String calories;
     String fat;
     String protein;
-    List<Document> good;
-    List<Document> bad;
+    ArrayList<Document> good = new ArrayList<Document>();
+    ArrayList<Document> bad = new ArrayList<Document>();
     String instructions;
     List<Document> ingredients;
     List<String> tags = new ArrayList<String>();
-    HashMap<Integer, Double> nutrientMap = new HashMap<Integer, Double>();
+    HashMap<Integer, String> nutrientMap = new HashMap<Integer, String>();
+    HashMap<Integer, String> ingredientMap = new HashMap<Integer, String>();
+    Set<Document> nutrients = new HashSet<Document>();
 
     public Recipe(Document recipe) {
 
@@ -41,17 +39,25 @@ public class Recipe {
         fat = (String) recipe.get("fat");
         calories = (String) recipe.get("calories");
         protein = (String) recipe.get("protein");
-        good = (List<Document>) recipe.get("good");
-        bad = (List<Document>) recipe.get("bad");
+        good = (ArrayList<Document>) recipe.get("good");
+        bad = (ArrayList<Document>) recipe.get("bad");
+        if(good != null) {
+            nutrients.addAll(good);
+        }
+        if(bad != null) {
+            nutrients.addAll(bad);
+        }
         instructions = (String) recipe.get("instructions");
         ingredients = (List<Document>) recipe.get("extendedIngredients");
 
-        /*for (Document d : (List<Document>)recipe.get("good")) {
-           nutrientMap.put(d.getString("title").toLowerCase().hashCode(), d.getDouble("percentofDailyNeeds"));
+        for (Document d : nutrients) {
+           nutrientMap.put(d.getString("title").toLowerCase().hashCode(), d.getString("title"));
         }
-        for (Document d : (List<Document>)recipe.get("bad")) {
-           nutrientMap.put(d.getString("title").toLowerCase().hashCode(), d.getDouble("percentofDailyNeeds"));
-        }*/
+
+        for (Document d : ingredients) {
+            ingredientMap.put(d.getString("name").toLowerCase().hashCode(), d.getString("name"));
+        }
+
 
         if (Double.parseDouble(healthScore) >= 50.0) {
             tags.add("healthy");
@@ -134,6 +140,10 @@ public class Recipe {
 
     public List<Document> getbadnutrients() {
         return bad;
+    }
+
+    public Set<Document> getnutrients(){
+        return nutrients;
     }
 
     public String getinstructions() {
