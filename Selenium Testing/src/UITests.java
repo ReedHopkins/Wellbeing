@@ -32,46 +32,30 @@ public class UITests {
     	} else 
             System.setProperty("webdriver.gecko.driver","lib\\geckodriver.exe");
         WebDriver wd = new FirefoxDriver();
-        wd.get("http://www.wellbeingeating.com/pages/about.html");
+        wd.get("http://wellbeingeating.com/about.jsp");
 		WebElement we = wd.findElement(By.className("navbar-brand"));
 		we.click(); //click the button
-        assertEquals("http://www.wellbeingeating.com/index.html", wd.getCurrentUrl());
+        assertEquals("http://wellbeingeating.com/index.jsp", wd.getCurrentUrl());
         wd.quit();
     }
 
-    //See if main page meal plan button  works
+    
+    //See if healthy alternative button works
     @Test
-    public void mealPlanButtonTest() {
+    public void refreshButtonTest() {
     	String os = System.getProperty("os.name");
     	if(os.contains("Mac")) { 
     		System.setProperty("webdriver.gecko.driver","lib//geckodriver");
     	} else 
             System.setProperty("webdriver.gecko.driver","lib\\geckodriver.exe");
         WebDriver wd = new FirefoxDriver();
-        wd.get("http://www.wellbeingeating.com/index.html");
-		WebElement we = wd.findElement(By.id("mealPlanButton"));
+        wd.get("http://wellbeingeating.com/ModelServlet?model=Ingredient&search_term=highprotein");
+		WebElement we = wd.findElement(By.className("input-group-text"));
 		we.click(); //click the button
-        assertEquals("http://www.wellbeingeating.com/pages/mealplan.html", wd.getCurrentUrl());
+        assertEquals("http://wellbeingeating.com/ModelServlet?model=Ingredient", wd.getCurrentUrl());
         wd.quit();
     }
     
-    //See if healthy alternative button works
-    @Test
-    public void healthyAltButtonTest() {
-    	String os = System.getProperty("os.name");
-    	if(os.contains("Mac")) { 
-    		System.setProperty("webdriver.gecko.driver","lib//geckodriver");
-    	} else 
-            System.setProperty("webdriver.gecko.driver","lib\\geckodriver.exe");
-        WebDriver wd = new FirefoxDriver();
-        wd.get("http://www.wellbeingeating.com/index.html");
-		WebElement we = wd.findElement(By.id("healthyAltButton"));
-		we.click(); //click the button
-        assertEquals("http://www.wellbeingeating.com/pages/healthysubs.html", wd.getCurrentUrl());
-        wd.quit();
-    }
-    
-    //See if healthy alternative button works
     @Test
     public void paginationButtonsTest() {
     	String os = System.getProperty("os.name");
@@ -80,10 +64,28 @@ public class UITests {
     	} else 
             System.setProperty("webdriver.gecko.driver","lib\\geckodriver.exe");
         WebDriver wd = new FirefoxDriver();
-        wd.get("http://www.wellbeingeating.com/pages/ingredients.jsp");
+        wd.get("http://wellbeingeating.com/ModelServlet?model=Ingredient");
 		WebElement we = wd.findElement(By.className("page-link"));
 		we.click(); //click the button
-        assertNotEquals("http://www.wellbeingeating.com/pages/ingredients.jsp", wd.getCurrentUrl());
+        assertNotEquals("http://wellbeingeating.com/ModelServlet?model=Ingredient", wd.getCurrentUrl());
         wd.quit();
     }
+    
+	@Test
+	public void searchTest() {
+		String os = System.getProperty("os.name");
+    	if(os.contains("Mac")) { 
+    		System.setProperty("webdriver.gecko.driver","lib//geckodriver");
+    	} else 
+            System.setProperty("webdriver.gecko.driver","lib\\geckodriver.exe");
+        WebDriver wd = new FirefoxDriver();
+        wd.get("http://wellbeingeating.com/ModelServlet?model=Ingredient");
+		WebElement we = wd.findElement(By.id("search_term"));
+		we.sendKeys("almonds");
+		we = wd.findElement(By.id("submit_btn"));
+		we.click(); //click the button
+		we = wd.findElement(By.className("search_param"));
+		wd.quit(); // close the browser window
+	}
+
 }
