@@ -23,7 +23,7 @@ Build file: MongoDbJspServlet/pom.xml
     
         Data Collection: 3 hours
     
-        Testing: 4 hours
+        Testing: 3 hours
 
 #### Actual completion time (compiled):
 
@@ -35,7 +35,7 @@ Build file: MongoDbJspServlet/pom.xml
         
         Link domain to Tomcat Instance: 1 hour
         
-        Testing: 7 hours
+        Testing: 3 hours
 
     Backend:
         
