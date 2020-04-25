@@ -10,14 +10,15 @@ Build file: MongoDbJspServlet/pom.xml
 #### Estimated completion time (compiled):  
 
     Frontend:
-    
-        Setting up EC2 server with Tomcat: 1 hour
+        Updating our static code to use servlets: 3 hours
         
-        Update our static code to be dynamic: 4 hours
+        Implementing search in our database pages: 2 hours
         
-        Link domain to Tomcat Instance: 1 hour
+        Implementing filters and sorting in our database pages: 2 hours
         
-        Testing: 4 hours
+        Creating links between instance pages: 4 hours
+        
+        Testing: 3 hours
 
     Backend:
     
@@ -29,13 +30,15 @@ Build file: MongoDbJspServlet/pom.xml
 
     Frontend:
     
-        Setting up EC2 server with Tomcat: 2 hours
+        Updating our static code to use servlets: 4 hours
         
-        Update our static code to be dynamic: 6 hours
+        Implementing search in our database pages: 2 hours
         
-        Link domain to Tomcat Instance: 1 hour
+        Implementing filters and sorting in our database pages: 3 hours
         
-        Testing: 3 hours
+        Creating links between instance pages: 5 hours
+        
+        Testing: 4 hours
 
     Backend:
         
