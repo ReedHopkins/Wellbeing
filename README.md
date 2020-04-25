@@ -21,7 +21,7 @@ Build file: MongoDbJspServlet/pom.xml
 
     Backend:
     
-        Data Collection: 3 hours
+        Scraping and collection of final database items in correct format: 4 hours
     
         Testing: 3 hours
 
@@ -39,7 +39,7 @@ Build file: MongoDbJspServlet/pom.xml
 
     Backend:
         
-        Data Collection: 3 hours
+        Scraping and collection of final database items in correct format: 5 hours
     
         Testing: 5 hours
 
