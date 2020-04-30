@@ -18,7 +18,7 @@ public class Ingredient {
 	String aisle;
 	HashMap<Integer, Double> nutrientMap = new HashMap<Integer, Double>();
 	public Ingredient(Document ingredient) {
-		item = ((String) ingredient.get("item"));
+		item = ((String) ingredient.get("title"));
 		item = capitalize(item);
 		price = ((String) ingredient.get("price")).replace(",", "");
 		unit = (String) ingredient.get("unit");

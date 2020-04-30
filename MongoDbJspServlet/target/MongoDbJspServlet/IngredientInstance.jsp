@@ -3,6 +3,7 @@
 <%@ page import="com.jcg.mongodb.servlet.DatabaseSingleton" %>
 <%@ page import="com.jcg.mongodb.servlet.Recipe" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="com.jcg.mongodb.servlet.DatabaseUtility" %>
 <html>
 <head>
 <link rel="stylesheet"
@@ -37,7 +38,7 @@
 		<%
 			Ingredient ingredient = (Ingredient) request.getAttribute("ingredient");
 			for (String nutrient : ingredient.getnutrients()) {
-				String name = DatabaseSingleton.findNutrient(nutrient);
+				String name = DatabaseUtility.findNutrient(nutrient);
 				if (name != null) {
 					out.print("<li><a href=\"NutrientInstanceServlet?nutrientTitle=" + name + "\">"
 					+ nutrient + "</a> </li>");
@@ -81,7 +82,7 @@
 		<br>
         <h3>Recipes with this ingredient: </h3>
 		<%
-			ArrayList<Recipe> info = DatabaseSingleton.searchRecipesForIngredient(ingredient.getitem());
+			ArrayList<Recipe> info = DatabaseUtility.searchRecipesForIngredient(ingredient.getitem());
             for(Recipe r: info){
                 if (r != null) {
 				    out.print("<li><a href=\"RecipeInstanceServlet?recipeId=" + r.getid() + "\">"

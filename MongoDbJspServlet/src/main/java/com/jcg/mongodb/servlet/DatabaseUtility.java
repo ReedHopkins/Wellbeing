@@ -10,14 +10,14 @@ public class DatabaseUtility {
     private static HashMap<Integer, Ingredient> ingredientMap, secingredientMap;
     private static HashMap<Integer, Nutrient> nutrientMap, secnutrientMap;
 
-    public DatabaseUtility(){
+    public static void initializeMaps(ArrayList<Ingredient> ingredients, ArrayList<Recipe> recipes, ArrayList<Nutrient> nutrients){
         recipeMap = new HashMap<Integer, Recipe>();
-        for(Recipe r: DatabaseSingleton.getInstance().getRecipes()){
+        for(Recipe r: recipes){
             recipeMap.put( r.title.toLowerCase().hashCode(), r);
         }
         ingredientMap = new HashMap<Integer, Ingredient>();
         secingredientMap = new HashMap<Integer, Ingredient>();
-        for(Ingredient ing: DatabaseSingleton.getInstance().getIngredients()){
+        for(Ingredient ing: ingredients){
             ingredientMap.put( ing.item.toLowerCase().hashCode(), ing);
             String[] tokens = tokenize(ing.item.toLowerCase());
             int tokenSize = tokens.length;
@@ -34,7 +34,7 @@ public class DatabaseUtility {
         }
         nutrientMap = new HashMap<Integer, Nutrient>();
         secnutrientMap = new HashMap<Integer, Nutrient>();
-        for(Nutrient n: DatabaseSingleton.getInstance().getNutrients()){
+        for(Nutrient n: nutrients){
             nutrientMap.put( n.title.toLowerCase().hashCode(), n);
             String temp = n.title;
             temp = temp.toLowerCase();
