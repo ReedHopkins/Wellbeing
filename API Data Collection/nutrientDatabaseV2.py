@@ -15,7 +15,7 @@ def insert_nutrient(name, desc, rda, pic, tags, medical):
         "title":name,
         "description":desc,
         "reccommendedDailyIntake":rda,
-        "pictureURL":pic,
+        "image":pic,
         "tags":tags,
         "medicalInfo":medical
     }

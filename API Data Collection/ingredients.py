@@ -32,12 +32,12 @@ def get_ingredients(database):
 def find_items(database, ingredients):
 
     for itm in  database.find():
-        if itm["item"] in ingredients:
-            ingredients.remove(itm["item"])
+        if itm["title"] in ingredients:
+            ingredients.remove(itm["title"])
 
     total_price=0.0
     for item in ingredients:
-        print(item)
+        #print(item)
         flag = 0
         if len(item.split()) > 1:
             items = item.split()
@@ -109,11 +109,11 @@ def insert_to_db(db,item, price,unit):
     if dictResults != None:
         if len(dictResults) != 0:
             imgURL = dictResults[0]["contentUrl"]
-    print(imgURL)
+                #print(imgURL)
     r=requests.get(url=URL)
     rImage=requests.get(url=URL2)
     data=r.json()
-    print(data['foods'][0])
+#print(data['foods'][0])
     nutrientsValue = []
     nutrientsName = []
     nutrientsUnitName = []
@@ -124,9 +124,9 @@ def insert_to_db(db,item, price,unit):
                 for i in data['foods'][0]['foodNutrients']:
                     if(sum(c.isalpha() for c in i['nutrientName']) >= sum(c.isdigit() for c in i['nutrientName'])):
                         if(str(i['value']).find("0.0") == -1):
-                            print(i['value'])
-                            print(i['nutrientName'])
-                            print(i['unitName'])
+                            #print(i['value'])
+                            #print(i['nutrientName'])
+                            #print(i['unitName'])
                             nutrientsValue.append(i['value'])
                             nutrientsName.append(i['nutrientName'])
                             nutrientsUnitName.append(i['unitName'])
@@ -147,10 +147,10 @@ def insert_to_db(db,item, price,unit):
                 tags.append('low sodium')
         nutrientsFinal.append(value+": "+str(nutrientsValue[i])+" "+nutrientsUnitName[i])
         i+=1
-    print("TAGSSSS",tags)
-    if ((db.find({"item":item}).count() == 0) and (db.find({"item":item+"s"}).count() == 0) and (db.find({"item":item+"es"}).count() == 0) and (db.find({"item":item.replace("s","")}).count() == 0) and (db.find({"item":item.replace("es","")}).count() == 0)):
+#print("TAGSSSS",tags)
+    if ((db.find({"title":item}).count() == 0) and (db.find({"title":item+"s"}).count() == 0) and (db.find({"title":item+"es"}).count() == 0) and (db.find({"title":item.replace("s","")}).count() == 0) and (db.find({"title":item.replace("es","")}).count() == 0)):
         emp_rec1 = {
-                "item":item,
+                "title":item,
                 "price":price,
                 "unit":unit,
                 "nutrients": nutrientsFinal,
@@ -162,8 +162,9 @@ def insert_to_db(db,item, price,unit):
         collection.insert(
            emp_rec1
         )
-    else:
-        print("This item is already in the db")
+#else:
+
+        #print("This item is already in the db")
 
 BASE_URL = "https://www.heb.com"
 conn = get_connection()
