@@ -8,7 +8,7 @@ import org.bson.Document;
 
 import com.mongodb.BasicDBList;
 
-public class Nutrient {
+public class Nutrient extends AbstractModel {
 	String title;
 	String description;
 	String dailyIntake;
@@ -37,7 +37,7 @@ public class Nutrient {
 		pictureURL = "error";
 	}
 
-	public String gettitle() {
+	public String getTitle() {
 		return title;
 	}
 
