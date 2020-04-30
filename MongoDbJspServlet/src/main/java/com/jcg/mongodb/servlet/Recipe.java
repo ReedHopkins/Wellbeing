@@ -4,7 +4,7 @@ import org.bson.Document;
 
 import java.util.*;
 
-public class Recipe {
+public class Recipe extends AbstractModel{
 
     String id;
     String title;
@@ -97,7 +97,7 @@ public class Recipe {
         return id;
     }
 
-    public String gettitle() {
+    public String getTitle() {
         return title;
     }
 
