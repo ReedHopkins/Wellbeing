@@ -46,13 +46,12 @@
 
 			<%
 				Recipe recipe = (Recipe) request.getAttribute("recipe");
-				//ArrayList<String> ingredientURL = (ArrayList) request.getAttribute("ingredientURL");
 
 				for (Document ingredient : recipe.getingredients()) {
 					String name = DatabaseUtility.findIngredient(ingredient.getString("name"));
                     if (name != null) {
                         out.print("<li><a href=\"IngredientInstanceServlet?ingredientTitle="+ name +"\">"
-                        + ingredient.getString("name") + " " + ingredient.getString("amount") + "</a></li>\n");
+                        + ingredient.getString("name") + " : " + ingredient.getDouble("amount") + " " + ingredient.getString("unit") + "</a></li>\n");
                     } else{
 					    out.print("<li>" + ingredient.getString("name") + "</li>");
 					}

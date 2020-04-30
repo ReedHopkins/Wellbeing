@@ -63,6 +63,7 @@ public class DatabaseSingleton {
         }
         Collections.sort(nutrientList, new SortNutrientsByName());
         mongoClient.close();
+        DatabaseUtility.initializeMaps(ingredientList, recipeList, nutrientList);
     }
 
     public static DatabaseSingleton getInstance(){

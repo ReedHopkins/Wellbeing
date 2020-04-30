@@ -1,0 +1,4 @@
+com\jcg\mongodb\servlet\RecipeTest.class
+com\jcg\mongodb\servlet\NutrientTest.class
+com\jcg\mongodb\servlet\PaginatorTest.class
+com\jcg\mongodb\servlet\IngredientTest.class

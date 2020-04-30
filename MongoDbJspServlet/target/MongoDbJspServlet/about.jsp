@@ -132,7 +132,7 @@ p {
 				Engineering student at the University of Texas at Austin. I firmly
 				believe that anyone can achieve anything that they put their mind,
 				time, and effort to. If I&#39;m not doing school, you can always
-				find me hangning out with friends and/or outdoors— most likely both.
+				find me hanging out with friends and/or outdoor &ndash; most likely both.
 				:) <br>
 				<b>Major:</b> Electrical and Computer Engineering, Software
 				Engineering and Systems Track <br>
