@@ -34,7 +34,7 @@ public class Ingredient {
 					i--;
 				}
 			}
-			String[] tokens = DatabaseSingleton.tokenize(s.toLowerCase());
+			String[] tokens = DatabaseUtility.tokenize(s.toLowerCase());
 			int tokenSize = tokens.length;
 			double val = Double.parseDouble(tokens[tokenSize-2]);
 			String findString;

@@ -32,13 +32,13 @@ public class ModelServlet extends HttpServlet {
 		ArrayList<?> list = new ArrayList<Object>();
 		
 		if (!nosort) {
-			if (model.equals("Ingredient")) list = DatabaseSingleton.getSortedIngredients(sort);
-			if (model.equals("Recipe")) list = DatabaseSingleton.getSortedRecipes(sort);
-			if (model.equals("Nutrient")) list = DatabaseSingleton.getSortedNutrients(sort);
+			if (model.equals("Ingredient")) list = DatabaseUtility.getSortedIngredients(sort);
+			if (model.equals("Recipe")) list = DatabaseUtility.getSortedRecipes(sort);
+			if (model.equals("Nutrient")) list = DatabaseUtility.getSortedNutrients(sort);
 		} else {
-			if (model.equals("Ingredient")) list = DatabaseSingleton.getIngredients();
-			if (model.equals("Recipe")) list = DatabaseSingleton.getRecipes();
-			if (model.equals("Nutrient")) list = DatabaseSingleton.getNutrients();
+			if (model.equals("Ingredient")) list = DatabaseSingleton.getInstance().getIngredients();
+			if (model.equals("Recipe")) list = DatabaseSingleton.getInstance().getRecipes();
+			if (model.equals("Nutrient")) list = DatabaseSingleton.getInstance().getNutrients();
 		}
 		
 		int size = list.size();
@@ -94,9 +94,9 @@ public class ModelServlet extends HttpServlet {
 		DatabaseSingleton.getInstance();
 		ArrayList<?> list = new ArrayList<Object>();		
 			
-		if (model.equals("Ingredient")) list = DatabaseSingleton.searchIngredients(search_term);
-		if (model.equals("Recipe")) list = DatabaseSingleton.searchRecipes(search_term);
-		if (model.equals("Nutrient")) list = DatabaseSingleton.searchNutrients(search_term);
+		if (model.equals("Ingredient")) list = DatabaseUtility.searchIngredients(search_term);
+		if (model.equals("Recipe")) list = DatabaseUtility.searchRecipes(search_term);
+		if (model.equals("Nutrient")) list = DatabaseUtility.searchNutrients(search_term);
 		
 		int size = list.size();
 

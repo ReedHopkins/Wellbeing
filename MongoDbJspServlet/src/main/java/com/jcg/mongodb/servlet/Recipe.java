@@ -16,8 +16,7 @@ public class Recipe extends AbstractModel{
     String calories;
     String fat;
     String protein;
-    ArrayList<Document> good = new ArrayList<Document>();
-    ArrayList<Document> bad = new ArrayList<Document>();
+    ArrayList<Document> good, bad;
     String instructions;
     List<Document> ingredients;
     List<String> tags = new ArrayList<String>();

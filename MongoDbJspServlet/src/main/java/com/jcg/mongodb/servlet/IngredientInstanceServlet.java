@@ -15,7 +15,7 @@ public class IngredientInstanceServlet extends HttpServlet {
         String instanceTitle = request.getParameter("ingredientTitle");
         Ingredient ingredient = new Ingredient();
         DatabaseSingleton.getInstance();
-		for(Ingredient d: DatabaseSingleton.getIngredients()) {
+		for(Ingredient d: DatabaseSingleton.getInstance().getIngredients()) {
             if(d.getitem().equals(instanceTitle)){
                 ingredient = d;
             }
