@@ -17,7 +17,7 @@ public class RecipeInstanceServlet extends HttpServlet {
         String id = request.getParameter("recipeId");
         Recipe recipe = new Recipe();
         DatabaseSingleton.getInstance();
-		for(Recipe d: DatabaseSingleton.getRecipes()) {
+		for(Recipe d: DatabaseSingleton.getInstance().getRecipes()) {
             if(d.getid().equals(id)){
                 recipe = d;
             }
@@ -27,7 +27,7 @@ public class RecipeInstanceServlet extends HttpServlet {
         List<String> nutrientURL = new ArrayList<String>();
         for (Document nutrient : recipe.getgoodnutrients()){
 
-            for(Nutrient match: DatabaseSingleton.getNutrients()) {
+            for(Nutrient match: DatabaseSingleton.getInstance().getNutrients()) {
                 if(nutrient.getString("title").equals(match.gettitle())){
                     nutrientURL.add("NutrientInstanceServlet?nutrientTitle=" + match.gettitle());
                 }
@@ -35,25 +35,14 @@ public class RecipeInstanceServlet extends HttpServlet {
         }
         for (Document nutrient : recipe.getbadnutrients()){
 
-            for(Nutrient match: DatabaseSingleton.getNutrients()) {
+            for(Nutrient match: DatabaseSingleton.getInstance().getNutrients()) {
                 if(nutrient.getString("title").equals(match.gettitle())){
                     nutrientURL.add("NutrientInstanceServlet?nutrientTitle=" + match.gettitle());
                 }
             }
         }
 
-        //searching for ingredients to construct links
         List<String> ingredientURL = new ArrayList<String>();
-        //for (Document ingredient : recipe.getingredients()){
-
-           // for(Ingredient match: DatabaseSingleton.getIngredients()) {
-             //   if(ingredient.getString("item").contains(match.getitem())){
-               //     ingredientURL.add(match.getitem());
-                //}
-           // }
-        //}
-
-
         request.setAttribute("recipe", recipe);
         request.setAttribute("nutrientURL", nutrientURL);
         request.setAttribute("ingredientURL", ingredientURL);

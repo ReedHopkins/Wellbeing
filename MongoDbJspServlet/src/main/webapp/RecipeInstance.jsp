@@ -5,6 +5,7 @@
 <%@page import="com.mongodb.client.MongoCollection"%>
 <%@page import="com.jcg.mongodb.servlet.Recipe"%>
 <%@ page import="com.jcg.mongodb.servlet.DatabaseSingleton" %>
+<%@ page import="com.jcg.mongodb.servlet.DatabaseUtility" %>
 
 <html>
 <head>
@@ -48,10 +49,10 @@
 				//ArrayList<String> ingredientURL = (ArrayList) request.getAttribute("ingredientURL");
 
 				for (Document ingredient : recipe.getingredients()) {
-					String name = DatabaseSingleton.findIngredient(ingredient.getString("name"));
+					String name = DatabaseUtility.findIngredient(ingredient.getString("name"));
                     if (name != null) {
                         out.print("<li><a href=\"IngredientInstanceServlet?ingredientTitle="+ name +"\">"
-                        + ingredient.getString("name") + "</a></li>\n");
+                        + ingredient.getString("name") + " " + ingredient.getString("amount") + "</a></li>\n");
                     } else{
 					    out.print("<li>" + ingredient.getString("name") + "</li>");
 					}
@@ -70,10 +71,8 @@
 			<li>Fat: ${recipe.fat}</li>
 			<li>Protein: ${recipe.protein}</li>
 			<%
-			    ArrayList<String> nutrientURL = (ArrayList) request.getAttribute("nutrientURL");
-
 				for (Document nutrient : recipe.getnutrients()) {
-				    String name = DatabaseSingleton.findNutrient(nutrient.getString("title"));
+				    String name = DatabaseUtility.findNutrient(nutrient.getString("title"));
 					if (name != null) {
                     	out.print("<li><a href=\"NutrientInstanceServlet?nutrientTitle=" + name + "\">"
                     	+ nutrient.getString("title") + "</a> : " + nutrient.getString("amount") + "</li>");

@@ -16,13 +16,13 @@ public class NutrientInstanceServlet extends HttpServlet {
         String instanceTitle = request.getParameter("nutrientTitle");
         Nutrient nutrient = new Nutrient();
         DatabaseSingleton.getInstance();
-		for(Nutrient d: DatabaseSingleton.getNutrients()) {
+		for(Nutrient d: DatabaseSingleton.getInstance().getNutrients()) {
             if(d.gettitle().equals(instanceTitle)){
                 nutrient = d;
             }
         }
-		ArrayList<Recipe> recipes = DatabaseSingleton.topThreeRecipes(instanceTitle);
-		Ingredient[] top3ing = DatabaseSingleton.topThreeIngredients(instanceTitle);
+		ArrayList<Recipe> recipes = DatabaseUtility.topThreeRecipes(instanceTitle);
+		Ingredient[] top3ing = DatabaseUtility.topThreeIngredients(instanceTitle);
 		System.out.println(instanceTitle);
 		request.setAttribute("recipes", recipes);
         request.setAttribute("top3ing", top3ing);
