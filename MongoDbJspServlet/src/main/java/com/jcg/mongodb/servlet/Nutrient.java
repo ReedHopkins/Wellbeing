@@ -37,7 +37,7 @@ public class Nutrient extends AbstractModel {
 		pictureURL = "error";
 	}
 
-	public String getTitle() {
+	public String gettitle() {
 		return title;
 	}
 

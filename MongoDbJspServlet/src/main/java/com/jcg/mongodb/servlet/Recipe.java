@@ -98,7 +98,7 @@ public class Recipe extends AbstractModel{
         return id;
     }
 
-    public String getTitle() {
+    public String gettitle() {
         return title;
     }
 

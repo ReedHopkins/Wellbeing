@@ -2,11 +2,11 @@ package com.jcg.mongodb.servlet;
 
 abstract class AbstractModel{
 
-    abstract String getTitle();
+    abstract String gettitle();
 
     abstract boolean isMatch(String s);
 
-    abstract class SortRecipesByName{};
+    abstract class SortRecipesByName implements Comparable{};
 
 
 
