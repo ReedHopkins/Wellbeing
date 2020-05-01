@@ -196,7 +196,9 @@ p {
 			that can be delightfully paired with any javascript testing
 			framework. <br>
 	</div>
-
+	<br>
+	<br>
+	<br>
 	<script src="js/main.js" type="text/javascript"></script>
 	<script type="text/javascript">
 		$(function() {

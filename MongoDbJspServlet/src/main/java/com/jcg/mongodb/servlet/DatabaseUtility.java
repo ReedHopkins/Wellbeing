@@ -18,47 +18,15 @@ public class DatabaseUtility {
         ingredientMap = new HashMap<Integer, Ingredient>();
         secingredientMap = new HashMap<Integer, Ingredient>();
         for(Ingredient ing: ingredients){
-            ingredientMap.put( ing.item.toLowerCase().hashCode(), ing);
-            String[] tokens = tokenize(ing.item.toLowerCase());
-            int tokenSize = tokens.length;
-            String findString;
-            for(int i = tokenSize; i > 0; i--){
-                for(int j = 0; j <= tokenSize - i; j++){
-                    findString = tokens[j];
-                    for(int k = j+1; k < i+j; k++){
-                        findString += " " + tokens[k];
-                    }
-                    secingredientMap.put(findString.hashCode(), ing);
-                }
-            }
+            ingredientMap.put( ing.title.toLowerCase().hashCode(), ing);
+            putMap(ing.gettitle(), ing, secingredientMap);
         }
         nutrientMap = new HashMap<Integer, Nutrient>();
         secnutrientMap = new HashMap<Integer, Nutrient>();
         for(Nutrient n: nutrients){
             nutrientMap.put( n.title.toLowerCase().hashCode(), n);
-            String temp = n.title;
-            temp = temp.toLowerCase();
-            for(int i = 0; i < temp.length(); i++){
-                if(temp.substring(i,i+1).equals("(") || temp.substring(i,i+1).equals(")")){
-                    temp = temp.substring(0,i) + temp.substring(i+1);
-                    i--;
-                }
-                if(temp.substring(i,i+1).equals("-")){
-                    temp = temp.substring(0,i) + " " + temp.substring(i+1);
-                }
-            }
-            String[] tokens = tokenize(temp);
-            int tokenSize = tokens.length;
-            String findString;
-            for(int i = tokenSize; i > 0; i--){
-                for(int j = 0; j <= tokenSize - i; j++){
-                    findString = tokens[j];
-                    for(int k = j+1; k < i+j; k++){
-                        findString += " " + tokens[k];
-                    }
-                    secnutrientMap.put(findString.hashCode(), n);
-                }
-            }
+            String temp = nutrientStringFilter(n.title);
+            putMap(temp, n, secnutrientMap);
         }
         secnutrientMap.remove("beta".hashCode());
         secnutrientMap.remove("acid".hashCode());
@@ -102,17 +70,6 @@ public class DatabaseUtility {
                 }
             }
 
-        }
-        return output;
-    }
-
-    public static ArrayList<Recipe> searchRecipesForIngredient(String ingredient){
-
-        ArrayList<Recipe> output = new ArrayList<Recipe>();
-        for(Recipe r: DatabaseSingleton.getInstance().getRecipes()){
-            if(r.ingredientMap.containsKey(ingredient.toLowerCase().hashCode())){
-                output.add(r);
-            }
         }
         return output;
     }
@@ -183,49 +140,24 @@ public class DatabaseUtility {
         return nutrients;
     }
 
-    public static String findIngredient(String s){
-        String[] tokens = tokenize(s);
-        int tokenSize = tokens.length;
-        String findString;
-        for(int i = tokenSize; i > 0; i--){
-            for(int j = 0; j <= tokenSize - i; j++){
-                findString = tokens[j];
-                for(int k = j+1; k < i+j; k++){
-                    findString += " " + tokens[k];
-                }
-                if(ingredientMap.containsKey(findString.hashCode())){
-                    return ingredientMap.get(findString.hashCode()).item;
-                }
+    public static ArrayList<Recipe> searchRecipesForIngredient(String ingredient){
+        ArrayList<Recipe> output = new ArrayList<Recipe>();
+        for(Recipe r: DatabaseSingleton.getInstance().getRecipes()){
+            if(r.ingredientMap.containsKey(ingredient.toLowerCase().hashCode())){
+                output.add(r);
             }
         }
-        for(int i = tokenSize; i > 0; i--){
-            for(int j = 0; j <= tokenSize - i; j++){
-                findString = tokens[j];
-                for(int k = j+1; k < i+j; k++){
-                    findString += " " + tokens[k];
-                }
-                if(secingredientMap.containsKey(findString.hashCode())){
-                    return secingredientMap.get(findString.hashCode()).item;
-                }
-            }
-        }
-        return null;
+        return output;
     }
 
-    public static String findRecipe(String s){
-        String[] tokens = tokenize(s);
-        int tokenSize = tokens.length;
-        String findString;
-        for(int i = tokenSize; i > 0; i--){
-            for(int j = 0; j <= tokenSize - i; j++){
-                findString = tokens[j];
-                for(int k = j+1; k < i+j; k++){
-                    findString += " " + tokens[k];
-                }
-                if(recipeMap.containsKey(findString.hashCode())){
-                    return recipeMap.get(findString.hashCode()).id;
-                }
-            }
+    public static String findIngredient(String s){
+        Ingredient ingredient = (Ingredient) findMap(s, ingredientMap);
+        if(ingredient != null){
+            return ingredient.title;
+        }
+        ingredient = (Ingredient) findMap(s, secingredientMap);
+        if(ingredient != null){
+            return ingredient.title;
         }
         return null;
     }
@@ -237,37 +169,19 @@ public class DatabaseUtility {
                 i--;
             }
         }
-        String[] tokens = tokenize(s);
-        int tokenSize = tokens.length;
-        String findString;
-        for(int i = tokenSize; i > 0; i--){
-            for(int j = 0; j <= tokenSize - i; j++){
-                findString = tokens[j];
-                for(int k = j+1; k < i+j; k++){
-                    findString += " " + tokens[k];
-                }
-                if(nutrientMap.containsKey(findString.hashCode())){
-                    return nutrientMap.get(findString.hashCode()).title;
-                }
-            }
+        Nutrient nutrient = (Nutrient) findMap(s, nutrientMap);
+        if(nutrient != null){
+            return nutrient.title;
         }
-        for(int i = tokenSize; i > 0; i--){
-            for(int j = 0; j <= tokenSize - i; j++){
-                findString = tokens[j];
-                for(int k = j+1; k < i+j; k++){
-                    findString += " " + tokens[k];
-                }
-                if(secnutrientMap.containsKey(findString.hashCode())){
-                    return secnutrientMap.get(findString.hashCode()).title;
-                }
-            }
+        nutrient = (Nutrient) findMap(s, secnutrientMap);
+        if(nutrient != null){
+            return nutrient.title;
         }
-
         return null;
     }
 
     public static ArrayList<Recipe> topThreeRecipes(String nutrient){
-        String[] tokens = tokenize(nutrient.toLowerCase());
+        String[] tokens = tokenize(nutrient);
         int tokenSize = tokens.length;
         ArrayList<Recipe> matches = new ArrayList<Recipe>();
         String findString;
@@ -289,16 +203,8 @@ public class DatabaseUtility {
     }
 
     public static Ingredient[] topThreeIngredients(String nutrient){
-        for(int i = 0; i < nutrient.length(); i++){
-            if(nutrient.substring(i,i+1).equals("(") || nutrient.substring(i,i+1).equals(")")){
-                nutrient = nutrient.substring(0,i) + nutrient.substring(i+1);
-                i--;
-            }
-            if(nutrient.substring(i,i+1).equals("-")){
-                nutrient = nutrient.substring(0,i) + " " + nutrient.substring(i+1);
-            }
-        }
-        String[] tokens = tokenize(nutrient.toLowerCase());
+        String temp = nutrientStringFilter(nutrient);
+        String[] tokens = tokenize(temp.toLowerCase());
         int tokenSize = tokens.length;
         double[] top3 = {0.0,0.0,0.0};
         Ingredient[] top3Objects = new Ingredient[3];
@@ -348,5 +254,51 @@ public class DatabaseUtility {
             iter++;
         }
         return tokens;
+    }
+
+    public static String nutrientStringFilter(String s){
+        for(int i = 0; i < s.length(); i++){
+            if(s.substring(i,i+1).equals("(") || s.substring(i,i+1).equals(")")){
+                s = s.substring(0,i) + s.substring(i+1);
+                i--;
+            }
+            if(s.substring(i,i+1).equals("-")){
+                s = s.substring(0,i) + " " + s.substring(i+1);
+            }
+        }
+        return s;
+    }
+
+    public static void putMap(String s, Object o, HashMap m){
+        String[] tokens = tokenize(s);
+        int tokenSize = tokens.length;
+        String findString;
+        for(int i = tokenSize; i > 0; i--){
+            for(int j = 0; j <= tokenSize - i; j++){
+                findString = tokens[j];
+                for(int k = j+1; k < i+j; k++){
+                    findString += " " + tokens[k];
+                }
+                m.put(findString.hashCode(), o);
+            }
+        }
+    }
+
+    public static Object findMap(String s, HashMap m){
+        String[] tokens = tokenize(s);
+        int tokenSize = tokens.length;
+        String findString;
+        for(int i = tokenSize; i > 0; i--){
+            for(int j = 0; j <= tokenSize - i; j++){
+                findString = tokens[j];
+                for(int k = j+1; k < i+j; k++){
+                    findString += " " + tokens[k];
+                }
+                if(m.containsKey(findString.hashCode())){
+                    return m.get(findString.hashCode());
+                }
+            }
+        }
+        return null;
     }
 }

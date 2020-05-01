@@ -11,7 +11,6 @@ public class Nutrient extends AbstractModel {
 	String dailyIntake;
 	String image;
 	List<String> tags;
-	String tagString;
 	String medicalInfo;
 
 	public Nutrient(Document nutrientDoc) {

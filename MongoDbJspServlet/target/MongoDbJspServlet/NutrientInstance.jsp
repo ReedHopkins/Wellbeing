@@ -25,7 +25,7 @@
 	</div>
 	<div class="container" style="align-items: center">
 		<div style="text-align: center;">
-			<img src=${nutrient.pictureURL } width="300" height="200">
+			<img src=${nutrient.image } width="300" height="200">
 		</div>
 		<br>
 		<h3>Nutrient Description</h3>
@@ -57,8 +57,8 @@
 			if(top3ing != null) {
 				for (int i = 0; i < 3; i++) {
 					if (top3ing[i] != null) {
-						out.print("<li><a href=\"IngredientInstanceServlet?ingredientTitle=" + top3ing[i].getitem() + "\">"
-								+ top3ing[i].getitem() + "</a> </li>");
+						out.print("<li><a href=\"IngredientInstanceServlet?ingredientTitle=" + top3ing[i].gettitle() + "\">"
+								+ top3ing[i].gettitle() + "</a> </li>");
 					}
 				}
 			} else {

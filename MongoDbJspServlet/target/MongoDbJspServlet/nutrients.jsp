@@ -90,7 +90,7 @@
 					<div class="ft-recipe" style="height: 600px;">
 
 						<div class="ft-recipe__thumb">
-							<img src="${nutrient.pictureURL}" alt="${nutrient.title}" />
+							<img src="${nutrient.image}" alt="${nutrient.title}" />
 						</div>
 						<div class="ft-recipe__content">
 							<header class="content__header">

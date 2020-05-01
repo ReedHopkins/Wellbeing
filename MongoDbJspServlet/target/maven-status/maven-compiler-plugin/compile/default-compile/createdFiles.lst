@@ -1,4 +1,3 @@
-com\jcg\mongodb\servlet\AbstractModel$SortRecipesByName.class
 com\jcg\mongodb\servlet\Ingredient.class
 com\jcg\mongodb\servlet\SortRecipesByHealth.class
 com\jcg\mongodb\servlet\ModelServlet.class

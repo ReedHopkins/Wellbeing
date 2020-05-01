@@ -1,6 +1,4 @@
 <%@ page import="com.jcg.mongodb.servlet.Ingredient" %>
-<%@ page import="org.bson.Document" %>
-<%@ page import="com.jcg.mongodb.servlet.DatabaseSingleton" %>
 <%@ page import="com.jcg.mongodb.servlet.Recipe" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.jcg.mongodb.servlet.DatabaseUtility" %>
@@ -18,13 +16,13 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<title>${ingredient.item}</title>
+<title>${ingredient.title}</title>
 </head>
 <body>
 	<jsp:include page="header.jsp" />
 
 	<div class="jumbotron" style="text-align: center">
-		<h1>${ingredient.item}</h1>
+		<h1>${ingredient.title}</h1>
 	</div>
 	<div class="container" style="align-items: center">
 		<div style="text-align: center;">
@@ -35,8 +33,7 @@
 		<p> $${ingredient.price} per ${ingredient.unit}</p>
 		<br>
 		<h3>Ingredient Nutrients</h3>
-		<%
-			Ingredient ingredient = (Ingredient) request.getAttribute("ingredient");
+		<%Ingredient ingredient = (Ingredient) request.getAttribute("ingredient");
 			for (String nutrient : ingredient.getnutrients()) {
 				String name = DatabaseUtility.findNutrient(nutrient);
 				if (name != null) {
@@ -45,33 +42,25 @@
 				}else{
 					out.print("<li>" + nutrient + "</li>");
 				}
-			}
-		%>
+			}%>
 		<br>
 		<h3>Tags</h3>
-		<%
-			if(ingredient.gettags().size()>0) {
+		<%if(ingredient.gettags().size()>0) {
 				for (String tag : ingredient.gettags()) {
 					out.print("<li>" + tag + "</li>");
 				}
 			} else {
 				out.print("<p>No data for this ingredient</p>");
-			}
-
-		%>
+			}%>
 		<br>
         <h3>Badges</h3>
-		<%
-			if(ingredient.getbadges().size()>0) {
+		<%if(ingredient.getbadges().size()>0) {
 				for (String badge : ingredient.getbadges()) {
 				out.print("<li>" + badge + "</li>");
 			}
 			} else {
 				out.print("<p>No data for this ingredient</p>");
-			}
-
-
-		%>
+			}%>
 		<br>
         <h3>Aisle</h3>
 		<% if(!ingredient.getaisle().equals("")){%>
@@ -81,8 +70,7 @@
 		<% } %>
 		<br>
         <h3>Recipes with this ingredient: </h3>
-		<%
-			ArrayList<Recipe> info = DatabaseUtility.searchRecipesForIngredient(ingredient.gettitle());
+		<%ArrayList<Recipe> info = DatabaseUtility.searchRecipesForIngredient(ingredient.gettitle());
             for(Recipe r: info){
                 if (r != null) {
 				    out.print("<li><a href=\"RecipeInstanceServlet?recipeId=" + r.getid() + "\">"
@@ -90,8 +78,7 @@
                 } else {
                 	out.print("<p>There are no recipes with this ingredient.</p>");
 				}
-            }
-		%>
+            }%>
 		<br>
 	</div>
 </body>

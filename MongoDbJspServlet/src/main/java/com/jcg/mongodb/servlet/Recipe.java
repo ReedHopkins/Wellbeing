@@ -25,15 +25,12 @@ public class Recipe extends AbstractModel{
     Set<Document> nutrients = new HashSet<Document>();
 
     public Recipe(Document recipe) {
-
         id = Integer.toString((Integer) recipe.get("id"));
-
         title = (String) recipe.get("title");
         readyInMinutes = Integer.toString((Integer) recipe.get("readyInMinutes"));
         servings = Integer.toString((Integer) recipe.get("servings"));
         healthScore = Double.toString((Double) recipe.get("healthScore"));
         image = (String) recipe.get("image");
-
         carbs = (String) recipe.get("carbs");
         fat = (String) recipe.get("fat");
         calories = (String) recipe.get("calories");
@@ -72,7 +69,6 @@ public class Recipe extends AbstractModel{
             if (Double.parseDouble(carbs.replaceAll("[^\\d.]", "")) < 15.0)
                 tags.add("lowcarb");
         }
-
     }
 
     public Recipe() {
@@ -131,14 +127,6 @@ public class Recipe extends AbstractModel{
 
     public String getprotein() {
         return protein;
-    }
-
-    public List<Document> getgoodnutrients() {
-        return good;
-    }
-
-    public List<Document> getbadnutrients() {
-        return bad;
     }
 
     public Set<Document> getnutrients(){

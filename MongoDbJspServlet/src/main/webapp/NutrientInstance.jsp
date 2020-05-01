@@ -57,8 +57,8 @@
 			if(top3ing != null) {
 				for (int i = 0; i < 3; i++) {
 					if (top3ing[i] != null) {
-						out.print("<li><a href=\"IngredientInstanceServlet?ingredientTitle=" + top3ing[i].getitem() + "\">"
-								+ top3ing[i].getitem() + "</a> </li>");
+						out.print("<li><a href=\"IngredientInstanceServlet?ingredientTitle=" + top3ing[i].gettitle() + "\">"
+								+ top3ing[i].gettitle() + "</a> </li>");
 					}
 				}
 			} else {

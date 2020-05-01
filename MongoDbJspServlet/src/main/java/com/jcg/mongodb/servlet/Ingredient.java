@@ -5,10 +5,13 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
+import javafx.scene.chart.PieChart;
 import org.bson.Document;
 
+import static com.jcg.mongodb.servlet.DatabaseUtility.putMap;
+
 public class Ingredient extends AbstractModel{
-	String item;
+	String title;
 	String price;
 	String unit;
 	String image;
@@ -18,8 +21,8 @@ public class Ingredient extends AbstractModel{
 	String aisle;
 	HashMap<Integer, Double> nutrientMap = new HashMap<Integer, Double>();
 	public Ingredient(Document ingredient) {
-		item = ((String) ingredient.get("title"));
-		item = capitalize(item);
+		title = ((String) ingredient.get("title"));
+		title = capitalize(title);
 		price = ((String) ingredient.get("price")).replace(",", "");
 		unit = (String) ingredient.get("unit");
 		nutrients = (List<String>) ingredient.get("nutrients");
@@ -28,25 +31,16 @@ public class Ingredient extends AbstractModel{
         badges = (List<String>) ingredient.get("badges");
         aisle = (String) ingredient.get("aisle");
         for(String s: nutrients){
-			for(int i = 0; i < s.length(); i++){
-				if(s.substring(i,i+1).equals(",") || s.substring(i,i+1).equals(":") || s.substring(i,i+1).equals("-") || s.substring(i,i+1).equals("(") || s.substring(i,i+1).equals(")")){
-					s = s.substring(0,i) + s.substring(i+1);
+			for(int i = 0; i < s.length(); i++) {
+				if (s.substring(i, i + 1).equals(",") || s.substring(i, i + 1).equals(":") || s.substring(i, i + 1).equals("-") || s.substring(i, i + 1).equals("(") || s.substring(i, i + 1).equals(")")) {
+					s = s.substring(0, i) + s.substring(i + 1);
 					i--;
 				}
 			}
-			String[] tokens = DatabaseUtility.tokenize(s.toLowerCase());
+			String[] tokens = DatabaseUtility.tokenize(s);
 			int tokenSize = tokens.length;
 			double val = Double.parseDouble(tokens[tokenSize-2]);
-			String findString;
-			for(int i = tokenSize; i > 0; i--){
-				for(int j = 0; j <= tokenSize - i; j++){
-					findString = tokens[j];
-					for(int k = j+1; k < i+j; k++){
-						findString += " " + tokens[k];
-					}
-					nutrientMap.put(findString.hashCode(), val);
-				}
-			}
+			putMap(s, val, nutrientMap);
 		}
 		nutrientMap.remove("beta".hashCode());
 		nutrientMap.remove("acid".hashCode());
@@ -55,7 +49,7 @@ public class Ingredient extends AbstractModel{
 	}
 
 	public Ingredient() {
-		item = "error";
+		title = "error";
 		price = "error";
 		unit = "error";
 		image = "error";
@@ -81,7 +75,7 @@ public class Ingredient extends AbstractModel{
 	}
 
 	public String gettitle() {
-		return item;
+		return title;
 	}
 
 	public String getprice() {
@@ -92,7 +86,7 @@ public class Ingredient extends AbstractModel{
 		return unit;
 	}
 
-	public String getimage {
+	public String getimage(){
 		return image;
 	}
 
@@ -113,8 +107,7 @@ public class Ingredient extends AbstractModel{
     }
 
 	public boolean isMatch(String s) {
-
-		if (item.toLowerCase().contains(s) || price.toLowerCase().contains(s) || unit.toLowerCase().contains(s)) {
+		if (title.toLowerCase().contains(s) || price.toLowerCase().contains(s) || unit.toLowerCase().contains(s)) {
 			return true;
 		} else {
 			for (String tag : tags) {
@@ -131,7 +124,7 @@ public class Ingredient extends AbstractModel{
 	class SortIngredientsByName implements Comparator<Ingredient> {
 		// Used for sorting in ascending order of name
 		public int compare(Ingredient a, Ingredient b) {
-			return a.item.toLowerCase().compareTo(b.item.toLowerCase());
+			return a.title.toLowerCase().compareTo(b.title.toLowerCase());
 		}
 	}
 

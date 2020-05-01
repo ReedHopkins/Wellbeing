@@ -25,9 +25,9 @@ public class DatabaseSingleton {
         db = mongoClient.getDatabase(db_name);
 
         //Populating lists
-        PopulateModelList("ingredient");
+        PopulateModelList("ingredients");
         PopulateModelList("recipes");
-        PopulateModelList("nutrient");
+        PopulateModelList("nutrients");
         
         Collections.sort(ingredientList, new SortIngredientsByName());
         Collections.sort(recipeList, new SortRecipesByName());
@@ -51,7 +51,7 @@ public class DatabaseSingleton {
 
         try {
             while (cursor.hasNext()) {
-                if (model == "ingredient") {
+                if (model == "ingredients") {
                     ingredientList.add(new Ingredient(cursor.next()));
                 } else if (model == "recipes"){
                 	recipeList.add(new Recipe(cursor.next()));

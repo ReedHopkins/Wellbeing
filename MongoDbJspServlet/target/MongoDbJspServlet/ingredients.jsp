@@ -87,15 +87,15 @@
 		<div class="grid-container">
 			<c:forEach items="${ingredient}" var="ingredient">
 				<a
-					href="IngredientInstanceServlet?ingredientTitle=<c:out value="${ingredient.item}"/>">
+					href="IngredientInstanceServlet?ingredientTitle=<c:out value="${ingredient.title}"/>">
 					<div class="ft-recipe">
 						<div class="ft-recipe__thumb">
-							<img src="${ingredient.image}" alt="${ingredient.item}" />
+							<img src="${ingredient.image}" alt="${ingredient.title}" />
 						</div>
 						<div class="ft-recipe__content">
 							<header class="content__header">
 								<div class="row-wrapper">
-									<h4 class="recipe-title">${ingredient.item}</h4>
+									<h4 class="recipe-title">${ingredient.title}</h4>
 								</div>
 								<ul class="recipe-details">
 									<li class="recipe-details-item time"><i

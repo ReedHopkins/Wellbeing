@@ -1,10 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="org.bson.Document"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.mongodb.MongoClient"%>
-<%@page import="com.mongodb.client.MongoCollection"%>
 <%@page import="com.jcg.mongodb.servlet.Recipe"%>
-<%@ page import="com.jcg.mongodb.servlet.DatabaseSingleton" %>
 <%@ page import="com.jcg.mongodb.servlet.DatabaseUtility" %>
 
 <html>
@@ -44,9 +40,7 @@
 		<h3>Ingredients</h3>
 		<ul>
 
-			<%
-				Recipe recipe = (Recipe) request.getAttribute("recipe");
-
+			<%Recipe recipe = (Recipe) request.getAttribute("recipe");
 				for (Document ingredient : recipe.getingredients()) {
 					String name = DatabaseUtility.findIngredient(ingredient.getString("name"));
                     if (name != null) {
@@ -56,8 +50,7 @@
 					    out.print("<li>" + ingredient.getString("name") + "</li>");
 					}
 
-				}
-			%>
+				}%>
 		</ul>
 		<br>
 		<h3>Directions</h3>
@@ -69,8 +62,7 @@
 			<li>Carbohydrates: ${recipe.carbs}</li>
 			<li>Fat: ${recipe.fat}</li>
 			<li>Protein: ${recipe.protein}</li>
-			<%
-				for (Document nutrient : recipe.getnutrients()) {
+			<%for (Document nutrient : recipe.getnutrients()) {
 				    String name = DatabaseUtility.findNutrient(nutrient.getString("title"));
 					if (name != null) {
                     	out.print("<li><a href=\"NutrientInstanceServlet?nutrientTitle=" + name + "\">"
@@ -78,8 +70,7 @@
                  	}else{
 						out.print("<li>" + nutrient.getString("title") + ": " + nutrient.getString("amount") + "</li>");
 				    }
-				}
-			%>
+				}%>
 		</ul>
 	</div>
 </body>
