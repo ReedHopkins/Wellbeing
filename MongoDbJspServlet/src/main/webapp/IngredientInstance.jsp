@@ -82,7 +82,7 @@
 		<br>
         <h3>Recipes with this ingredient: </h3>
 		<%
-			ArrayList<Recipe> info = DatabaseUtility.searchRecipesForIngredient(ingredient.getitem());
+			ArrayList<Recipe> info = DatabaseUtility.searchRecipesForIngredient(ingredient.gettitle());
             for(Recipe r: info){
                 if (r != null) {
 				    out.print("<li><a href=\"RecipeInstanceServlet?recipeId=" + r.getid() + "\">"

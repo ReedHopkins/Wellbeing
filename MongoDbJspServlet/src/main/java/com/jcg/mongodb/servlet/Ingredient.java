@@ -80,7 +80,7 @@ public class Ingredient {
 		return String.valueOf(chars);
 	}
 
-	public String getitem() {
+	public String gettitle() {
 		return item;
 	}
 
