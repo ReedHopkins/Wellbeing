@@ -7,11 +7,9 @@ import java.util.*;
 public class Recipe extends AbstractModel{
 
     String id;
-    String title;
     String readyInMinutes;
     String servings;
     String healthScore;
-    String image;
     String carbs;
     String calories;
     String fat;

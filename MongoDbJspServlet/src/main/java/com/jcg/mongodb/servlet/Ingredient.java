@@ -11,10 +11,8 @@ import org.bson.Document;
 import static com.jcg.mongodb.servlet.DatabaseUtility.putMap;
 
 public class Ingredient extends AbstractModel{
-	String title;
 	String price;
 	String unit;
-	String image;
 	List<String> nutrients;
 	List<String> tags;
 	List<String> badges;

@@ -29,9 +29,9 @@ public class DatabaseSingleton {
         PopulateModelList("recipes");
         PopulateModelList("nutrients");
         
-        Collections.sort(ingredientList, new SortIngredientsByName());
-        Collections.sort(recipeList, new SortRecipesByName());
-        Collections.sort(nutrientList, new SortNutrientsByName());
+        Collections.sort(ingredientList, new SortByName());
+        Collections.sort(recipeList, new SortByName());
+        Collections.sort(nutrientList, new SortByName());
         
         mongoClient.close();
         DatabaseUtility.initializeMaps(ingredientList, recipeList, nutrientList);

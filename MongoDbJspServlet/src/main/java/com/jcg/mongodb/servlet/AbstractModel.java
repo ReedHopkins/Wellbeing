@@ -1,14 +1,28 @@
 package com.jcg.mongodb.servlet;
 
+import java.util.Comparator;
+
 abstract class AbstractModel{
 
     String title;
+    String image;
 
-    abstract String gettitle();
+    String gettitle(){
+        return title;
+    };
 
-    abstract String getimage();
+    String getimage(){
+        return image;
+    };
 
     abstract boolean isMatch(String s);
 
 
+}
+
+class SortByName implements Comparator<AbstractModel> {
+    // Used for sorting in ascending order of name
+    public int compare(AbstractModel a, AbstractModel b) {
+        return a.title.toLowerCase().compareTo(b.title.toLowerCase());
+    }
 }

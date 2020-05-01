@@ -6,10 +6,8 @@ import org.bson.Document;
 
 
 public class Nutrient extends AbstractModel {
-	String title;
 	String description;
 	String dailyIntake;
-	String image;
 	List<String> tags;
 	String medicalInfo;
 

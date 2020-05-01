@@ -12,6 +12,7 @@ com\jcg\mongodb\servlet\SortIngredientsByName.class
 com\jcg\mongodb\servlet\DatabaseUtility.class
 com\jcg\mongodb\servlet\RecipeInstanceServlet.class
 com\jcg\mongodb\servlet\DatabaseSingleton.class
+com\jcg\mongodb\servlet\SortByName.class
 com\jcg\mongodb\servlet\SortIngredientsByPrice.class
 com\jcg\mongodb\servlet\SortRecipesByTime.class
 com\jcg\mongodb\servlet\SortNutrientsByName.class
