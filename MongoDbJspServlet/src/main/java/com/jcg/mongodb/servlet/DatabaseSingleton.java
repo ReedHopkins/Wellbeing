@@ -24,44 +24,15 @@ public class DatabaseSingleton {
         mongoClient = new MongoClient(new MongoClientURI(dbURI));
         db = mongoClient.getDatabase(db_name);
 
-        //Creating ingredient list
-        MongoCollection<Document> colIngr = db.getCollection("ingredients");
-        FindIterable<Document> elementsIngr = colIngr.find();
-        MongoCursor<Document> cursorIngr = elementsIngr.iterator();
-        try {
-            while (cursorIngr.hasNext()) {
-                ingredientList.add(new Ingredient(cursorIngr.next()));
-            }
-        } finally {
-            cursorIngr.close();
-        }
+        //Populating lists
+        PopulateModelList("ingredient");
+        PopulateModelList("recipes");
+        PopulateModelList("nutrient");
+        
         Collections.sort(ingredientList, new SortIngredientsByName());
-
-        //Creating recipe list
-        MongoCollection<Document> colRec = db.getCollection("recipes");
-        FindIterable<Document> elementsRec = colRec.find();
-        MongoCursor<Document> cursorRec = elementsRec.iterator();
-        try {
-            while (cursorRec.hasNext()) {
-                recipeList.add(new Recipe(cursorRec.next()));
-            }
-        } finally {
-            cursorRec.close();
-        }
         Collections.sort(recipeList, new SortRecipesByName());
-
-        //Creating nutrient list
-        MongoCollection<Document> colNut = db.getCollection("nutrients");
-        FindIterable<Document> elementsNut = colNut.find();
-        MongoCursor<Document> cursorNut = elementsNut.iterator();
-        try {
-            while (cursorNut.hasNext()) {
-                nutrientList.add(new Nutrient(cursorNut.next()));
-            }
-        } finally {
-            cursorNut.close();
-        }
         Collections.sort(nutrientList, new SortNutrientsByName());
+        
         mongoClient.close();
         DatabaseUtility.initializeMaps(ingredientList, recipeList, nutrientList);
     }
@@ -71,6 +42,26 @@ public class DatabaseSingleton {
             DatabaseSingleton.instance = new DatabaseSingleton();
         }
         return DatabaseSingleton.instance;
+    }
+    
+    public void PopulateModelList (String model){
+        MongoCollection<Document> col = db.getCollection(model);
+        FindIterable<Document> elements = col.find();
+        MongoCursor<Document> cursor = elements.iterator();
+
+        try {
+            while (cursor.hasNext()) {
+                if (model == "ingredient") {
+                    ingredientList.add(new Ingredient(cursor.next()));
+                } else if (model == "recipes"){
+                	recipeList.add(new Recipe(cursor.next()));
+                } else{
+                    nutrientList.add(new Nutrient(cursor.next()));
+                }
+            }
+        } finally {
+            cursor.close();
+        }
     }
 
     public ArrayList<Ingredient> getIngredients(){
