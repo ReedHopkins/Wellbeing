@@ -25,7 +25,7 @@
 	</div>
 	<div class="container" style="align-items: center">
 		<div style="text-align: center;">
-			<img src=${nutrient.pictureURL } width="300" height="200">
+			<img src=${nutrient.image } width="300" height="200">
 		</div>
 		<br>
 		<h3>Nutrient Description</h3>

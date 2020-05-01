@@ -9,7 +9,7 @@ public class Nutrient extends AbstractModel {
 	String title;
 	String description;
 	String dailyIntake;
-	String pictureURL;
+	String image;
 	List<String> tags;
 	String tagString;
 	String medicalInfo;
@@ -18,7 +18,7 @@ public class Nutrient extends AbstractModel {
 		title = (String) nutrientDoc.get("title");
 		description = ((String) nutrientDoc.get("description")).trim();
 		dailyIntake = ((String) nutrientDoc.get("reccommendedDailyIntake")).trim();
-		pictureURL = (String) nutrientDoc.get("pictureURL");
+		image = (String) nutrientDoc.get("image");
 		medicalInfo = (String) nutrientDoc.get("medicalInfo");
 		tags = (List<String>) nutrientDoc.get("tags");
 
@@ -31,7 +31,7 @@ public class Nutrient extends AbstractModel {
 		title = "error";
 		description = "error";
 		dailyIntake = "error";
-		pictureURL = "error";
+		image = "error";
 	}
 
 	public String gettitle() {
@@ -46,8 +46,8 @@ public class Nutrient extends AbstractModel {
 		return dailyIntake;
 	}
 
-	public String getpictureURL() {
-		return pictureURL;
+	public String getimage() {
+		return image;
 	}
 
 	public String getmedicalInfo() {return medicalInfo;}

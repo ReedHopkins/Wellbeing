@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.bson.Document;
 
-public class Ingredient {
+public class Ingredient extends AbstractModel{
 	String item;
 	String price;
 	String unit;
@@ -92,7 +92,7 @@ public class Ingredient {
 		return unit;
 	}
 
-	public String getimage() {
+	public String getimage {
 		return image;
 	}
 
