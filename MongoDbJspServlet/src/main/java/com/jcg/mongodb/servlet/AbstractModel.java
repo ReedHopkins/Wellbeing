@@ -16,8 +16,7 @@ abstract class AbstractModel{
     };
 
     abstract boolean isMatch(String s);
-
-
+    
 }
 
 class SortByName implements Comparator<AbstractModel> {

@@ -72,20 +72,12 @@ public class Ingredient extends AbstractModel{
 		return String.valueOf(chars);
 	}
 
-	public String gettitle() {
-		return title;
-	}
-
 	public String getprice() {
 		return price;
 	}
 
 	public String getunit() {
 		return unit;
-	}
-
-	public String getimage(){
-		return image;
 	}
 
 	public List<String> getnutrients() {
@@ -116,13 +108,6 @@ public class Ingredient extends AbstractModel{
 		}
 
 			return false;
-		}
-	}
-
-	class SortIngredientsByName implements Comparator<Ingredient> {
-		// Used for sorting in ascending order of name
-		public int compare(Ingredient a, Ingredient b) {
-			return a.title.toLowerCase().compareTo(b.title.toLowerCase());
 		}
 	}
 

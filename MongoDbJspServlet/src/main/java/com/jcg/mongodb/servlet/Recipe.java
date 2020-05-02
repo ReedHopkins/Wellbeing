@@ -91,10 +91,6 @@ public class Recipe extends AbstractModel{
         return id;
     }
 
-    public String gettitle() {
-        return title;
-    }
-
     public String getreadyInMinutes() {
         return readyInMinutes;
     }
@@ -105,10 +101,6 @@ public class Recipe extends AbstractModel{
 
     public String gethealthScore() {
         return healthScore;
-    }
-
-    public String getimage() {
-        return image;
     }
 
     public String getcarbs() {
@@ -154,13 +146,6 @@ public class Recipe extends AbstractModel{
         return false;
     }
 }
-
-    class SortRecipesByName implements Comparator<Recipe> {
-        // Used for sorting in ascending order of name
-        public int compare(Recipe a, Recipe b) {
-            return a.title.toLowerCase().compareTo(b.title.toLowerCase());
-        }
-    }
 
     class SortRecipesByTime implements Comparator<Recipe> {
         // Used for sorting in ascending order of name

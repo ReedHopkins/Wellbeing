@@ -31,20 +31,12 @@ public class Nutrient extends AbstractModel {
 		image = "error";
 	}
 
-	public String gettitle() {
-		return title;
-	}
-
 	public String getdescription() {
 		return description;
 	}
 
 	public String getdailyIntake() {
 		return dailyIntake;
-	}
-
-	public String getimage() {
-		return image;
 	}
 
 	public String getmedicalInfo() {return medicalInfo;}
@@ -65,13 +57,6 @@ public class Nutrient extends AbstractModel {
 			}
 		}
 		return false;
-	}
-}
-
-class SortNutrientsByName implements Comparator<Nutrient> {
-	// Used for sorting in ascending order of name
-	public int compare(Nutrient a, Nutrient b) {
-		return a.title.toLowerCase().compareTo(b.title.toLowerCase());
 	}
 }
 
